@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Contracts.DTOs
 {
-    public class User : BaseEntity
+    public class LoginRequestDTO
     {
-        public string Name { get; set; }
-        public string Surname { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public DateTime Created { get; set; }
     }
 }
