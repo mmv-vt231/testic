@@ -1,0 +1,12 @@
+body {
+  color: var(--chakra-colors-gray-600);
+}
+
+#root {
+  height: 100vh;
+}
+
+::selection {
+  background: var(--white-blue);
+  color: var(--blue);
+}
