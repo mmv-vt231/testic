@@ -4,6 +4,7 @@ import { buttonTheme, inputTheme, formTheme } from "./customComponentsTheme";
 const theme = extendTheme({
   colors: {
     primary: {
+      10: "#e7f2ff",
       50: "#dcf3ff",
       100: "#aedaff",
       200: "#7dbfff",

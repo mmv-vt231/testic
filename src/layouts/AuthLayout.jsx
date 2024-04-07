@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Flex, Image, Box } from "@chakra-ui/react";
 
-import logo from "@/assets/images/logo/logo.svg";
+import Logo from "@components/shared/Logo";
 import img from "@/assets/images/photos/login.svg";
 
 function AuthLayout() {
@@ -23,9 +23,7 @@ function AuthLayout() {
       </Flex>
       <Flex pos="relative" flex="1 1 50%" justify="center" align="center" bg="gray.50">
         <Box pos="absolute" top={5}>
-          <Box as={Link} to="/">
-            <Image src={logo} alt="Testic" w={200} />
-          </Box>
+          <Logo />
         </Box>
         <Box maxW={400} w="full" p={4}>
           <Outlet />

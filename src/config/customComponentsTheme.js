@@ -15,7 +15,13 @@ export const buttonTheme = {
       borderColor: "primary.500",
       color: "primary.500",
       _hover: {
-        bg: "primary.50",
+        bg: "primary.10",
+      },
+    },
+    ghost: {
+      bg: "gray.50",
+      _hover: {
+        bg: "primary.10",
       },
     },
   },

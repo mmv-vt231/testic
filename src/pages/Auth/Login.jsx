@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Heading, VStack, Button, useToast } from "@chakra-ui/react";
 
 import { Email, Lock } from "@components/shared/Icons";

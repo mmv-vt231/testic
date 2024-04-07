@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Box,
   Container,
@@ -10,9 +11,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-import logo from "@/assets/images/logo/logo.svg";
+import Logo from "@components/shared/Logo";
 import img from "@/assets/images/photos/intro.svg";
-import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -25,7 +25,7 @@ function Home() {
     >
       <Box pos="fixed" top={0} w="full">
         <Container maxW="container.xl" p={5}>
-          <Image w={200} src={logo} alt="Testic" />
+          <Logo />
         </Container>
       </Box>
       <Container maxW="container.xl">

@@ -51,33 +51,3 @@ export const loginUser = createAsyncThunk("auth/login", async (data, { rejectWit
     }
   }
 });
-
-export const authorizeUser = createAsyncThunk(
-  "auth/authorize",
-  async (_, { getState, rejectWithValue }) => {
-    try {
-      await axios.get(`${API_URL}/auth/authorize`, {
-        headers: {
-          Authorization: `Bearer ${getState().auth.token}`,
-        },
-      });
-    } catch (error) {
-      if (error.response && error.response.data.title) {
-        return rejectWithValue(error.response.data.title);
-      } else {
-        let errorMessage;
-
-        switch (error.code) {
-          case "ERR_NETWORK":
-            errorMessage = "Невдалося з'єднатися з сервером";
-            break;
-          default:
-            errorMessage = error.message;
-            break;
-        }
-
-        return rejectWithValue(errorMessage);
-      }
-    }
-  }
-);
