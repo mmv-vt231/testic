@@ -1,5 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
-import { buttonTheme } from "./customComponentsTheme";
+import { buttonTheme, inputTheme, formTheme } from "./customComponentsTheme";
 
 const theme = extendTheme({
   colors: {
@@ -29,6 +29,8 @@ const theme = extendTheme({
   },
   components: {
     Button: buttonTheme,
+    Input: inputTheme,
+    Form: formTheme,
   },
 });
 

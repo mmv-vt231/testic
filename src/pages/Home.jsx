@@ -37,7 +37,7 @@ function Home() {
               maxW={500}
               spacing={5}
             >
-              <Heading fontSize="3rem">Перевірте знання своїх учнів</Heading>
+              <Heading size="2xl">Перевірте знання своїх учнів</Heading>
               <Text>
                 Дізнайтесь який матеріал вони засвоїли, провівши онлайн тестування на платформі{" "}
                 <Box as="span" color="primary.500" fontWeight="bold">
