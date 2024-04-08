@@ -6,9 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Authentication.Login
+namespace Application.Authentication.Authorize
 {
-    public record LoginQuery(
-        string Email, 
-        string Password) : IRequest<LoginResponseDTO>;
+    public record AuthorizeQuery(string Token) : IRequest<UserDTO>;
 }

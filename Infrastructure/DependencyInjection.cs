@@ -1,5 +1,4 @@
 ﻿using Application.Interfaces;
-using Azure;
 using Domain.Errors;
 using Domain.Repositories;
 using Infrastructure.Authentication;
@@ -36,6 +35,8 @@ namespace Infrastructure
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IGroupRepository, GroupRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
 
             services.AddAuth(configuration);
 
@@ -47,8 +48,10 @@ namespace Infrastructure
             ConfigurationManager configuration)
         {
             services.Configure<JwtSettings>(configuration.GetSection("JWT"));
+            services.Configure<PasswordHasherSettings>(configuration.GetSection("PasswordHasher"));
 
-            services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
+            services.AddSingleton<IJwtTokenUtils, JwtTokenUtils>();
+            services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

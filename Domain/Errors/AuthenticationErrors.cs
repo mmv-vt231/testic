@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Errors
 {
-    public class AuthenticationErrors
+    public static class AuthenticationErrors
     {
-        public static readonly ErrorException InvalidCredentials = new("Invalid credentials", StatusCodes.Status400BadRequest);
+        public static readonly ErrorException InvalidCredentials = new("Email або пароль введені невірно", StatusCodes.Status400BadRequest);
 
-        public static readonly ErrorException EmailExists = new("User with this email already exist", StatusCodes.Status400BadRequest);
+        public static readonly ErrorException EmailExists = new("Користувач з такою поштою вже існує", StatusCodes.Status400BadRequest);
 
         public static readonly ErrorException Unauthorized = new("Unauthorized", StatusCodes.Status401Unauthorized);
     }

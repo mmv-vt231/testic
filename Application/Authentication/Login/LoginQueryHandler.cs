@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces;
-using Domain.Entities;
+using Contracts.DTOs;
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;
@@ -12,17 +12,23 @@ using System.Threading.Tasks;
 
 namespace Application.Authentication.Login
 {
-    public class LoginQueryHandler : IRequestHandler<LoginQuery, string>
+    public class LoginQueryHandler : IRequestHandler<LoginQuery, LoginResponseDTO>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        private readonly IJwtTokenUtils _jwtTokenUtils;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public LoginQueryHandler(IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator) {
+        public LoginQueryHandler(
+            IUserRepository userRepository, 
+            IJwtTokenUtils jwtTokenUtils, 
+            IPasswordHasher passwordHasher = null)
+        {
             _userRepository = userRepository;
-            _jwtTokenGenerator = jwtTokenGenerator;
+            _jwtTokenUtils = jwtTokenUtils;
+            _passwordHasher = passwordHasher;
         }
 
-        public async Task<string> Handle(LoginQuery request, CancellationToken cancellationToken)
+        public async Task<LoginResponseDTO> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByEmailAsync(request.Email);
 
@@ -31,14 +37,22 @@ namespace Application.Authentication.Login
                 throw AuthenticationErrors.InvalidCredentials;
             }
 
-            if (user.Password != request.Password)
+            if (!_passwordHasher.VerifyHash(request.Password, user.Password))
             {
                 throw AuthenticationErrors.InvalidCredentials;
             }
 
-            var token = _jwtTokenGenerator.GenerateToken(user);
+            var token = _jwtTokenUtils.GenerateToken(user);
 
-            return token;
+            return new LoginResponseDTO(
+                token,
+                new UserDTO(
+                    user.Id,
+                    user.Name,
+                    user.Surname,
+                    user.Email
+                )
+            );
         }
     }
 }

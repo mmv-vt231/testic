@@ -1,0 +1,30 @@
+﻿using Domain.Entities;
+using Domain.Repositories;
+using Infrastructure.Persistence.Database;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Infrastructure.Persistence.Repositories
+{
+    public class GroupRepository : Repository<Group>, IGroupRepository
+    {
+        private readonly ApplicationDbContext _context;
+
+        public GroupRepository(ApplicationDbContext context) : base(context)
+        {
+            _context = context;
+        }
+
+        public override async Task<IEnumerable<Group>?> GetAllAsync()
+        {
+            return await _context.Groups
+                .Include(g => g.Students)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+    }
+}

@@ -1,4 +1,5 @@
-﻿using Application.Authentication.Login;
+﻿using Application.Authentication.Authorize;
+using Application.Authentication.Login;
 using Application.Authentication.Register;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -6,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
-    [AllowAnonymous]
+    
     public class AuthController : ControllerBase
     {
         private readonly ISender _mediator;
@@ -18,19 +19,33 @@ namespace API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterCommand request)
+        [AllowAnonymous]
+        public async Task<IActionResult> Register(RegisterCommand command)
         {
-            await _mediator.Send(request);
+            await _mediator.Send(command);
 
-            return Ok();
+            return Created();
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginQuery request)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginQuery query)
         {
-            var token = await _mediator.Send(request);
+            var token = await _mediator.Send(query);
 
             return Ok(token);
+        }
+
+        [HttpGet("authorize")]
+        [Authorize]
+        public async Task<IActionResult> Authorize()
+        {
+            string authorization = Request.Headers.Authorization;
+            string token = authorization.Split(" ")[1];
+
+            var response = await _mediator.Send(new AuthorizeQuery(token));
+
+            return Ok(response);
         }
     }
 }

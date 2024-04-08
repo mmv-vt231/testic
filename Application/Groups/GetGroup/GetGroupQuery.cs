@@ -1,14 +1,14 @@
 ﻿using Domain.Entities;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Interfaces
+namespace Application.Groups.GetGroup
 {
-    public interface IJwtTokenGenerator
-    {
-        string GenerateToken(User user);
-    }
+    public record GetGroupQuery(
+        Guid Id
+    ) : IRequest<Group?>;
 }

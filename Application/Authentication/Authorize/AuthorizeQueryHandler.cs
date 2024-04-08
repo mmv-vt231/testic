@@ -1,0 +1,46 @@
+﻿using Application.Interfaces;
+using Contracts.DTOs;
+using Domain.Errors;
+using Domain.Repositories;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.Authentication.Authorize
+{
+    public class AuthorizeQueryHandler : IRequestHandler<AuthorizeQuery, UserDTO>
+    {
+        private readonly IUserRepository _userRepository;
+        private readonly IJwtTokenUtils _jwtTokenUtils;
+        public AuthorizeQueryHandler(IUserRepository userRepository, IJwtTokenUtils jwtTokenUtils) { 
+            _userRepository = userRepository;
+            _jwtTokenUtils = jwtTokenUtils;
+        }
+        public async Task<UserDTO> Handle(AuthorizeQuery request, CancellationToken cancellationToken)
+        {
+            var id = _jwtTokenUtils.DecodeJwt(request.Token).Claims.FirstOrDefault(c => c.Type == "id");
+ 
+            if(id is null)
+            {
+                throw UsersErrors.UserNotFound;
+            }
+
+            var user = await _userRepository.GetByIdAsync(new Guid(id.Value));
+
+            if (user is null)
+            {
+                throw UsersErrors.UserNotFound;
+            }
+
+            return new UserDTO(
+                user.Id,
+                user.Name,
+                user.Surname,
+                user.Email
+            ); ;
+        }
+    }
+}

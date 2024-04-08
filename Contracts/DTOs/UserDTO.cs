@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Contracts.DTOs
 {
-    public record RegisterRequestDTO(
-        string Name, 
-        string Surname, 
-        string Email, 
-        string Password
+    public record UserDTO(
+        Guid Id,
+        string Name,
+        string Surname,
+        string Email
     );
 }

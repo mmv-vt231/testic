@@ -27,13 +27,15 @@ namespace API.Infrastructure
         {
             _logger.LogError(exception, "Exception occurred: {Message}", exception.Message);
 
-            int code = (int)exception.Data["Code"];
+            var code = exception.Data.Contains("Code") ? (int)exception.Data["Code"] : 500;
+            var title = exception.Data.Contains("Code") ? exception.Message : "Unknown Error";
+            var detail = exception.Data.Contains("Detail") ? (string)exception.Data["Detail"] : null;
 
             var problemDetails = new ProblemDetails
             {
                 Status = code,
-                Title = exception.Message,
-                Detail = (string)exception.Data["Detail"],
+                Title = title,
+                Detail = detail,
             };
 
             httpContext.Response.StatusCode = code;

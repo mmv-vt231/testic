@@ -1,4 +1,5 @@
 ﻿using Contracts.DTOs;
+using Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Authentication.Login
+namespace Application.Groups.GetAllGroups
 {
-    public record LoginQuery(
-        string Email, 
-        string Password) : IRequest<LoginResponseDTO>;
+    public record GetGroupsQuery() : IRequest<IEnumerable<GetGroupsResponseDTO>>;
 }

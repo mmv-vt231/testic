@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.DTOs
 {
-    public class LoginResponseDTO
-    {
-        public string Token { get; set; }
-    }
+    public record LoginResponseDTO(
+        string Token,
+        UserDTO User
+    );
 }
