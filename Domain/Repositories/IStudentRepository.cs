@@ -9,6 +9,6 @@ namespace Domain.Repositories
 {
     public interface IStudentRepository : IRepository<Student>
     {
-
+        Task<IEnumerable<Student>> GetStudentsInGroupAsync(Guid id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Application.Authentication.Authorize;
 using Application.Authentication.Login;
 using Application.Authentication.Register;
+using Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -40,10 +41,7 @@ namespace API.Controllers
         [Authorize]
         public async Task<IActionResult> Authorize()
         {
-            string authorization = Request.Headers.Authorization;
-            string token = authorization.Split(" ")[1];
-
-            var response = await _mediator.Send(new AuthorizeQuery(token));
+            var response = await _mediator.Send(new AuthorizeQuery());
 
             return Ok(response);
         }

@@ -1,15 +1,14 @@
-﻿using Application.Interfaces;
+﻿using API.Infrastructure.Identity;
+using Application.Interfaces;
 using Domain.Errors;
 using Domain.Repositories;
 using Infrastructure.Authentication;
 using Infrastructure.Persistence.Database;
 using Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -50,6 +49,7 @@ namespace Infrastructure
             services.Configure<JwtSettings>(configuration.GetSection("JWT"));
             services.Configure<PasswordHasherSettings>(configuration.GetSection("PasswordHasher"));
 
+            services.AddTransient<IUserService, UserService>();
             services.AddSingleton<IJwtTokenUtils, JwtTokenUtils>();
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
@@ -69,7 +69,7 @@ namespace Infrastructure
 
                     options.Events = new JwtBearerEvents
                     {
-                        OnChallenge = async context =>
+                        OnChallenge = context =>
                         {
                             context.HandleResponse();  
 

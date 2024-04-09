@@ -14,21 +14,14 @@ namespace Application.Authentication.Authorize
     public class AuthorizeQueryHandler : IRequestHandler<AuthorizeQuery, UserDTO>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IJwtTokenUtils _jwtTokenUtils;
-        public AuthorizeQueryHandler(IUserRepository userRepository, IJwtTokenUtils jwtTokenUtils) { 
+        private readonly IUserService _userService;
+        public AuthorizeQueryHandler(IUserRepository userRepository, IUserService userService) { 
             _userRepository = userRepository;
-            _jwtTokenUtils = jwtTokenUtils;
+            _userService = userService;
         }
         public async Task<UserDTO> Handle(AuthorizeQuery request, CancellationToken cancellationToken)
         {
-            var id = _jwtTokenUtils.DecodeJwt(request.Token).Claims.FirstOrDefault(c => c.Type == "id");
- 
-            if(id is null)
-            {
-                throw UsersErrors.UserNotFound;
-            }
-
-            var user = await _userRepository.GetByIdAsync(new Guid(id.Value));
+            var user = await _userRepository.GetByIdAsync(_userService.Id);
 
             if (user is null)
             {

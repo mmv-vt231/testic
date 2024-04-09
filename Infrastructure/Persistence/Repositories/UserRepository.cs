@@ -12,7 +12,7 @@ namespace Infrastructure.Persistence.Repositories
 {
     public class UserRepository : Repository<User>, IUserRepository
     {
-        protected readonly ApplicationDbContext _context;
+        protected new readonly ApplicationDbContext _context;
 
         public UserRepository(ApplicationDbContext context) : base(context)
         {

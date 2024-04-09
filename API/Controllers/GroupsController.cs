@@ -1,12 +1,11 @@
 ﻿using Application.Groups.CreateGroup;
 using Application.Groups.DeleteGroup;
-using Application.Groups.GetAllGroups;
+using Application.Groups.GetGroups;
 using Application.Groups.GetGroup;
 using Application.Groups.UpdateGroup;
 using Contracts.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers

@@ -19,10 +19,19 @@ namespace Infrastructure.Persistence.Repositories
             _context = context;
         }
 
-        public override async Task<IEnumerable<Group>?> GetAllAsync()
+        public override async Task<Group?> GetByIdAsync(Guid id)
         {
             return await _context.Groups
                 .Include(g => g.Students)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(q => q.Id == id);
+        }
+
+        public async Task<IEnumerable<Group>> GetAllUserGroups(Guid id)
+        {
+            return await _context.Groups
+                .Include(g => g.Students)
+                .Where(g => g.UserId == id)
                 .AsNoTracking()
                 .ToListAsync();
         }

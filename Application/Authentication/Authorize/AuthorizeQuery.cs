@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace Application.Authentication.Authorize
 {
-    public record AuthorizeQuery(string Token) : IRequest<UserDTO>;
+    public record AuthorizeQuery() : IRequest<UserDTO>;
 }

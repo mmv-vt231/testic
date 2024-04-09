@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Azure.Core;
 using Domain.Entities;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -46,12 +47,5 @@ namespace Infrastructure.Authentication
             return tokenHandler.WriteToken(token);
         }
 
-        public JwtSecurityToken DecodeJwt(string jwt)
-        {
-            var handler = new JwtSecurityTokenHandler();
-            var token = handler.ReadJwtToken(jwt);
-
-            return token;
-        }
     }
 }

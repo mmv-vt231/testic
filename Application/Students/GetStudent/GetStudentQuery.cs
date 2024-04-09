@@ -1,5 +1,4 @@
 ﻿using Contracts.DTOs;
-using Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -7,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Groups.GetGroup
+namespace Application.Students.GetStudent
 {
-    public record GetGroupQuery(
+    public record GetStudentQuery(
         Guid Id
-    ) : IRequest<GetGroupResponseDTO?>;
+    ) : IRequest<GetStudentResponseDTO?>;
 }

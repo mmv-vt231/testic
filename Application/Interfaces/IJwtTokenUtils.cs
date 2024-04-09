@@ -11,6 +11,5 @@ namespace Application.Interfaces
     public interface IJwtTokenUtils
     {
         string GenerateToken(User user);
-        JwtSecurityToken DecodeJwt(string jwt);
     }
 }

@@ -31,7 +31,7 @@ namespace Application.Groups.CreateGroup
             var group = new Group
             {
                 Name = request.Name,
-                UserId = request.UserId,
+                UserId = request.UserId
             };
 
             await _groupRepository.CreateAsync(group);
