@@ -1,5 +1,12 @@
 import { extendTheme } from "@chakra-ui/react";
-import { buttonTheme, inputTheme, formTheme } from "./customComponentsTheme";
+import {
+  buttonTheme,
+  inputTheme,
+  formTheme,
+  cardTheme,
+  spinnerTheme,
+  tableTheme,
+} from "./customComponentsTheme";
 
 const theme = extendTheme({
   colors: {
@@ -26,13 +33,26 @@ const theme = extendTheme({
       body: {
         color: "gray.700",
       },
+      p: {
+        color: "gray.700",
+      },
     },
   },
   components: {
     Button: buttonTheme,
     Input: inputTheme,
     Form: formTheme,
+    Card: cardTheme,
+    Spinner: spinnerTheme,
+    Table: tableTheme,
   },
 });
+
+export const tosterOptions = {
+  defaultOptions: {
+    position: "top-right",
+    isClosable: true,
+  },
+};
 
 export default theme;

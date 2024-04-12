@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { setCredentials } from "@store/features/auth/authSlice";
+import { setCredentials, logout } from "@store/features/auth/authSlice";
 import { API_URL } from "@config/constants";
 
 export const api = createApi({
@@ -15,6 +15,7 @@ export const api = createApi({
       }
     },
   }),
+  tagTypes: ["Groups", "Group"],
   endpoints: builder => ({
     authorize: builder.query({
       query: () => "/auth/authorize",
@@ -25,10 +26,76 @@ export const api = createApi({
           if (response.data) {
             dispatch(setCredentials(response.data));
           }
-        } catch (e) {}
+        } catch (e) {
+          dispatch(logout());
+        }
       },
+    }),
+    getGroups: builder.query({
+      query: () => "/groups",
+      providesTags: ["Groups"],
+    }),
+    getGroup: builder.query({
+      query: id => `/groups/${id}`,
+      providesTags: ["Group"],
+    }),
+    addGroup: builder.mutation({
+      query: body => ({
+        url: "/groups",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Groups"],
+    }),
+    editGroup: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/groups/${id}`,
+        method: "PUT",
+        body,
+      }),
+      invalidatesTags: ["Group"],
+    }),
+    deleteGroup: builder.mutation({
+      query: id => ({
+        url: `/groups/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Groups"],
+    }),
+    addStudent: builder.mutation({
+      query: body => ({
+        url: "/students",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["Group"],
+    }),
+    editStudent: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `/students/${id}`,
+        method: "PUT",
+        body,
+      }),
+      invalidatesTags: ["Group"],
+    }),
+    deleteStudent: builder.mutation({
+      query: id => ({
+        url: `/students/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Group"],
     }),
   }),
 });
 
-export const { useAuthorizeQuery } = api;
+export const {
+  useAuthorizeQuery,
+  useGetGroupsQuery,
+  useGetGroupQuery,
+  useAddGroupMutation,
+  useEditGroupMutation,
+  useDeleteGroupMutation,
+  useAddStudentMutation,
+  useEditStudentMutation,
+  useDeleteStudentMutation,
+} = api;

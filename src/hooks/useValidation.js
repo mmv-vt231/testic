@@ -17,6 +17,12 @@ function useValidation(validation) {
               isValid = false;
             }
             break;
+          case "isEmail":
+            if (!data[field]?.toLowerCase().match("^[\\w-.]+@([\\w-]+.)+[\\w-]{2,4}$")) {
+              setErrors(errors => ({ ...errors, [field]: "Некоректна пошта!" }));
+              isValid = false;
+            }
+            break;
           case "pattern":
             if (!data[field]?.toLowerCase().match(validation[field][rule])) {
               setErrors(errors => ({ ...errors, [field]: "Некоректне значення!" }));

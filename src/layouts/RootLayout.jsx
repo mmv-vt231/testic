@@ -4,7 +4,7 @@ import { useAuthorizeQuery } from "@store/services/api";
 function RootLayout() {
   const token = localStorage.getItem("token");
 
-  const { isLoading } = useAuthorizeQuery({ skip: !token });
+  const { isLoading } = useAuthorizeQuery(null, { skip: !token });
 
   if (token && isLoading) {
     return null;

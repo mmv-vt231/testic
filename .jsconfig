@@ -7,7 +7,8 @@
       "@components/*": ["src/components/*"],
       "@config/*": ["src/config/*"],
       "@store/*": ["src/store/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@icons/*": ["src/components/shared/Icons/*"]
     }
   }
 }

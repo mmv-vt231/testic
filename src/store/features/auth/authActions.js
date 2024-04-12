@@ -7,21 +7,10 @@ export const registerUser = createAsyncThunk("auth/register", async (data, { rej
   try {
     await axios.post(`${API_URL}/auth/register`, data);
   } catch (error) {
-    if (error.response && error.response.data.title) {
-      return rejectWithValue(error.response.data.title);
+    if (error?.response?.data) {
+      return rejectWithValue({ data: error?.response?.data });
     } else {
-      let errorMessage;
-
-      switch (error.code) {
-        case "ERR_NETWORK":
-          errorMessage = "Невдалося з'єднатися з сервером";
-          break;
-        default:
-          errorMessage = error.message;
-          break;
-      }
-
-      return rejectWithValue(errorMessage);
+      return rejectWithValue({ status: error.code });
     }
   }
 });
@@ -33,21 +22,10 @@ export const loginUser = createAsyncThunk("auth/login", async (data, { rejectWit
     localStorage.setItem("token", response.data.token);
     return response.data;
   } catch (error) {
-    if (error.response && error.response.data.title) {
-      return rejectWithValue(error.response.data.title);
+    if (error?.response?.data) {
+      return rejectWithValue({ data: error?.response?.data });
     } else {
-      let errorMessage;
-
-      switch (error.code) {
-        case "ERR_NETWORK":
-          errorMessage = "Невдалося з'єднатися з сервером";
-          break;
-        default:
-          errorMessage = error.message;
-          break;
-      }
-
-      return rejectWithValue(errorMessage);
+      return rejectWithValue({ status: error.code });
     }
   }
 });
