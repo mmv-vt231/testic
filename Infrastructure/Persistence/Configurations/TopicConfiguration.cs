@@ -9,26 +9,26 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    internal class GroupConfiguration : IEntityTypeConfiguration<Group>
+    internal class TopicConfiguration : IEntityTypeConfiguration<Topic>
     {
-        public void Configure(EntityTypeBuilder<Group> builder)
+        public void Configure(EntityTypeBuilder<Topic> builder)
         {
-            builder.ToTable("Groups");
+            builder.ToTable("Topics");
 
-            builder.HasKey(g => g.Id);
+            builder.HasKey(t => t.Id);
 
-            builder.Property(g => g.Id)
+            builder.Property(t => t.Id)
                 .HasDefaultValueSql("NEWID()");
 
-            builder.Property(g => g.Name)
+            builder.Property(t => t.Title)
                 .IsRequired()
                 .HasMaxLength(255);
 
-            builder.Property(g => g.CreatedAt)
+            builder.Property(t => t.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
 
-            builder.HasOne(g => g.User)
-                .WithMany(u => u.Groups)
+            builder.HasOne(t => t.User)
+                .WithMany(u => u.Topics)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

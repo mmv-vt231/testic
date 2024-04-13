@@ -11,5 +11,5 @@ namespace Application.Groups.GetGroup
 {
     public record GetGroupQuery(
         Guid Id
-    ) : IRequest<GetGroupResponseDTO?>;
+    ) : IRequest<GetGroupResponseDTO>;
 }

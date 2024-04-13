@@ -28,7 +28,7 @@ namespace Infrastructure.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(255);
 
-            builder.Property(u => u.CreatedAt)
+            builder.Property(s => s.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
 
             builder.HasOne(s => s.Group)

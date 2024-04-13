@@ -28,13 +28,11 @@ namespace Application.Groups.GetGroups
         {
             var groups = await _groupRepository.GetAllUserGroups(_userService.Id);
 
-            var response = groups?.Select(g => new GetGroupsResponseDTO()
-            {
-                Id = g.Id,
-                Name = g.Name,
-                StudentsCount = g.Students?.Count ?? 0,
-            }).ToList();
-
+            var response = groups?.Select(g => new GetGroupsResponseDTO(
+                g.Id,
+                g.Name,
+                g.Students?.Count ?? 0
+            )).ToList();
 
             return response;
         }

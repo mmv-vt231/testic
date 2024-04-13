@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Groups.GetGroup
 {
-    public class GetGroupQueryHandler : IRequestHandler<GetGroupQuery, GetGroupResponseDTO?>
+    public class GetGroupQueryHandler : IRequestHandler<GetGroupQuery, GetGroupResponseDTO>
     {
         private readonly IGroupRepository _groupRepository;
 
@@ -20,7 +20,7 @@ namespace Application.Groups.GetGroup
             _groupRepository = groupRepository;
         }
 
-        public async Task<GetGroupResponseDTO?> Handle(GetGroupQuery request, CancellationToken cancellationToken)
+        public async Task<GetGroupResponseDTO> Handle(GetGroupQuery request, CancellationToken cancellationToken)
         {
             var group = await _groupRepository.GetByIdAsync(request.Id);
 

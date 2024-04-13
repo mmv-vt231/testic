@@ -1,5 +1,6 @@
 ﻿using Contracts.DTOs;
 using Domain.Entities;
+using Domain.Errors;
 using Domain.Repositories;
 using MediatR;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Students.GetStudent
 {
-    public class GetStudentQueryHandler : IRequestHandler<GetStudentQuery, GetStudentResponseDTO?>
+    public class GetStudentQueryHandler : IRequestHandler<GetStudentQuery, GetStudentResponseDTO>
     {
         private readonly IStudentRepository _studentRepository;
 
@@ -19,21 +20,20 @@ namespace Application.Students.GetStudent
             _studentRepository = studentRepository;
         }
 
-        public async Task<GetStudentResponseDTO?> Handle(GetStudentQuery request, CancellationToken cancellationToken)
+        public async Task<GetStudentResponseDTO> Handle(GetStudentQuery request, CancellationToken cancellationToken)
         {
             var student = await _studentRepository.GetByIdAsync(request.Id);
 
-            if (student is not null)
-            {
-                return new GetStudentResponseDTO(
-                    student.Id,
-                    student.FullName,
-                    student.Email,
-                    student.GroupId
-                );
-            };
+            if (student is null) {
+                throw StudentsErrors.StudentNotFound;
+            }
 
-            return null;
+            return new GetStudentResponseDTO(
+                student.Id,
+                student.FullName,
+                student.Email,
+                student.GroupId
+            );
         }
     }
 }

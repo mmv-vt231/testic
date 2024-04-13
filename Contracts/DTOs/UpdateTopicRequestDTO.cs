@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.DTOs
 {
-    public record GetGroupsResponseDTO(
-        Guid Id,
-        string Name,
-        int StudentsCount
+    public record UpdateTopicRequestDTO(
+        string Title    
     );
 }

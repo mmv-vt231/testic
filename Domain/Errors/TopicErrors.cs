@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Errors
 {
-    public static class StudentsErrors
+    public static class TopicErrors
     {
-        public static readonly ErrorException StudentNotFound = new("Студент незнайдений", StatusCodes.Status400BadRequest);
+        public static readonly ErrorException TopicNotFound = new("Тема незнайдена", StatusCodes.Status400BadRequest);
     }
 }

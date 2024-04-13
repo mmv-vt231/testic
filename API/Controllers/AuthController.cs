@@ -1,7 +1,6 @@
 ﻿using Application.Authentication.Authorize;
 using Application.Authentication.Login;
 using Application.Authentication.Register;
-using Application.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,11 +1,7 @@
-﻿using Application.Authentication.Register;
-using Application.Students.CreateStudent;
-using Application.Students.UpdateStudent;
-using Application.Users.UpdateData;
+﻿using Application.Users.UpdateData;
 using Application.Users.UpdatePassword;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers

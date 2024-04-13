@@ -14,5 +14,6 @@ namespace Domain.Entities
         public string Password { get; set; } = string.Empty;
 
         public ICollection<Group>? Groups { get; set; }
+        public ICollection<Topic>? Topics { get; set; }
     }
 }
