@@ -15,7 +15,7 @@ export const api = createApi({
       }
     },
   }),
-  tagTypes: ["Groups", "Group"],
+  tagTypes: ["Groups", "Group", "User"],
   endpoints: builder => ({
     authorize: builder.query({
       query: () => "/auth/authorize",
@@ -30,6 +30,7 @@ export const api = createApi({
           dispatch(logout());
         }
       },
+      providesTags: ["User"],
     }),
     getGroups: builder.query({
       query: () => "/groups",
@@ -85,6 +86,21 @@ export const api = createApi({
       }),
       invalidatesTags: ["Group"],
     }),
+    editUserPassword: builder.mutation({
+      query: body => ({
+        url: `/user/changePassword`,
+        method: "PUT",
+        body,
+      }),
+    }),
+    editUserData: builder.mutation({
+      query: body => ({
+        url: "/user",
+        method: "PUT",
+        body,
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -98,4 +114,6 @@ export const {
   useAddStudentMutation,
   useEditStudentMutation,
   useDeleteStudentMutation,
+  useEditUserDataMutation,
+  useEditUserPasswordMutation,
 } = api;

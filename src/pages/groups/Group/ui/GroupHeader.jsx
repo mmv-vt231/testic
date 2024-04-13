@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDeleteGroupMutation } from "@store/services/api";
 
 import { Flex, Box, Heading, Text, Button } from "@chakra-ui/react";
@@ -10,10 +10,12 @@ import GroupEditModal from "./GroupEditModal";
 
 function GroupHeader({ name, studentsCount }) {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [deleteGroup] = useDeleteGroupMutation();
 
   const handleDeleteGroup = async () => {
     await deleteGroup(id);
+    navigate("/panel/groups");
   };
 
   const Title = () => (

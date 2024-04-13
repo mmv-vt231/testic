@@ -25,7 +25,7 @@ function InputField({ name, label, type, placeholder, Icon }) {
           type={type}
           placeholder={placeholder}
           autoComplete="off"
-          defaultValue={data[name] || ""}
+          value={data[name]}
           onChange={handleChange}
         />
         {Icon && (

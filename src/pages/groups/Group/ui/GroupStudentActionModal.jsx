@@ -1,11 +1,11 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 import ModalForm from "@components/shared/Modal/ModalForm";
 import InputField from "@components/shared/form/InputField";
 import { useAddStudentMutation, useEditStudentMutation } from "@store/services/api";
 
 function GroupStudentActionModal({ title, data, type, children }) {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [addStudent] = useAddStudentMutation();
   const [editStudent] = useEditStudentMutation();
 
@@ -28,7 +28,7 @@ function GroupStudentActionModal({ title, data, type, children }) {
           groupId: id,
           ...formData,
         })
-      : (await editStudent({ id: data.id, body: formData }), navigate("/groups"));
+      : await editStudent({ id: data.id, body: formData });
   };
 
   return (

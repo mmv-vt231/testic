@@ -8,7 +8,9 @@
       "@config/*": ["src/config/*"],
       "@store/*": ["src/store/*"],
       "@assets/*": ["src/assets/*"],
-      "@icons/*": ["src/components/shared/Icons/*"]
+      "@icons/*": ["src/components/shared/Icons/*"],
+      "@utils/*": ["src/utils*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   }
 }

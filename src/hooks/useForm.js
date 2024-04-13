@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useValidation from "./useValidation";
 
 function useForm(initialState, validation) {
   const [data, setData] = useState(initialState || {});
   const { errors, validate } = useValidation(validation);
+
+  useEffect(() => {
+    setData(initialState);
+  }, [initialState]);
 
   const handleSubmit = (e, onSubmit) => {
     e.preventDefault();
@@ -12,6 +16,7 @@ function useForm(initialState, validation) {
 
     if (isValid) {
       onSubmit(data);
+      setData(initialState);
     }
   };
 

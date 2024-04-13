@@ -12,6 +12,8 @@ export default defineConfig({
       "@store": path.resolve(__dirname, "src/store"),
       "@assets": path.resolve(__dirname, "src/assets"),
       "@icons": path.resolve(__dirname, "src/components/shared/Icons"),
+      "@utils": path.resolve(__dirname, "src/utils"),
+      "@hooks": path.resolve(__dirname, "src/hooks"),
     },
   },
   plugins: [react()],

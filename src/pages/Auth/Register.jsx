@@ -67,7 +67,7 @@ function Register() {
           />
           <InputField
             name="repeatPassword"
-            label="Пароль"
+            label="Повторіть пароль"
             type="password"
             placeholder="Введіть пароль"
             Icon={Lock}

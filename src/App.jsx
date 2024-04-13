@@ -11,6 +11,7 @@ import Register from "@pages/auth/Register";
 import NotFound from "@pages/errors/NotFound";
 import Groups from "@pages/groups/Groups";
 import Group from "@pages/groups/Group";
+import Profile from "@pages/profile/Profile";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route index element={<Groups />} />
               <Route path=":id" element={<Group />} />
             </Route>
+            <Route path="profile" element={<Profile />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFound />} />

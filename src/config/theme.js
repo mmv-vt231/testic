@@ -33,7 +33,7 @@ const theme = extendTheme({
       body: {
         color: "gray.700",
       },
-      p: {
+      "h1, h2, h3, h4, h5, h6, p, a": {
         color: "gray.700",
       },
     },
@@ -50,7 +50,7 @@ const theme = extendTheme({
 
 export const tosterOptions = {
   defaultOptions: {
-    position: "top-right",
+    position: "bottom-right",
     isClosable: true,
   },
 };
