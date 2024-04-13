@@ -69,7 +69,7 @@ namespace Infrastructure
 
                     options.Events = new JwtBearerEvents
                     {
-                        OnChallenge = context =>
+                        OnChallenge = async context =>
                         {
                             context.HandleResponse();  
 

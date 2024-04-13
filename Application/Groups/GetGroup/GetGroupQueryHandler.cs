@@ -1,5 +1,6 @@
 ﻿using Contracts.DTOs;
 using Domain.Entities;
+using Domain.Errors;
 using Domain.Repositories;
 using MediatR;
 using System;
@@ -23,26 +24,29 @@ namespace Application.Groups.GetGroup
         {
             var group = await _groupRepository.GetByIdAsync(request.Id);
 
-            if (group is not null)
-            {
-                var students = group.Students?.Select(s => new StudentDTO(
+            if (group is null) 
+            { 
+                throw GroupsErrors.GroupNotFound;
+            }
+
+            var students = group.Students?
+                .Select(s => new StudentDTO(
                     s.Id,
                     s.FullName,
                     s.Email,
                     s.GroupId
-                )).ToList();
+                ))
+                .OrderBy(s => s.FullName)
+                .ToList();
 
-                var response = new GetGroupResponseDTO(
-                    group.Id,
-                    group.Name,
-                    students,
-                    group.UserId
-                );
+            var response = new GetGroupResponseDTO(
+                group.Id,
+                group.Name,
+                students,
+                group.UserId
+            );
 
-                return response;
-            }
-
-            return null;
+            return response;
         }
     }
 }

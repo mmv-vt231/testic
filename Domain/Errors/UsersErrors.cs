@@ -11,5 +11,7 @@ namespace Domain.Errors
     public static class UsersErrors
     {
         public static readonly ErrorException UserNotFound = new("Користувач не знайдений", StatusCodes.Status400BadRequest);
+
+        public static readonly ErrorException IncorrectPassword = new("Невірний пароль", StatusCodes.Status400BadRequest);
     }
 }

@@ -36,12 +36,9 @@ namespace Infrastructure.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(255);
 
-            builder.Property(u => u.Password)
-                .IsRequired()
-                .HasMaxLength(255);
-
-            builder.Property(u => u.Created)
+            builder.Property(u => u.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
+
         }   
     }
 }

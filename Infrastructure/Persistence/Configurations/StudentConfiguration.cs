@@ -28,6 +28,9 @@ namespace Infrastructure.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(255);
 
+            builder.Property(u => u.CreatedAt)
+                .HasDefaultValueSql("GETDATE()");
+
             builder.HasOne(s => s.Group)
                 .WithMany(g => g.Students)
                 .OnDelete(DeleteBehavior.Cascade);

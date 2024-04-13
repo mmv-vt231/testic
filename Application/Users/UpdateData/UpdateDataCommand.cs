@@ -5,9 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Groups.CreateGroup
+namespace Application.Users.UpdateData
 {
-    public record CreateGroupCommand(
-        string Name
+    public record UpdateDataCommand(
+        string Name,
+        string Surname
     ) : IRequest;
 }

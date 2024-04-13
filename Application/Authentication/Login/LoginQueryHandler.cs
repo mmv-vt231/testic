@@ -21,7 +21,7 @@ namespace Application.Authentication.Login
         public LoginQueryHandler(
             IUserRepository userRepository, 
             IJwtTokenUtils jwtTokenUtils, 
-            IPasswordHasher passwordHasher = null)
+            IPasswordHasher passwordHasher)
         {
             _userRepository = userRepository;
             _jwtTokenUtils = jwtTokenUtils;
@@ -50,7 +50,8 @@ namespace Application.Authentication.Login
                     user.Id,
                     user.Name,
                     user.Surname,
-                    user.Email
+                    user.Email,
+                    user.CreatedAt
                 )
             );
         }

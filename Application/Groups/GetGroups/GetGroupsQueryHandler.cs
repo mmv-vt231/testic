@@ -32,8 +32,9 @@ namespace Application.Groups.GetGroups
             {
                 Id = g.Id,
                 Name = g.Name,
-                StudentsCount = g.Students?.Count() ?? 0,
+                StudentsCount = g.Students?.Count ?? 0,
             }).ToList();
+
 
             return response;
         }

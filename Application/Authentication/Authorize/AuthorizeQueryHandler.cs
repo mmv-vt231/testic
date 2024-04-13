@@ -32,7 +32,8 @@ namespace Application.Authentication.Authorize
                 user.Id,
                 user.Name,
                 user.Surname,
-                user.Email
+                user.Email,
+                user.CreatedAt
             ); ;
         }
     }

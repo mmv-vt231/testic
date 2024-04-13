@@ -32,6 +32,7 @@ namespace Infrastructure.Persistence.Repositories
             return await _context.Groups
                 .Include(g => g.Students)
                 .Where(g => g.UserId == id)
+                .OrderByDescending(g => g.CreatedAt)
                 .AsNoTracking()
                 .ToListAsync();
         }

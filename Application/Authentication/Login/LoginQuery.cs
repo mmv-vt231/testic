@@ -10,5 +10,6 @@ namespace Application.Authentication.Login
 {
     public record LoginQuery(
         string Email, 
-        string Password) : IRequest<LoginResponseDTO>;
+        string Password
+    ) : IRequest<LoginResponseDTO>;
 }

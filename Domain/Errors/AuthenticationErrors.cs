@@ -14,6 +14,6 @@ namespace Domain.Errors
 
         public static readonly ErrorException EmailExists = new("Користувач з такою поштою вже існує", StatusCodes.Status400BadRequest);
 
-        public static readonly ErrorException Unauthorized = new("Unauthorized", StatusCodes.Status401Unauthorized);
+        public static readonly ErrorException Unauthorized = new("Необхідно авторизуватися", StatusCodes.Status401Unauthorized);
     }
 }

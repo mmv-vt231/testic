@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Interfaces;
+using Domain.Entities;
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;
@@ -14,15 +15,21 @@ namespace Application.Groups.CreateGroup
     {
         private readonly IGroupRepository _groupRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
-        public CreateGroupCommandHandler(IGroupRepository groupRepository, IUserRepository userRepository) {
+        public CreateGroupCommandHandler(
+            IGroupRepository groupRepository, 
+            IUserRepository userRepository, 
+            IUserService userService
+        ) {
             _groupRepository = groupRepository;
             _userRepository = userRepository;
+            _userService = userService;
         }
 
         public async Task Handle(CreateGroupCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetByIdAsync(request.UserId);
+            var user = await _userRepository.GetByIdAsync(_userService.Id);
 
             if(user is null) {
                 throw UsersErrors.UserNotFound;
@@ -31,7 +38,7 @@ namespace Application.Groups.CreateGroup
             var group = new Group
             {
                 Name = request.Name,
-                UserId = request.UserId
+                UserId = _userService.Id
             };
 
             await _groupRepository.CreateAsync(group);

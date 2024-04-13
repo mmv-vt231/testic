@@ -10,6 +10,7 @@ namespace Contracts.DTOs
         Guid Id,
         string Name,
         string Surname,
-        string Email
+        string Email,
+        DateTime CreatedAt
     );
 }

@@ -18,18 +18,6 @@ namespace API.Infrastructure.Identity
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public Guid Id { 
-            get => new(_httpContextAccessor.HttpContext.User.FindFirstValue("id")); 
-        }
-
-        public Guid GetId()
-        {
-            var user = _httpContextAccessor.HttpContext.User.Identity;
-
-            var idField = new ClaimsPrincipal(user).Claims.FirstOrDefault(c => c.Type == "id");
-            var id = new Guid(idField.Value);
-
-            return id;
-        }
+        public Guid Id => new(_httpContextAccessor.HttpContext?.User?.FindFirstValue("id"));
     }
 }
