@@ -19,8 +19,8 @@ const groupActions = builder => ({
     invalidatesTags: ["Groups"],
   }),
   addStudent: builder.mutation({
-    query: body => ({
-      url: "/students",
+    query: ({ id, body }) => ({
+      url: `/groups/${id}/students`,
       method: "POST",
       body,
     }),

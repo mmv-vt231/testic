@@ -25,10 +25,13 @@ function GroupStudentActionModal({ title, data, type, children }) {
   const handleSubmit = async formData => {
     type == "create"
       ? await addStudent({
-          groupId: id,
-          ...formData,
+          id,
+          body: formData,
         })
-      : await editStudent({ id: data.id, body: formData });
+      : await editStudent({
+          id: data.id,
+          body: formData,
+        });
   };
 
   return (

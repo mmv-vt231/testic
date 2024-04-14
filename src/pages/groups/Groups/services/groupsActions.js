@@ -1,11 +1,11 @@
 const groupsActions = builder => ({
   getGroups: builder.query({
-    query: () => "/groups",
+    query: () => "/user/groups",
     providesTags: ["Groups"],
   }),
   addGroup: builder.mutation({
     query: body => ({
-      url: "/groups",
+      url: "/user/groups",
       method: "POST",
       body,
     }),
