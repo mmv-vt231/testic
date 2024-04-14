@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Errors
 {
-    public static class TopicErrors
+    public static class TopicsErrors
     {
         public static readonly ErrorException TopicNotFound = new("Тема незнайдена", StatusCodes.Status400BadRequest);
     }

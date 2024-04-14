@@ -1,4 +1,5 @@
 ﻿using Contracts.DTOs;
+using Contracts.DTOs.Topics;
 using Domain.Entities;
 using Domain.Errors;
 using Domain.Repositories;
@@ -26,12 +27,22 @@ namespace Application.Topics.GetTopic
 
             if (topic is null)
             {
-                throw TopicErrors.TopicNotFound;
+                throw TopicsErrors.TopicNotFound;
             }
+
+            var tests = topic?.Tests?
+                .Select(t => new TestDTO(
+                    t.Id,
+                    t.Title,
+                    t.CreatedAt
+                ))
+                .OrderByDescending(t => t.CreatedAt)
+                .ToList();
 
             return new GetTopicResponseDTO(
                 topic.Id,
-                topic.Title
+                topic.Title,
+                tests
             );
         }
     }

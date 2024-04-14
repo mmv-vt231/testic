@@ -24,7 +24,7 @@ namespace Application.Topics.DeleteTopic
 
             if (topic is null)
             {
-                throw TopicErrors.TopicNotFound;
+                throw TopicsErrors.TopicNotFound;
             }
 
             await _topicRepository.DeleteAsync(topic);

@@ -37,6 +37,7 @@ namespace Infrastructure
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ITopicRepository, TopicRepository>();
+            services.AddScoped<ITestRepository, TestRepository>();
 
             services.AddAuth(configuration);
 

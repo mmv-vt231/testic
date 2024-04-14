@@ -10,5 +10,7 @@ namespace Domain.Repositories
     public interface IUserRepository : IRepository<User>
     {
         Task<User?> GetByEmailAsync(string email);
+        Task<IEnumerable<Topic>> GetAllUserTopics(Guid id);
+        Task<IEnumerable<Group>> GetAllUserGroups(Guid id);
     }
 }

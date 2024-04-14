@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Contracts.DTOs
 {
-    public record GetTopicResponseDTO(
+    public record TestDTO(
         Guid Id,
-        string Title
+        string Title,
+        DateTime CreatedAt
     );
 }

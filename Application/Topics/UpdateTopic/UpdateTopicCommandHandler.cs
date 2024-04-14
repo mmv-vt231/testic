@@ -24,7 +24,7 @@ namespace Application.Topics.UpdateTopic
 
             if (topic is null)
             {
-                throw TopicErrors.TopicNotFound;
+                throw TopicsErrors.TopicNotFound;
             }
 
             topic.Title = request.Title;

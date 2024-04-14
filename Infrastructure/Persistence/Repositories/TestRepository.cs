@@ -1,7 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence.Database;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class StudentRepository : Repository<Student>, IStudentRepository
+    public class TestRepository : Repository<Test>, ITestRepository
     {
         private new readonly ApplicationDbContext _context;
-        public StudentRepository(ApplicationDbContext context) : base(context)
+        public TestRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }

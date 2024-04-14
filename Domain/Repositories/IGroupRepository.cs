@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace Domain.Repositories
 {
     public interface IGroupRepository : IRepository<Group>
-    {
-        Task<IEnumerable<Group>> GetAllUserGroups(Guid id);
+    {    
     }
 }

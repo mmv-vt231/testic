@@ -1,4 +1,4 @@
-﻿using Contracts.DTOs.Topics;
+﻿using Contracts.DTOs;
 using Domain.Entities;
 using MediatR;
 using System;
@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Topics.GetTopic
+namespace Application.Tests.GetTest
 {
-    public record GetTopicQuery(
+    public record GetTestQuery(
         Guid Id
-    ) : IRequest<GetTopicResponseDTO>;
+    ) : IRequest<GetTestResponseDTO>;
 }

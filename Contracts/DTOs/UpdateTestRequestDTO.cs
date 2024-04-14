@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.DTOs
 {
-    public record UpdateTopicRequestDTO(
-        string Title    
+    public record UpdateTestRequestDTO(
+        string Title
     );
 }

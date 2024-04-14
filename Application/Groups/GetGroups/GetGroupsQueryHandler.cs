@@ -16,22 +16,22 @@ namespace Application.Groups.GetGroups
 {
     public class GetGroupsQueryHandler : IRequestHandler<GetGroupsQuery, IEnumerable<GetGroupsResponseDTO>>
     {
-        private readonly IGroupRepository _groupRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IUserService _userService;
 
-        public GetGroupsQueryHandler(IGroupRepository groupRepository, IUserService userService) { 
-            _groupRepository = groupRepository;
+        public GetGroupsQueryHandler(IUserRepository userRepository, IUserService userService) {
+            _userRepository = userRepository;
             _userService = userService;
         }
 
         public async Task<IEnumerable<GetGroupsResponseDTO>> Handle(GetGroupsQuery request, CancellationToken cancellationToken)
         {
-            var groups = await _groupRepository.GetAllUserGroups(_userService.Id);
+            var groups = await _userRepository.GetAllUserGroups(_userService.Id);
 
             var response = groups?.Select(g => new GetGroupsResponseDTO(
                 g.Id,
                 g.Name,
-                g.Students?.Count ?? 0
+                g.Students?.Count() ?? 0
             )).ToList();
 
             return response;

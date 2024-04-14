@@ -1,5 +1,4 @@
 ﻿using Contracts.DTOs;
-using Domain.Entities;
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;

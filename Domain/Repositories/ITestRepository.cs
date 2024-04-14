@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Repositories
 {
-    public interface ITopicRepository : IRepository<Topic>
+    public interface ITestRepository : IRepository<Test>
     {
-        Task<Topic?> GetTopicDetails(Guid id);
-
-        Task<IEnumerable<Test>> GetAllTopicTests(Guid id);
     }
 }

@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Topic : BaseEntity
+    public class Test : BaseEntity
     {
         public string Title { get; set; } = string.Empty;
 
-        public Guid UserId { get; set; }
-        public User User { get; set; }
-        public IEnumerable<Test>? Tests { get; set; }
+        public Guid TopicId { get; set; }
+        public Topic Topic { get; set; }
     }
 }

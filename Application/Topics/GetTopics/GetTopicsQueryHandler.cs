@@ -12,18 +12,18 @@ namespace Application.Topics.GetTopics
 {
     public class GetTopicsQueryHandler : IRequestHandler<GetTopicsQuery, IEnumerable<GetTopicsResponseDTO>>
     {
-        private readonly ITopicRepository _topicRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IUserService _userService;
 
-        public GetTopicsQueryHandler(ITopicRepository topicRepository, IUserService userService)
+        public GetTopicsQueryHandler(IUserRepository userRepository, IUserService userService)
         {
-            _topicRepository = topicRepository;
+            _userRepository = userRepository;
             _userService = userService;
         }
 
         public async Task<IEnumerable<GetTopicsResponseDTO>> Handle(GetTopicsQuery request, CancellationToken cancellationToken)
         {
-            var topics = await _topicRepository.GetAllUserTopics(_userService.Id);
+            var topics = await _userRepository.GetAllUserTopics(_userService.Id);
 
             var response = topics?.Select(t => new GetTopicsResponseDTO(
                 t.Id,
