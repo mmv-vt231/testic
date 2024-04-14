@@ -1,4 +1,4 @@
-﻿using Contracts.DTOs;
+﻿using Contracts.Auth;
 using MediatR;
 using System;
 using System.Collections.Generic;

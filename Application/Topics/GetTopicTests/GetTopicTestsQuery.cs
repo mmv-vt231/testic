@@ -1,4 +1,4 @@
-﻿using Contracts.DTOs;
+﻿using Contracts.Tests;
 using MediatR;
 using System;
 using System.Collections.Generic;

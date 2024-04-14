@@ -1,4 +1,4 @@
-﻿using Contracts.DTOs;
+﻿using Contracts.Students;
 using MediatR;
 using System;
 using System.Collections.Generic;

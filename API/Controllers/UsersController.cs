@@ -1,4 +1,6 @@
-﻿using Application.Users.UpdateData;
+﻿using Application.Groups.GetGroups;
+using Application.Topics.GetTopics;
+using Application.Users.UpdateData;
 using Application.Users.UpdatePassword;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -12,8 +14,8 @@ namespace API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ISender _mediator;
-        public UsersController(ISender medaitor) {
-            _mediator = medaitor;
+        public UsersController(ISender mediator) {
+            _mediator = mediator;
         }
 
         [HttpPut]
@@ -30,6 +32,22 @@ namespace API.Controllers
             await _mediator.Send(command);
 
             return Ok();
+        }
+
+        [HttpGet("topics")]
+        public async Task<IActionResult> GetAllUserTopics()
+        {
+            var groups = await _mediator.Send(new GetTopicsQuery());
+
+            return Ok(groups);
+        }
+
+        [HttpGet("groups")]
+        public async Task<IActionResult> GetAllUserGroups()
+        {
+            var groups = await _mediator.Send(new GetGroupsQuery());
+
+            return Ok(groups);
         }
     }
 }

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace Application.Students.CreateStudent
 {
     public record CreateStudentCommand(
+        Guid GroupId,
         string FullName,
-        string Email,
-        Guid GroupId
+        string Email
     ) : IRequest;
 }

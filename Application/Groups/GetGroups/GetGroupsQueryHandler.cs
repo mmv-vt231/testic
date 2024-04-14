@@ -1,6 +1,6 @@
 ﻿using Application.Groups.GetGroups;
 using Application.Interfaces;
-using Contracts.DTOs;
+using Contracts.Groups;
 using Domain.Entities;
 using Domain.Repositories;
 using MediatR;

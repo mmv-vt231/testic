@@ -1,12 +1,13 @@
 ﻿using Application.Groups.CreateGroup;
 using Application.Groups.DeleteGroup;
-using Application.Groups.GetGroups;
 using Application.Groups.GetGroup;
 using Application.Groups.UpdateGroup;
-using Contracts.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Contracts.Groups;
+using Contracts.Students;
+using Application.Students.CreateStudent;
 
 namespace API.Controllers
 {
@@ -16,18 +17,9 @@ namespace API.Controllers
     public class GroupsController : ControllerBase
     {
         private readonly ISender _mediator;
-
         public GroupsController(ISender mediator)
         {
             _mediator = mediator;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var groups = await _mediator.Send(new GetGroupsQuery());
-
-            return Ok(groups);
         }
 
         [HttpGet("{id:Guid}")]
@@ -64,6 +56,16 @@ namespace API.Controllers
             await _mediator.Send(command);
 
             return Ok();
+        }
+
+        [HttpPost("{id:Guid}/students")]
+        public async Task<IActionResult> CreateStudent(Guid id, [FromBody] CreateStudentRequestDTO dto)
+        {
+            var command = new CreateStudentCommand(id, dto.FullName, dto.Email);
+
+            await _mediator.Send(command);
+
+            return Created();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Contracts.DTOs.Topics;
+﻿using Contracts.Topics;
 using Domain.Entities;
 using MediatR;
 using System;

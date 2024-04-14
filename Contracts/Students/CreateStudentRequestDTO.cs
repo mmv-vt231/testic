@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.DTOs
+namespace Contracts.Students
 {
-    public record UpdateGroupRequestDTO(
-        string Name
+    public record CreateStudentRequestDTO(
+        string FullName,
+        string Email
     );
 }

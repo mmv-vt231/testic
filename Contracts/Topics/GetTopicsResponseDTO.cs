@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.DTOs.Topics
+namespace Contracts.Topics
 {
-    public record UpdateTopicRequestDTO(
+    public record GetTopicsResponseDTO(
+        Guid Id,
         string Title
     );
 }

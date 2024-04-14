@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Contracts.Students;
 
-namespace Contracts.DTOs
+namespace Contracts.Groups
 {
-    public record GetGroupsResponseDTO(
+    public record GetGroupResponseDTO(
         Guid Id,
         string Name,
-        int StudentsCount
+        IEnumerable<StudentDTO> Students,
+        Guid UserId
     );
 }

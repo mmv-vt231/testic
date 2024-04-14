@@ -1,5 +1,5 @@
 ﻿using Application.Topics.GetTopicTests;
-using Contracts.DTOs;
+using Contracts.Tests;
 using Domain.Repositories;
 using MediatR;
 using System;

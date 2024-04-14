@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.DTOs
+namespace Contracts.Groups
 {
-    public record TestDTO(
-        Guid Id,
-        string Title,
-        DateTime CreatedAt
+    public record UpdateGroupRequestDTO(
+        string Name
     );
 }

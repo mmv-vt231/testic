@@ -1,4 +1,5 @@
-﻿using Contracts.DTOs;
+﻿using Contracts.Students;
+using Contracts.Groups;
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;

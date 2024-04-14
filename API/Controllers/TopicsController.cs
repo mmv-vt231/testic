@@ -2,10 +2,10 @@
 using Application.Topics.CreateTopic;
 using Application.Topics.DeleteTopic;
 using Application.Topics.GetTopic;
-using Application.Topics.GetTopics;
 using Application.Topics.GetTopicTests;
 using Application.Topics.UpdateTopic;
-using Contracts.DTOs.Topics;
+using Contracts.Tests;
+using Contracts.Topics;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,14 +21,7 @@ namespace API.Controllers
         public TopicsController(ISender mediator)
         {
             _mediator = mediator;
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll() {
-            var groups = await _mediator.Send(new GetTopicsQuery());
-
-            return Ok(groups);
-        }
+        }  
 
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetTopic(Guid id)
@@ -62,7 +55,6 @@ namespace API.Controllers
 
             return Ok();
         }
-
 
 
         [HttpGet("{id:Guid}/tests")]

@@ -16,7 +16,7 @@ namespace Application.Students.CreateStudent
         private readonly IStudentRepository _studentRepository;
 
         public CreateStudentCommandHandler(
-            IGroupRepository groupRepository, 
+            IGroupRepository groupRepository,
             IStudentRepository studentRepository)
         {
             _groupRepository = groupRepository;
@@ -27,7 +27,7 @@ namespace Application.Students.CreateStudent
         {
             var group = await _groupRepository.GetByIdAsync(request.GroupId);
 
-            if(group is null)
+            if (group is null)
             {
                 throw GroupsErrors.GroupNotFound;
             }

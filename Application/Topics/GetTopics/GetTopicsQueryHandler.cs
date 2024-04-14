@@ -1,5 +1,5 @@
 ﻿using Application.Interfaces;
-using Contracts.DTOs;
+using Contracts.Topics;
 using Domain.Repositories;
 using MediatR;
 using System;

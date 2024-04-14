@@ -1,4 +1,4 @@
-﻿using Contracts.DTOs;
+﻿using Contracts.Tests;
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;

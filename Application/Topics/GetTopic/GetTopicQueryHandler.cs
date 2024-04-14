@@ -1,6 +1,5 @@
-﻿using Contracts.DTOs;
-using Contracts.DTOs.Topics;
-using Domain.Entities;
+﻿using Contracts.Tests;
+using Contracts.Topics;
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;

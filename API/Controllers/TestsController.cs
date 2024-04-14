@@ -1,7 +1,7 @@
 ﻿using Application.Tests.DeleteTest;
 using Application.Tests.GetTest;
 using Application.Tests.UpdateTest;
-using Contracts.DTOs;
+using Contracts.Tests;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Contracts.Users;
 
-namespace Contracts.DTOs.Topics
+namespace Contracts.Auth
 {
-    public record CreateTestRequestDTO(
-        string Title
+    public record LoginResponseDTO(
+        string Token,
+        UserDTO User
     );
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.DTOs
+namespace Contracts.Tests
 {
-    public record GetTopicsResponseDTO(
+    public record GetTestResponseDTO(
         Guid Id,
         string Title
     );

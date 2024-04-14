@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.DTOs.Topics
+namespace Contracts.Students
 {
-    public record GetTopicResponseDTO(
+    public record GetStudentResponseDTO(
         Guid Id,
-        string Title,
-        IEnumerable<TestDTO> Tests
+        string FullName,
+        string Email,
+        Guid GroupId
     );
 }

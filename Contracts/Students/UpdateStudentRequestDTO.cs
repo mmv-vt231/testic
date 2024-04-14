@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.DTOs
+namespace Contracts.Students
 {
-    public record LoginResponseDTO(
-        string Token,
-        UserDTO User
+    public record UpdateStudentRequestDTO(
+        string FullName,
+        string Email
     );
 }

@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
-using Contracts.DTOs;
+using Contracts.Auth;
+using Contracts.Users;
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;
