@@ -30,14 +30,6 @@ namespace API.Controllers
             return Ok(group);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateGroup(CreateGroupCommand command)
-        {
-            await _mediator.Send(command);
-
-            return Created();
-        }
-
         [HttpPut("{id:Guid}")]
         public async Task<IActionResult> UpdateGroup(Guid id, [FromBody] UpdateGroupRequestDTO dto)
         {

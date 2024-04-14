@@ -30,13 +30,6 @@ namespace API.Controllers
 
             return Ok(group);
         }
-        [HttpPost]
-        public async Task<IActionResult> CreateTopic(CreateTopicCommand command)
-        {
-            await _mediator.Send(command);
-
-            return Created();
-        }
 
         [HttpPut("{id:Guid}")]
         public async Task<IActionResult> UpdateTopic(Guid id, [FromBody] UpdateTopicRequestDTO dto)
@@ -55,7 +48,6 @@ namespace API.Controllers
 
             return Ok();
         }
-
 
         [HttpGet("{id:Guid}/tests")]
         public async Task<IActionResult> GetAllTopicTests(Guid id)

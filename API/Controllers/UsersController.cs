@@ -1,4 +1,6 @@
-﻿using Application.Groups.GetGroups;
+﻿using Application.Groups.CreateGroup;
+using Application.Groups.GetGroups;
+using Application.Topics.CreateTopic;
 using Application.Topics.GetTopics;
 using Application.Users.UpdateData;
 using Application.Users.UpdatePassword;
@@ -42,12 +44,28 @@ namespace API.Controllers
             return Ok(groups);
         }
 
+        [HttpPost("topics")]
+        public async Task<IActionResult> CreateTopic(CreateTopicCommand command)
+        {
+            await _mediator.Send(command);
+
+            return Created();
+        }
+
         [HttpGet("groups")]
         public async Task<IActionResult> GetAllUserGroups()
         {
             var groups = await _mediator.Send(new GetGroupsQuery());
 
             return Ok(groups);
+        }
+
+        [HttpPost("groups")]
+        public async Task<IActionResult> CreateGroup(CreateGroupCommand command)
+        {
+            await _mediator.Send(command);
+
+            return Created();
         }
     }
 }
