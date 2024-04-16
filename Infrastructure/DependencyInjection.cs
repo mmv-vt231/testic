@@ -3,6 +3,7 @@ using Application.Interfaces;
 using Domain.Errors;
 using Domain.Repositories;
 using Infrastructure.Authentication;
+using Infrastructure.Files;
 using Infrastructure.Persistence.Database;
 using Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -38,6 +39,9 @@ namespace Infrastructure
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ITopicRepository, TopicRepository>();
             services.AddScoped<ITestRepository, TestRepository>();
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
+
+            services.AddTransient<IFileService, FileService>();
 
             services.AddAuth(configuration);
 

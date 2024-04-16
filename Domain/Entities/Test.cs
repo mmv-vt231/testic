@@ -12,5 +12,6 @@ namespace Domain.Entities
 
         public Guid TopicId { get; set; }
         public Topic Topic { get; set; }
+        public IEnumerable<Question>? Questions { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace Infrastructure.Persistence.Database
         public DbSet<Student> Students { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Test> Tests { get; set; }
+        public DbSet<Question> Questions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

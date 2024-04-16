@@ -1,6 +1,9 @@
-﻿using Application.Tests.DeleteTest;
+﻿using Application.Interfaces;
+using Application.Questions.CreateQuestion;
+using Application.Tests.DeleteTest;
 using Application.Tests.GetTest;
 using Application.Tests.UpdateTest;
+using Contracts.Questions;
 using Contracts.Tests;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -14,6 +17,7 @@ namespace API.Controllers
     public class TestsController : ControllerBase
     {
         private readonly ISender _mediator;
+
         public TestsController(ISender mediator)
         {
             _mediator = mediator;
@@ -43,6 +47,24 @@ namespace API.Controllers
             await _mediator.Send(new DeleteTestCommand(id));
 
             return Ok();
+        }
+
+        [HttpPost("{id:Guid}/questions")]
+        public async Task<IActionResult> CreateQuestion(Guid id, [FromBody] CreateQuestionRequestDTO dto)
+        {
+            var command = new CreateQuestionCommand(
+                id, 
+                dto.Title,
+                dto.Image,
+                dto.Points,
+                dto.Type,
+                dto.Data,
+                dto.Keys
+            );
+
+            await _mediator.Send(command);
+
+            return Created();
         }
     }
 }
