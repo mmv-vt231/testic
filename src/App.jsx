@@ -12,6 +12,7 @@ import NotFound from "@pages/errors/NotFound";
 import Groups from "@pages/groups/Groups";
 import Group from "@pages/groups/Group";
 import Profile from "@pages/profile/Profile";
+import Topics from "@pages/topics/Topics";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         </Route>
         <Route element={<Authorization />}>
           <Route path="panel" element={<PanelLayout />}>
+            <Route path="topics" element={<Topics />} />
             <Route path="groups">
               <Route index element={<Groups />} />
               <Route path=":id" element={<Group />} />

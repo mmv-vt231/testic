@@ -36,6 +36,7 @@ export const buttonTheme = {
       },
     }),
     link: {
+      color: "gray.700",
       _hover: {
         color: "gray.500",
         textDecorationColor: "gray.500",

@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logout } from "@store/features/auth/authSlice";
 import { API_URL } from "@config/constants";
 
+import topicsActions from "@pages/topics/services/topicsActions";
 import groupsActions from "@pages/groups/Groups/services/groupsActions";
 import groupActions from "@pages/groups/Group/services/groupActions";
 import profileActions from "@pages/profile/services/profileActions";
@@ -19,7 +20,7 @@ export const api = createApi({
       }
     },
   }),
-  tagTypes: ["Groups", "Group", "User"],
+  tagTypes: ["Topics", "Groups", "Group", "User"],
   endpoints: builder => ({
     authorize: builder.query({
       query: () => "/auth/authorize",
@@ -36,6 +37,7 @@ export const api = createApi({
       },
       providesTags: ["User"],
     }),
+    ...topicsActions(builder),
     ...groupsActions(builder),
     ...groupActions(builder),
     ...profileActions(builder),
@@ -44,6 +46,8 @@ export const api = createApi({
 
 export const {
   useAuthorizeQuery,
+  useGetTopicsQuery,
+  useAddTopicMutation,
   useGetGroupsQuery,
   useGetGroupQuery,
   useAddGroupMutation,

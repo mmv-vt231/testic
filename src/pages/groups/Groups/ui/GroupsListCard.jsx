@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Button, Card, CardBody, Center, Flex, Text } from "@chakra-ui/react";
+import { Button, Card, CardBody, Flex, Text } from "@chakra-ui/react";
 
+import RoundedIcon from "@components/shared/Icons/RoundedIcon";
 import { Person } from "@components/shared/Icons";
 
 function GroupListCard({ data }) {
@@ -13,19 +14,7 @@ function GroupListCard({ data }) {
           {name}
         </Button>
         <Flex alignItems="center">
-          <Center
-            pos="relative"
-            _after={{
-              content: `""`,
-              position: "absolute",
-              w: 12,
-              h: 12,
-              backgroundColor: "primary.10",
-              borderRadius: "full",
-            }}
-          >
-            <Person boxSize={7} fill="primary.500" zIndex="1" />
-          </Center>
+          <RoundedIcon Icon={Person} icon={{ boxSize: 7 }} />
           <Text ml={6} fontSize="2xl" fontWeight="bold">
             {studentsCount}
           </Text>

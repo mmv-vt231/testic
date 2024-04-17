@@ -7,7 +7,7 @@ function PanelLayout() {
   return (
     <Flex h="100vh">
       <Navbar />
-      <Box pos="relative" flex="1 1 auto" bg="gray.50" p={8}>
+      <Box pos="relative" flex="1 1 auto" bg="gray.50" overflow="auto" p={8}>
         <Outlet />
       </Box>
     </Flex>
