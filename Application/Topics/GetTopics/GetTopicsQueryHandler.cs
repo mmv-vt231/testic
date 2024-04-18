@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Contracts.Tests;
 using Contracts.Topics;
 using Domain.Repositories;
 using MediatR;
@@ -27,7 +28,14 @@ namespace Application.Topics.GetTopics
 
             var response = topics?.Select(t => new GetTopicsResponseDTO(
                 t.Id,
-                t.Title
+                t.Title,
+                t.Tests?.Select(test => new TestDTO(
+                    test.Id,
+                    test.Title,
+                    test.CreatedAt
+                ))
+                .OrderByDescending(t => t.CreatedAt)
+                .ToList()
             )).ToList();
 
              return response;

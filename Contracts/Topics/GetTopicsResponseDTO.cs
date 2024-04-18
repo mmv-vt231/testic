@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contracts.Tests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Contracts.Topics
 {
     public record GetTopicsResponseDTO(
         Guid Id,
-        string Title
+        string Title,
+        IEnumerable<TestDTO>? Tests
     );
 }
