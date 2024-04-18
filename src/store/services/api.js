@@ -2,11 +2,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logout } from "@store/features/auth/authSlice";
 import { API_URL } from "@config/constants";
 
-import topicsActions from "@pages/topics/Topics/services/topicsActions";
-import topicActions from "@pages/topics/Topic/services/topicActions";
-import groupsActions from "@pages/groups/Groups/services/groupsActions";
-import groupActions from "@pages/groups/Group/services/groupActions";
-import profileActions from "@pages/profile/services/profileActions";
+import topicsServices from "./topicsServices";
+import testsServices from "./testsServices";
+import groupsServices from "./groupsServices";
+import studentsServices from "./studentsServices";
+import profileServices from "./profileServices";
 
 export const api = createApi({
   reducerPath: "api",
@@ -21,7 +21,7 @@ export const api = createApi({
       }
     },
   }),
-  tagTypes: ["Topics", "Topic", "Groups", "Group", "Tests", "User"],
+  tagTypes: ["Topics", "Topic", "Groups", "Group", "Test", "User"],
   endpoints: builder => ({
     authorize: builder.query({
       query: () => "/auth/authorize",
@@ -38,11 +38,11 @@ export const api = createApi({
       },
       providesTags: ["User"],
     }),
-    ...topicsActions(builder),
-    ...topicActions(builder),
-    ...groupsActions(builder),
-    ...groupActions(builder),
-    ...profileActions(builder),
+    ...topicsServices(builder),
+    ...testsServices(builder),
+    ...groupsServices(builder),
+    ...studentsServices(builder),
+    ...profileServices(builder),
   }),
 });
 
@@ -54,7 +54,8 @@ export const {
   useAddTopicMutation,
   useEditTopicMutation,
   useDeleteTopicMutation,
-  
+
+  useGetTestQuery,
   useAddTestMutation,
   useEditTestMutation,
   useDeleteTestMutation,
@@ -64,6 +65,7 @@ export const {
   useAddGroupMutation,
   useEditGroupMutation,
   useDeleteGroupMutation,
+
   useAddStudentMutation,
   useEditStudentMutation,
   useDeleteStudentMutation,

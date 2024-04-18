@@ -1,23 +1,4 @@
-const groupActions = builder => ({
-  getGroup: builder.query({
-    query: id => `/groups/${id}`,
-    providesTags: ["Group"],
-  }),
-  editGroup: builder.mutation({
-    query: ({ id, body }) => ({
-      url: `/groups/${id}`,
-      method: "PUT",
-      body,
-    }),
-    invalidatesTags: ["Group"],
-  }),
-  deleteGroup: builder.mutation({
-    query: id => ({
-      url: `/groups/${id}`,
-      method: "DELETE",
-    }),
-    invalidatesTags: ["Groups"],
-  }),
+const studentsServices = builder => ({
   addStudent: builder.mutation({
     query: ({ id, body }) => ({
       url: `/groups/${id}/students`,
@@ -43,4 +24,4 @@ const groupActions = builder => ({
   }),
 });
 
-export default groupActions;
+export default studentsServices;

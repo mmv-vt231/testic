@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 const links = [
   {
     href: "/panel/topics",
+    paths: ["/panel/topics", "/panel/tests"],
     label: "Тести",
     Icon: Exam,
   },

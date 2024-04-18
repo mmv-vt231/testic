@@ -1,4 +1,4 @@
-const profileActions = builder => ({
+const profileServices = builder => ({
   editUserPassword: builder.mutation({
     query: body => ({
       url: `/user/changePassword`,
@@ -16,4 +16,4 @@ const profileActions = builder => ({
   }),
 });
 
-export default profileActions;
+export default profileServices;
