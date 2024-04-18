@@ -15,7 +15,6 @@ function TopicsCreateModal({ children }) {
 
   const handleSubmit = async data => {
     await addTopic(data);
-    console.log(data);
   };
 
   return (
@@ -27,7 +26,7 @@ function TopicsCreateModal({ children }) {
       triggerButton={children}
       type="create"
     >
-      <InputField name="title" label="Назва" placeholder="Введіть назву теми" />
+      <InputField name="title" label="Назва теми" placeholder="Введіть назву теми" />
     </ModalForm>
   );
 }

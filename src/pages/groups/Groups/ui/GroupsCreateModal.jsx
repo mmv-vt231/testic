@@ -26,7 +26,7 @@ function GroupsCreateModal({ children }) {
       triggerButton={children}
       type="create"
     >
-      <InputField name="name" label="Назва" placeholder="Введіть назву групи" />
+      <InputField name="name" label="Назва групи" placeholder="Введіть назву групи" />
     </ModalForm>
   );
 }

@@ -13,6 +13,7 @@ import Groups from "@pages/groups/Groups";
 import Group from "@pages/groups/Group";
 import Profile from "@pages/profile/Profile";
 import Topics from "@pages/topics/Topics";
+import Topic from "@pages/topics/Topic";
 
 function App() {
   return (
@@ -25,7 +26,10 @@ function App() {
         </Route>
         <Route element={<Authorization />}>
           <Route path="panel" element={<PanelLayout />}>
-            <Route path="topics" element={<Topics />} />
+            <Route path="topics">
+              <Route index element={<Topics />} />
+              <Route path=":id" element={<Topic />} />
+            </Route>
             <Route path="groups">
               <Route index element={<Groups />} />
               <Route path=":id" element={<Group />} />

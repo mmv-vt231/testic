@@ -5,7 +5,7 @@ function Header({ title, Title, children }) {
     <Flex justify="space-between" mb={5} gap={5} flexWrap="wrap">
       {title && <Heading>{title}</Heading>}
       {Title && <Title />}
-      <HStack spacing={5} flexWrap="wrap">
+      <HStack spacing={2} flexWrap="wrap">
         {children}
       </HStack>
     </Flex>

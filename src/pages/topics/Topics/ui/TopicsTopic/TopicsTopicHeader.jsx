@@ -4,7 +4,7 @@ import { Button, Flex } from "@chakra-ui/react";
 import { ArrowDown } from "@icons";
 import RoundedIcon from "@components/shared/Icons/RoundedIcon";
 
-function TopicsTopicHeader({ setOpen, open, title }) {
+function TopicsTopicHeader({ id, title, setOpen, open }) {
   const handleToggle = () => {
     setOpen(prev => !prev);
   };
@@ -22,7 +22,7 @@ function TopicsTopicHeader({ setOpen, open, title }) {
       boxShadow="0 0 10px 0 rgba(1,1,1,.05)"
       onClick={handleToggle}
     >
-      <Button as={Link} to="#" variant="link" fontSize="2xl" fontWeight="bold" whiteSpace={null}>
+      <Button as={Link} to={id} variant="link" fontSize="2xl">
         {title}
       </Button>
       <RoundedIcon

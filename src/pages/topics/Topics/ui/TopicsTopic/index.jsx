@@ -5,13 +5,13 @@ import TopicsTopicHeader from "./TopicsTopicHeader";
 import TopicsTopicBody from "./TopicsTopicBody";
 
 function TopicsTopic({ data }) {
-  const { title } = data;
+  const { id, title, tests } = data;
   const [open, setOpen] = useState(false);
 
   return (
     <Box>
-      <TopicsTopicHeader title={title} setOpen={setOpen} open={open} />
-      <TopicsTopicBody open={open} />
+      <TopicsTopicHeader id={id} title={title} setOpen={setOpen} open={open} />
+      {open && <TopicsTopicBody id={id} open={open} data={tests} />}
     </Box>
   );
 }

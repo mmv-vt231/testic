@@ -1,37 +1,37 @@
 import { useParams } from "react-router-dom";
-import { useEditGroupMutation } from "@store/services/api";
+import { useEditTopicMutation } from "@store/services/api";
 
 import ModalForm from "@components/shared/Modal/ModalForm";
 import InputField from "@components/shared/form/InputField";
 
-function GroupEditModal({ name, children }) {
+function TopicEditModal({ title, children }) {
   const { id } = useParams();
-  const [editGroup] = useEditGroupMutation();
+  const [editTopic] = useEditTopicMutation();
 
   const initialData = {
-    name,
+    title,
   };
 
   const validation = {
-    name: { required: true },
+    title: { required: true },
   };
 
   const handleSubmit = async formData => {
-    await editGroup({ id, body: formData });
+    await editTopic({ id, body: formData });
   };
 
   return (
     <ModalForm
-      title="Редагування групи"
+      title="Редагування теми"
       initialData={initialData}
       validation={validation}
       handleSubmit={handleSubmit}
       triggerButton={children}
       type="edit"
     >
-      <InputField name="name" label="Назва групи" placeholder="Введіть назву групи" />
+      <InputField name="title" label="Назва теми" placeholder="Введіть назву теми" />
     </ModalForm>
   );
 }
 
-export default GroupEditModal;
+export default TopicEditModal;

@@ -10,7 +10,7 @@ function GroupListCard({ data }) {
   return (
     <Card>
       <CardBody as={Flex} justify="space-between" alignItems="center" gap={4}>
-        <Button as={Link} to={id} variant="link" fontSize="2xl" fontWeight="bold" noOfLines={1}>
+        <Button as={Link} to={id} variant="link" fontSize="2xl" noOfLines={1}>
           {name}
         </Button>
         <Flex alignItems="center">

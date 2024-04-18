@@ -15,7 +15,7 @@ function GroupHeader({ name, studentsCount }) {
 
   const handleDeleteGroup = async () => {
     await deleteGroup(id);
-    navigate("/panel/groups");
+    navigate("../");
   };
 
   const Title = () => (
