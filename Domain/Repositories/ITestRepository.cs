@@ -9,5 +9,7 @@ namespace Domain.Repositories
 {
     public interface ITestRepository : IRepository<Test>
     {
-    }
+		Task<Test?> GetTestDetails(Guid id);
+
+	}
 }

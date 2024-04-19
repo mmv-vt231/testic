@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Students
+namespace Contracts.Auth
 {
-    public record UpdateStudentRequestDTO(
-        [Required, StringLength(255)]
-        string FullName,
-
+	public record LoginRequestDTO(
 		[Required, EmailAddress, StringLength(255)]
-		string Email
-    );
+		string Email,
+
+		[Required, StringLength(255)]
+		string Password
+	);
 }

@@ -4,6 +4,9 @@ using Application.Topics.CreateTopic;
 using Application.Topics.GetTopics;
 using Application.Users.UpdateData;
 using Application.Users.UpdatePassword;
+using Contracts.Groups;
+using Contracts.Topics;
+using Contracts.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,17 +24,21 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateData(UpdateDataCommand command)
+        public async Task<IActionResult> UpdateData(UpdateDataRequestDTO dto)
         {
+            var command = new UpdateDataCommand(dto.Name, dto.Surname);
+
             await _mediator.Send(command);
 
             return Ok();
         }
 
         [HttpPut("changePassword")]
-        public async Task<IActionResult> UpdatePassword(UpdatePasswordCommand command)
+        public async Task<IActionResult> UpdatePassword(UpdatePasswordRequestDTO dto)
         {
-            await _mediator.Send(command);
+            var command = new UpdatePasswordCommand(dto.Password, dto.NewPassword);
+
+			await _mediator.Send(command);
 
             return Ok();
         }
@@ -45,9 +52,11 @@ namespace API.Controllers
         }
 
         [HttpPost("topics")]
-        public async Task<IActionResult> CreateTopic(CreateTopicCommand command)
+        public async Task<IActionResult> CreateTopic(CreateTopicRequestDTO dto)
         {
-            await _mediator.Send(command);
+            var command = new CreateTopicCommand(dto.Title);
+
+			await _mediator.Send(command);
 
             return Created();
         }
@@ -61,9 +70,11 @@ namespace API.Controllers
         }
 
         [HttpPost("groups")]
-        public async Task<IActionResult> CreateGroup(CreateGroupCommand command)
+        public async Task<IActionResult> CreateGroup(CreateGroupRequestDTO dto)
         {
-            await _mediator.Send(command);
+            var command = new CreateGroupCommand(dto.Name);
+
+			await _mediator.Send(command);
 
             return Created();
         }

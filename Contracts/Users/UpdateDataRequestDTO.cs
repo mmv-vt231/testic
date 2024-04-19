@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Tests
+namespace Contracts.Users
 {
-    public record UpdateTestRequestDTO(
-        [Required, StringLength(255)]
-        string Title
-    );
+	public record UpdateDataRequestDTO(
+		[Required, StringLength(255)]
+		string Name,
+
+		[Required, StringLength(255)]
+		string Surname
+	);
 }

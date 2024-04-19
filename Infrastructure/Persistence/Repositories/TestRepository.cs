@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
 using Infrastructure.Persistence.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,13 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context = context;
         }
-    }
+
+		public async Task<Test?> GetTestDetails(Guid id)
+		{
+            return await _context.Tests
+                .Include(t => t.Questions)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(t => t.Id == id);
+		}
+	}
 }

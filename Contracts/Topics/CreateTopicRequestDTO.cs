@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Tests
+namespace Contracts.Topics
 {
-    public record UpdateTestRequestDTO(
-        [Required, StringLength(255)]
-        string Title
-    );
+	public record CreateTopicRequestDTO(
+		[Required, StringLength(255)]
+		string Title
+	);
 }
