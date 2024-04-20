@@ -10,7 +10,7 @@ import {
 
 import { FormContext } from "./Form";
 
-function InputField({ name, label, type, placeholder, Icon }) {
+function InputField({ name, label, type, placeholder, Icon, RightElement }) {
   const { data, setData, errors } = useContext(FormContext);
 
   const handleChange = e => {
@@ -20,8 +20,9 @@ function InputField({ name, label, type, placeholder, Icon }) {
   return (
     <FormControl isInvalid={!!errors[name]}>
       <FormLabel>{label}</FormLabel>
-      <InputGroup>
+      <InputGroup gap={2} alignItems="center">
         <Input
+          name={name}
           type={type}
           placeholder={placeholder}
           autoComplete="off"
@@ -33,6 +34,7 @@ function InputField({ name, label, type, placeholder, Icon }) {
             <Icon fill="gray.400" boxSize={5} />
           </InputRightElement>
         )}
+        {RightElement}
       </InputGroup>
       <FormErrorMessage>{errors[name]}</FormErrorMessage>
     </FormControl>

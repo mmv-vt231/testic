@@ -7,9 +7,9 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 
-function Modal({ title, isOpen, onClose, children }) {
+function Modal({ title, size, isOpen, onClose, children }) {
   return (
-    <BaseModal isOpen={isOpen} onClose={onClose} isCentered>
+    <BaseModal isOpen={isOpen} onClose={onClose} size={size} isCentered>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader fontSize="2xl" fontWeight="bold">

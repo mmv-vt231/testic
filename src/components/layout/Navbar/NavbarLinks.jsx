@@ -34,7 +34,7 @@ function NavbarLinks() {
   };
 
   return (
-    <Stack spacing={4} h="full">
+    <Stack spacing={2} h="full">
       {links.map((props, i) => (
         <NavbarLink key={i} {...props} />
       ))}

@@ -6,6 +6,7 @@ import { Edit } from "@icons";
 import Header from "@components/layout/Header";
 import AlertDialog from "@components/shared/AlertDialog";
 import TestEditModal from "./TestEditModal";
+import TestQuestionCreateModal from "./TestQuestionModal/TestQuestionCreateModal";
 
 function TestHeader({ title }) {
   const { id } = useParams();
@@ -36,6 +37,9 @@ function TestHeader({ title }) {
 
   return (
     <Header Title={Title}>
+      <TestQuestionCreateModal title="Створити питання" type="create">
+        <Button>+ Додати питання</Button>
+      </TestQuestionCreateModal>
       <AlertDialog
         title="Видилити тест"
         description="Ви справді бажаєте видалити цей тест?"

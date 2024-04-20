@@ -28,7 +28,7 @@ export const buttonTheme = {
     },
     ghost: ({ colorScheme }) => ({
       p: "10px 35px",
-      bg: "gray.50",
+      bg: "transparent",
       color: colorScheme != "default" ? `${colorScheme}.500` : "gray.700",
       fill: colorScheme != "default" ? `${colorScheme}.500` : "primary.500",
       _hover: {
@@ -47,8 +47,8 @@ export const buttonTheme = {
   },
   sizes: {
     small: {
-      height: "35px",
-      width: "35px",
+      height: 9,
+      width: 9,
       px: "0 !important",
     },
   },
@@ -87,6 +87,34 @@ export const inputTheme = {
           svg: {
             fill: "red.500",
           },
+        },
+      },
+    },
+  },
+};
+
+export const numberInputTheme = {
+  variants: {
+    outline: {
+      field: {
+        _focusVisible: {
+          borderColor: "primary.500",
+          boxShadow: null,
+        },
+      },
+    },
+  },
+};
+
+export const radioTheme = {
+  baseStyle: {
+    control: {
+      _checked: {
+        borderColor: "primary.500",
+        background: "primary.500",
+        _hover: {
+          borderColor: "primary.400",
+          background: "primary.400",
         },
       },
     },

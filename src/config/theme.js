@@ -6,6 +6,8 @@ import {
   cardTheme,
   spinnerTheme,
   tableTheme,
+  radioTheme,
+  numberInputTheme,
 } from "./customComponentsTheme";
 
 const theme = extendTheme({
@@ -41,6 +43,8 @@ const theme = extendTheme({
   components: {
     Button: buttonTheme,
     Input: inputTheme,
+    NumberInput: numberInputTheme,
+    Radio: radioTheme,
     Form: formTheme,
     Card: cardTheme,
     Spinner: spinnerTheme,

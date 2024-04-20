@@ -37,7 +37,7 @@ function ProfileEditPassword() {
     <Card flex="1 1 300px">
       <CardBody>
         <Heading fontSize="2xl">Змінити пароль</Heading>
-        <Form initialData={initialData} validation={validation} onSubmit={onSubmit} mt={6}>
+        <Form initialData={initialData} validation={validation} onSubmit={onSubmit} reset mt={6}>
           <VStack spacing={2}>
             <InputField
               name="password"

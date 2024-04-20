@@ -4,15 +4,7 @@ import Modal from "@components/shared/Modal";
 import Form from "@components/shared/form/Form";
 import { cloneElement, isValidElement } from "react";
 
-function ModalForm({
-  initialData,
-  validation,
-  handleSubmit,
-  triggerButton,
-  type,
-  children,
-  ...props
-}) {
+function ModalForm({ title, size, handleSubmit, triggerButton, type, children, ...props }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onSubmit = data => {
@@ -35,8 +27,8 @@ function ModalForm({
   return (
     <>
       <TriggerButton />
-      <Modal isOpen={isOpen} onClose={onClose} {...props}>
-        <Form initialData={initialData} validation={validation} onSubmit={onSubmit}>
+      <Modal title={title} size={size} isOpen={isOpen} onClose={onClose}>
+        <Form onSubmit={onSubmit} {...props}>
           <VStack spacing={2}>{children}</VStack>
 
           <ModalFooter display="flex" justifyContent="center">

@@ -5,13 +5,12 @@ import { Box } from "@chakra-ui/react";
 
 export const FormContext = createContext(null);
 
-function Form({ initialData, validation, onSubmit, children, ...props }) {
-  const { data, setData, handleSubmit, isFormError, errors } = useForm(initialData, validation);
+function Form({ initialData, validation, onSubmit, reset, children, ...props }) {
+  const { data, setData, handleSubmit, errors } = useForm(initialData, validation, reset);
 
   const contextData = {
     data,
     setData,
-    isFormError,
     errors,
   };
 
