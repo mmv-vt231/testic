@@ -1,3 +1,4 @@
+import React from "react";
 import { AbsoluteCenter, Text } from "@chakra-ui/react";
 
 function Message({ text }) {

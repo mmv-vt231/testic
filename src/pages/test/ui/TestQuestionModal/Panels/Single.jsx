@@ -1,3 +1,4 @@
+import React from "react";
 import SingleOrMultiple from "./SingleOrMultiple";
 
 function Single() {

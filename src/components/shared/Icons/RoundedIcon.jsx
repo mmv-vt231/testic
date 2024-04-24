@@ -1,3 +1,4 @@
+import React from "react";
 import { Center } from "@chakra-ui/react";
 
 function RoundedIcon({ Icon, box, icon }) {

@@ -1,3 +1,4 @@
+import React from "react";
 import { TableContainer, Table, Thead, Tbody, Tr, Th } from "@chakra-ui/react";
 import GroupStudentListItem from "./GroupStudentListItem";
 

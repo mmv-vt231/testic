@@ -21,7 +21,7 @@ function useForm(initialState, validation, reset = false) {
     setData,
     handleSubmit,
     errors,
-    setErrors
+    setErrors,
   };
 }
 

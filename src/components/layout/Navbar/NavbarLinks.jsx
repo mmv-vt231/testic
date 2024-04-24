@@ -1,3 +1,4 @@
+import React from "react";
 import { Stack } from "@chakra-ui/react";
 
 import { Exam, Peoples, PersonSolid, Exit } from "@components/shared/Icons";

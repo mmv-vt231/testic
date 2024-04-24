@@ -1,3 +1,4 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 import { Flex, Box } from "@chakra-ui/react";
 

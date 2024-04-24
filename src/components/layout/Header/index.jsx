@@ -1,3 +1,4 @@
+import React from "react";
 import { Flex, Heading, HStack } from "@chakra-ui/react";
 
 function Header({ title, Title, children }) {

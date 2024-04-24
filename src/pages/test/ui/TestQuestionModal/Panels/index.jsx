@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Single as SingleIcon,
   Multiple as MultipleIcon,

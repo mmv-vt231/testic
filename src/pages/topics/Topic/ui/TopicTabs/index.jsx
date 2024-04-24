@@ -1,3 +1,4 @@
+import React from "react";
 import { ButtonGroup } from "@chakra-ui/react";
 import TopicTabsButton from "./TopicTabsButton";
 

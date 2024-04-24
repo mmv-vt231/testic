@@ -1,3 +1,4 @@
+import React from "react";
 import { Flex, Box, Heading, Text, Image, AbsoluteCenter } from "@chakra-ui/react";
 
 import unknownError from "@assets/images/photos/500.svg";

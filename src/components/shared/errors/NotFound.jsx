@@ -1,3 +1,4 @@
+import React from "react";
 import { Flex, Box, Heading, Text, Image, AbsoluteCenter } from "@chakra-ui/react";
 
 import notFound from "@assets/images/photos/404.svg";

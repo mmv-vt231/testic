@@ -1,3 +1,4 @@
+import React from "react";
 import { Flex } from "@chakra-ui/react";
 import Logo from "@components/shared/Logo";
 import NotFound from "@components/shared/errors/NotFound";

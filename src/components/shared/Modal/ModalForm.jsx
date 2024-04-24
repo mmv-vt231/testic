@@ -1,3 +1,4 @@
+import React from "react";
 import { ModalFooter, VStack, Button, useDisclosure } from "@chakra-ui/react";
 
 import Modal from "@components/shared/Modal";

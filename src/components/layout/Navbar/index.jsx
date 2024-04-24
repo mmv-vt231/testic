@@ -1,3 +1,4 @@
+import React from "react";
 import { Flex, Divider } from "@chakra-ui/react";
 
 import NavbarHeader from "./NavbarHeader";

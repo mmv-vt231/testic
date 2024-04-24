@@ -1,3 +1,4 @@
+import React from "react";
 import { useDeleteStudentMutation } from "@store/services/api";
 
 import { Tr, Td, Button, HStack } from "@chakra-ui/react";
