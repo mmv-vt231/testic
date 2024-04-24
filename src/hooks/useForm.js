@@ -3,7 +3,7 @@ import useValidation from "./useValidation";
 
 function useForm(initialState, validation, reset = false) {
   const [data, setData] = useState(initialState || {});
-  const { errors, validate } = useValidation(validation);
+  const { errors, setErrors, validate } = useValidation(validation);
 
   const handleSubmit = (e, onSubmit) => {
     e.preventDefault();
@@ -21,6 +21,7 @@ function useForm(initialState, validation, reset = false) {
     setData,
     handleSubmit,
     errors,
+    setErrors
   };
 }
 

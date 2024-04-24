@@ -121,6 +121,21 @@ export const radioTheme = {
   },
 };
 
+export const checkboxTheme = {
+  baseStyle: {
+    control: {
+      _checked: {
+        borderColor: "primary.500",
+        background: "primary.500",
+        _hover: {
+          borderColor: "primary.400",
+          background: "primary.400",
+        },
+      },
+    },
+  },
+};
+
 export const formTheme = {
   baseStyle: {
     container: {
@@ -198,6 +213,15 @@ export const tableTheme = {
         px: 2,
         py: 4,
       },
+    },
+  },
+};
+
+export const tooltipTheme = {
+  baseStyle: {
+    _invalid: {
+      "--tooltip-bg": "var(--chakra-colors-red-500)",
+      "--popper-arrow-bg": "var(--chakra-colors-red-500)",
     },
   },
 };

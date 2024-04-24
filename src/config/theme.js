@@ -7,7 +7,9 @@ import {
   spinnerTheme,
   tableTheme,
   radioTheme,
+  checkboxTheme,
   numberInputTheme,
+  tooltipTheme,
 } from "./customComponentsTheme";
 
 const theme = extendTheme({
@@ -45,10 +47,12 @@ const theme = extendTheme({
     Input: inputTheme,
     NumberInput: numberInputTheme,
     Radio: radioTheme,
+    Checkbox: checkboxTheme,
     Form: formTheme,
     Card: cardTheme,
     Spinner: spinnerTheme,
     Table: tableTheme,
+    Tooltip: tooltipTheme,
   },
 });
 

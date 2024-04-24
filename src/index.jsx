@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
@@ -11,11 +11,13 @@ import theme, { tosterOptions } from "@config/theme.js";
 import "@assets/styles/global.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <ChakraProvider theme={theme} toastOptions={tosterOptions}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ChakraProvider>
-  </Provider>
+  <StrictMode>
+    <Provider store={store}>
+      <ChakraProvider theme={theme} toastOptions={tosterOptions}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ChakraProvider>
+    </Provider>
+  </StrictMode>
 );

@@ -23,23 +23,27 @@ function TestQuestionCreateModal({ title, type, children }) {
   const validation = {
     title: { required: true },
     image: {
-      extensions: [],
+      extensions: ["png", "jpg", "jpeg", "svg"],
     },
     points: {
       required: true,
       min: 0,
       max: 100,
     },
-    answers: [
-      {
+    answers: {
+      type: "objectArray",
+      rules: {
         text: {
           required: true,
         },
         image: {
-          extensions: [],
+          extensions: ["png", "jpg", "jpeg", "svg"],
         },
       },
-    ],
+    },
+    keys: {
+      answerRequired: true,
+    },
   };
 
   const handleSubmit = async formData => {

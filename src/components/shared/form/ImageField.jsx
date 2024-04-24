@@ -12,9 +12,15 @@ import { AddImage, DeleteImage } from "@icons";
 
 import { FormContext } from "./Form";
 
-function ImageField({ name, handleChange: customHandleChange, handleDelete: customHandleDelete }) {
-  const { setData, errors } = useContext(FormContext);
+function ImageField({
+  name,
+  error,
+  handleChange: customHandleChange,
+  handleDelete: customHandleDelete,
+}) {
+  const { setData, errors, setErrors } = useContext(FormContext);
   const [image, setImage] = useState(null);
+  const isError = !!error || !!errors[name];
 
   const inputRef = useRef();
 
@@ -29,7 +35,7 @@ function ImageField({ name, handleChange: customHandleChange, handleDelete: cust
       setImage(URL.createObjectURL(file));
 
       if (customHandleChange) {
-        customHandleChange({ setData, file });
+        customHandleChange({ file });
       } else {
         setData(data => ({ ...data, [name]: file }));
       }
@@ -41,18 +47,34 @@ function ImageField({ name, handleChange: customHandleChange, handleDelete: cust
     inputRef.current.value = null;
 
     if (customHandleDelete) {
-      customHandleDelete(setData);
+      customHandleDelete();
     } else {
       setData(data => ({ ...data, [name]: null }));
+      setErrors(errors => {
+        delete errors.image;
+        return errors;
+      });
     }
   };
 
   const Image = () => <ImageBase src={image} alt="Картинка" boxSize={100} />;
 
+  const ErrorMessage = () => (
+    <FormErrorMessage p={1} color="white" mt={0}>
+      {error || errors[name]}
+    </FormErrorMessage>
+  );
+
   return (
-    <FormControl as={Flex} isInvalid={!!errors[name]} w="fit-content">
+    <FormControl as={Flex} isInvalid={isError} w="fit-content">
       {image ? (
-        <Tooltip label={<Image />} placement="top">
+        <Tooltip
+          label={isError ? <ErrorMessage /> : <Image />}
+          aria-invalid={isError}
+          isOpen={isError || undefined}
+          placement="top"
+          hasArrow
+        >
           <Button variant="ghost" size="small" onClick={handleDelete} title="Видалити зображення">
             <DeleteImage boxSize={5} />
           </Button>
@@ -63,7 +85,6 @@ function ImageField({ name, handleChange: customHandleChange, handleDelete: cust
         </Button>
       )}
       <Input type="file" ref={inputRef} autoComplete="off" onChange={handleChange} hidden />
-      <FormErrorMessage>{errors[name]}</FormErrorMessage>
     </FormControl>
   );
 }

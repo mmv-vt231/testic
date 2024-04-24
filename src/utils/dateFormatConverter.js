@@ -1,4 +1,4 @@
-export const dateFormatConverter = date => {
+const dateFormatConverter = date => {
   const dateValue = new Date(date);
 
   const formatted = new Intl.DateTimeFormat("uk-UA", {

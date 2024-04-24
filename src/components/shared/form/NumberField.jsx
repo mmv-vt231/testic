@@ -15,15 +15,21 @@ import { FormContext } from "./Form";
 function NumberField({ name, label, ...props }) {
   const { data, setData, errors } = useContext(FormContext);
 
-  const handleChange = e => {
-    setData(data => ({ ...data, [name]: e.target.value }));
+  const handleChange = value => {
+    setData(data => ({ ...data, [name]: value }));
   };
 
   return (
     <FormControl isInvalid={!!errors[name]} {...props}>
       <FormLabel>{label}</FormLabel>
-      <NumberInput defaultValue={data[name]} min={0} max={100} clampValueOnBlur={false}>
-        <NumberInputField onChange={handleChange} />
+      <NumberInput
+        onChange={handleChange}
+        defaultValue={data[name]}
+        min={0}
+        max={100}
+        clampValueOnBlur={false}
+      >
+        <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />
           <NumberDecrementStepper />
