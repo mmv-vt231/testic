@@ -3,10 +3,14 @@ using Domain.Entities;
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace Application.Questions.CreateQuestion
@@ -36,21 +40,17 @@ namespace Application.Questions.CreateQuestion
                 throw TestsErrors.TestNotFound;
             }
 
-            string? imageUrl = null;
-
-            if (request.Image is not null)
-            {
-                imageUrl = _fileService.UploadFile(request.Image, "wwwroot/images");
-            }
+			string data = JsonSerializer.Serialize(request.Data);
+			string keys = JsonSerializer.Serialize(request.Keys); 
 
             var question = new Question
             {
                 Title = request.Title,
-                Image = imageUrl,
+                Image = request.Image,
                 Points = request.Points,
                 Type = request.Type,
-                Data = request.Data,
-                Keys = request.Keys,
+                Data = data,
+                Keys = keys,
                 TestId = request.TestId,
             };
 

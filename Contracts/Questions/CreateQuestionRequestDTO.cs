@@ -12,7 +12,7 @@ namespace Contracts.Questions
         [Required, StringLength(25555)]
         string Title,
 
-        IFormFile? Image,
+        string? Image,
 
 		[Required, Range(0, 100)]
 		float Points,
@@ -21,9 +21,11 @@ namespace Contracts.Questions
 		string Type,
 
 		[Required]
-		string Data,
+		dynamic Data,
 
 		[Required]
-		string Keys
+		dynamic Keys
 	);
+
+
 }

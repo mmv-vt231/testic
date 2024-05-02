@@ -13,9 +13,14 @@ namespace Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Question> builder)
         {
-            builder.ToTable("Questions");
+            builder.ToTable("Questions",
+                t =>
+                {
+                    t.HasCheckConstraint("data_type_json", "ISJSON(Data)=1");
+                    t.HasCheckConstraint("keys_type_json", "ISJSON(Keys)=1");
+				});
 
-            builder.HasKey(q => q.Id);
+			builder.HasKey(q => q.Id);
 
             builder.Property(q => q.Id)
                 .HasDefaultValueSql("NEWID()");

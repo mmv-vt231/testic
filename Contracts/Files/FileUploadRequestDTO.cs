@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Questions
+namespace Contracts.Files
 {
-	public record QuestionRecordDTO(
-		Guid Id,
-		string? Text,
-		string? Image
-    );
+	public record FileUploadRequestDTO(
+		IFormFile image, 
+		string? replaceFile
+	);
 }

@@ -5,9 +5,11 @@ using Application.Tests.GetTest;
 using Application.Tests.UpdateTest;
 using Contracts.Questions;
 using Contracts.Tests;
+using Infrastructure.Files;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Nodes;
 
 namespace API.Controllers
 {
@@ -52,8 +54,8 @@ namespace API.Controllers
         [HttpPost("{id:Guid}/questions")]
         public async Task<IActionResult> CreateQuestion(Guid id, [FromBody] CreateQuestionRequestDTO dto)
         {
-            var command = new CreateQuestionCommand(
-                id, 
+			var command = new CreateQuestionCommand(
+                id,
                 dto.Title,
                 dto.Image,
                 dto.Points,

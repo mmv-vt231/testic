@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace Application.Tests.GetTest
@@ -29,15 +30,22 @@ namespace Application.Tests.GetTest
                 throw TestsErrors.TestNotFound;
             }
 
-            var questions = test.Questions?.Select(q => new QuestionDTO(
-                q.Id,
-                q.Title,
-                q.Image,
-                q.Points,
-                q.Type,
-				q.Data,
-				q.Keys
-            )).ToList();
+			var questions = test.Questions?
+                .OrderBy(q => q.CreatedAt)
+                .Select(q => {
+				    JsonNode data = JsonSerializer.Deserialize<JsonNode>(q.Data);
+				    JsonNode keys = JsonSerializer.Deserialize<JsonNode>(q.Keys);
+
+				    return new QuestionDTO(
+                        q.Id,
+                        q.Title,
+                        q.Image,
+                        q.Points,
+                        q.Type,
+					    data,
+					    keys
+				    );
+                }).ToList();
 
             return new GetTestResponseDTO(
                 test.Id, 

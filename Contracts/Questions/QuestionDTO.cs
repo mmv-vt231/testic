@@ -13,7 +13,7 @@ namespace Contracts.Questions
 		string? Image,
 		float Points,
 		string Type,
-		string Data,
-		string Keys
+		dynamic Data,
+		dynamic Keys
 	);
 }

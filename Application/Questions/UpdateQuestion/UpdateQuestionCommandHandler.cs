@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Application.Questions.UpdateQuestion
@@ -31,15 +32,15 @@ namespace Application.Questions.UpdateQuestion
                 throw QuestionsErrors.QuestionNotFound;
             }
 
-            if (request.Image is not null) {
-                question.Image = _fileService.UploadFile(request.Image, "wwwroot/images", question.Image);
-            }
+			string data = JsonSerializer.Serialize(request.Data);
+			string keys = JsonSerializer.Serialize(request.Keys);
 
-            question.Title = request.Title;
-            question.Points = request.Points;
+			question.Title = request.Title;
+            question.Image = request.Image;
+			question.Points = request.Points;
             question.Type = request.Type;
-            question.Data = request.Data;
-            question.Keys = request.Keys;
+            question.Data = data;
+            question.Keys = keys;
 
             await _questionRepository.UpdateAsync(question);
         }

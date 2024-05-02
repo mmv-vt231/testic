@@ -3,6 +3,7 @@ using Azure.Core;
 using Domain.Entities;
 using Domain.Errors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Infrastructure.Files
 {
     public class FileService : IFileService
     {
-        public string UploadFile(IFormFile file, string folder, string? replaceFile = null)
+		public string UploadFile(IFormFile file, string folder, string? replaceFile = null)
         {
             if(file is null)
             {
@@ -37,14 +38,14 @@ namespace Infrastructure.Files
 
             var fileName = Guid.NewGuid().ToString() + extension;
             var filePath = Path.Combine(folder, fileName);
-            var fullFilePath = Path.Combine(Directory.GetCurrentDirectory(), filePath);
+            var fullFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/", filePath);
 
             using (FileStream stream = new(fullFilePath, FileMode.Create))
             {
                 file.CopyTo(stream);
             };
 
-            return filePath;
+			return filePath;
         }
 
         public void DeleteFile(string path)

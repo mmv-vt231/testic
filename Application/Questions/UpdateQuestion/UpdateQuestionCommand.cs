@@ -11,10 +11,10 @@ namespace Application.Questions.UpdateQuestion
     public record UpdateQuestionCommand(
         Guid Id,
         string Title,
-        IFormFile? Image,
+		string? Image,
         float Points,
         string Type,
-        string Data,
-        string Keys
+		dynamic Data,
+		dynamic Keys
     ) : IRequest;
 }

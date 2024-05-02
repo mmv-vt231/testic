@@ -15,6 +15,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public QuestionRepository(ApplicationDbContext context) : base(context)
         {
+            _context = context;
         }
     }
 }
