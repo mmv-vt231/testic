@@ -1,5 +1,5 @@
 import React from "react";
-import SingleOrMultiple from "./SingleOrMultiple";
+import SingleOrMultiple from ".";
 
 function Multiple() {
   return <SingleOrMultiple type="multiple" />;

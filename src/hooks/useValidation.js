@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import recursiveValidation from "@utils/recursiveValidation";
 import isEmpty from "@utils/isEmpty";
 
-function useValidation(scheme) {
+function useValidation(defaultValidation) {
   const [errors, setErrors] = useState({});
+  const [validation, setValidation] = useState(defaultValidation);
 
   const validate = data => {
     let isValid = true;
 
     setErrors({});
 
-    const errors = recursiveValidation(scheme, data);
+    const errors = recursiveValidation(validation, data);
 
     if (!isEmpty(errors)) {
       setErrors(errors);
@@ -24,6 +25,7 @@ function useValidation(scheme) {
     errors,
     setErrors,
     validate,
+    setValidation,
   };
 }
 

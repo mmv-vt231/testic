@@ -8,10 +8,19 @@ const recursiveValidation = (scheme, data) => {
     const type = scheme[field]?.type;
 
     if (type) {
+      const customRules = scheme[field]?.customRules;
+      let objectErrors = {};
+
+      if (customRules) {
+        const error = validator(customRules, data[field]);
+
+        if (error) {
+          errors[field] = { error };
+        }
+      }
+
       switch (type) {
         case "objectArray":
-          const objectErrors = {};
-
           data[field].forEach((el, i) => {
             const errors = recursiveValidation(scheme[field].rules, el);
 
@@ -19,11 +28,18 @@ const recursiveValidation = (scheme, data) => {
               objectErrors[i] = errors;
             }
           });
+          break;
+        case "object":
+          const errors = recursiveValidation(scheme[field].rules, data[field]);
 
-          if (!isEmpty(objectErrors)) {
-            errors[field] = objectErrors;
+          if (!isEmpty(errors)) {
+            objectErrors = errors;
           }
           break;
+      }
+
+      if (!isEmpty(objectErrors)) {
+        errors[field] = { ...errors[field], ...objectErrors };
       }
     } else {
       const error = validator(scheme[field], data[field], data);

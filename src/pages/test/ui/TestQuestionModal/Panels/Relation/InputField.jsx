@@ -1,57 +1,64 @@
 import React, { useContext, useState } from "react";
 import { FormContext } from "@components/shared/form/Form";
+import letterFromIndex from "@utils/letterFromIndex";
 import { API_HOST } from "@config/constants";
 
 import {
+  Button,
   FormControl,
   FormErrorMessage,
   Input,
   InputGroup,
-  Radio,
-  Checkbox,
-  Button,
-  Flex,
-  Image,
   Text,
   Box,
+  Flex,
+  Image,
 } from "@chakra-ui/react";
 import ImageField from "@components/shared/form/ImageField";
 import { Delete } from "@icons";
 
-function InputField({ index, type, answerId, removable }) {
+function InputField({ index, id, type, placeholder, removable }) {
   const { data, setData, errors, setErrors } = useContext(FormContext);
 
-  const { image: answerImage, text } = data.data.answers.filter(
-    answer => answer.id == answerId
-  )?.[0];
+  const { image: answerImage, text } = data.data[type].filter(field => field.id == id)?.[0];
   const [image, setImage] = useState(answerImage && `${API_HOST}/${answerImage}`);
 
-  const error = errors.data?.answers?.[index];
+  const error = errors?.data?.[type]?.[index];
 
   const handleChange = (field, value) => {
-    setData(data => ({
-      ...data,
+    setData(prevData => ({
+      ...prevData,
       data: {
-        ...data.data,
-        answers: data.data.answers.map(answer => {
+        ...prevData.data,
+        [type]: prevData.data[type].map(fieldData => {
           const text = field == "image" && !value ? "" : null;
 
-          return answer.id == answerId ? { ...answer, text, [field]: value } : answer;
+          return fieldData.id == id ? { ...fieldData, text, [field]: value } : fieldData;
         }),
       },
     }));
   };
 
   const handleDelete = () => {
-    setData(data => ({
-      ...data,
-      data: {
-        ...data.data,
-        answers: data.data.answers.filter(answer => answer.id != answerId),
-      },
-    }));
+    setData(prevData => {
+      const keys =
+        type == "questions"
+          ? prevData.keys.filter(key => key.question != id)
+          : type == "answers"
+          ? prevData.keys.map(key => (key.answer == id ? { ...key, answer: null } : key))
+          : prevData.keys;
+
+      return {
+        ...prevData,
+        keys,
+        data: {
+          ...prevData.data,
+          [type]: prevData.data[type].filter(field => field.id != id),
+        },
+      };
+    });
     setErrors(errors => {
-      delete errors?.data?.answers?.[index];
+      delete errors?.data?.[type]?.[index];
 
       return errors;
     });
@@ -70,36 +77,18 @@ function InputField({ index, type, answerId, removable }) {
     setImage(null);
 
     setErrors(errors => {
-      delete errors?.data?.answers?.[index];
+      delete errors?.data?.[type]?.[index];
 
       return errors;
     });
   };
 
-  const handleChangeRadio = () => {
-    setData(data => ({
-      ...data,
-      keys: [answerId],
-    }));
-  };
-
-  const handleChangeCheckbox = () => {
-    setData(data => ({
-      ...data,
-      keys: data.keys.includes(answerId)
-        ? data.keys.filter(key => key != answerId)
-        : [...data.keys, answerId],
-    }));
-  };
-
   return (
     <FormControl isInvalid={error}>
       <InputGroup gap={2} alignItems="center">
-        {type == "multiple" ? (
-          <Checkbox value={answerId} size="lg" onChange={handleChangeCheckbox} isInvalid={false} />
-        ) : (
-          <Radio value={answerId} size="lg" onChange={handleChangeRadio} isInvalid={false} />
-        )}
+        <Text fontSize="lg" color="gray.300" w={6} textAlign="center">
+          {type == "answers" ? letterFromIndex(index) : index + 1}
+        </Text>
 
         <Box flex={1}>
           {image ? (
@@ -119,7 +108,7 @@ function InputField({ index, type, answerId, removable }) {
             </Flex>
           ) : (
             <Input
-              placeholder={`Відповідь ${index + 1}`}
+              placeholder={`${placeholder} ${index + 1}`}
               autoComplete="off"
               flex={1}
               value={text || ""}

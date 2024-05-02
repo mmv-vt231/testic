@@ -1,17 +1,13 @@
-import React from "react";
-import { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { FormContext } from "@components/shared/form/Form";
 
-import { Stack, Button, RadioGroup, CheckboxGroup, Box } from "@chakra-ui/react";
+import { Stack, Button, Box } from "@chakra-ui/react";
 import InputField from "./InputField";
 
-function SingleOrMultiple({ type }) {
+function Order() {
   const isMounted = useRef(false);
-  const { data, errors, setData } = useContext(FormContext);
+  const { data, setData } = useContext(FormContext);
   const answers = data.data.answers;
-  const defaultChecked = type == "multiple" ? data.keys : data.keys[0];
-
-  const error = errors?.keys;
 
   useEffect(() => {
     if (!isMounted.current) {
@@ -28,24 +24,18 @@ function SingleOrMultiple({ type }) {
 
     setData(data => ({
       ...data,
+      keys: [...data.keys, id],
       data: {
         answers: [...data.data.answers, { id, text: "", image: null }],
       },
     }));
   };
 
-  const Group = type == "multiple" ? CheckboxGroup : RadioGroup;
-
   return (
-    <Group defaultValue={defaultChecked}>
-      {error && (
-        <Box color="red.500" fontSize="sm" mb={2}>
-          {error}
-        </Box>
-      )}
+    <Box>
       <Stack>
         {answers.map(({ id }, i) => (
-          <InputField key={id} type={type} index={i} answerId={id} removable={i > 1} />
+          <InputField key={id} index={i} answerId={id} removable={i > 1} />
         ))}
         {answers.length < 10 && (
           <Button variant="ghost" size="md" color="primary.500" m="0 auto" onClick={handleCreate}>
@@ -53,8 +43,8 @@ function SingleOrMultiple({ type }) {
           </Button>
         )}
       </Stack>
-    </Group>
+    </Box>
   );
 }
 
-export default SingleOrMultiple;
+export default Order;

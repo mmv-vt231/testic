@@ -10,6 +10,7 @@ import {
   checkboxTheme,
   numberInputTheme,
   tooltipTheme,
+  badgeTheme,
 } from "./customComponentsTheme";
 
 const theme = extendTheme({
@@ -53,6 +54,7 @@ const theme = extendTheme({
     Spinner: spinnerTheme,
     Table: tableTheme,
     Tooltip: tooltipTheme,
+    Badge: badgeTheme,
   },
 });
 

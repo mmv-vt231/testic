@@ -2,9 +2,10 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useGetTestQuery } from "@store/services/api";
 
-import TestHeader from "./ui/TestHeader";
 import { Box, Spinner } from "@chakra-ui/react";
 import NotFound from "@components/shared/errors/NotFound";
+import TestHeader from "./ui/TestHeader";
+import TestQuestionList from "./ui/TestQuestionList";
 
 function Test() {
   const { id } = useParams();
@@ -15,11 +16,12 @@ function Test() {
 
   console.log(data);
 
-  const { title } = data;
+  const { title, questions } = data;
 
   return (
     <Box>
       <TestHeader title={title} />
+      <TestQuestionList data={questions} />
     </Box>
   );
 }

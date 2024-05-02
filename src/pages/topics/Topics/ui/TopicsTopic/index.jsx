@@ -1,19 +1,29 @@
 import React from "react";
-import { useState } from "react";
 
-import { Box } from "@chakra-ui/react";
-import TopicsTopicHeader from "./TopicsTopicHeader";
-import TopicsTopicBody from "./TopicsTopicBody";
+import { Link } from "react-router-dom";
+import { SimpleGrid, Button } from "@chakra-ui/react";
+import Accordion from "@components/shared/Accordion";
+import TopicTestCard from "@pages/topics/Topic/ui/TopicTestCard";
+import TopicsCreateTestBtn from "./TopicsCreateTestBtn";
 
 function TopicsTopic({ data }) {
   const { id, title, tests } = data;
-  const [open, setOpen] = useState(false);
+
+  const Title = () => (
+    <Button as={Link} to={id} variant="link" fontSize="2xl">
+      {title}
+    </Button>
+  );
 
   return (
-    <Box>
-      <TopicsTopicHeader id={id} title={title} setOpen={setOpen} open={open} />
-      {open && <TopicsTopicBody id={id} open={open} data={tests} />}
-    </Box>
+    <Accordion Title={Title}>
+      <SimpleGrid columns={{ base: 1, xl: 2 }} gap={4}>
+        <TopicsCreateTestBtn id={id} />
+        {tests.map(test => (
+          <TopicTestCard key={test.id} data={test} />
+        ))}
+      </SimpleGrid>
+    </Accordion>
   );
 }
 

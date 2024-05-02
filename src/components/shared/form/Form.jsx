@@ -1,5 +1,4 @@
-import React from "react";
-import { createContext } from "react";
+import React, { createContext } from "react";
 import useForm from "@hooks/useForm";
 
 import { Box } from "@chakra-ui/react";
@@ -7,13 +6,18 @@ import { Box } from "@chakra-ui/react";
 export const FormContext = createContext(null);
 
 function Form({ initialData, validation, onSubmit, reset, children, ...props }) {
-  const { data, setData, handleSubmit, errors, setErrors } = useForm(initialData, validation, reset);
+  const { data, setData, handleSubmit, errors, setErrors, setValidation } = useForm(
+    initialData,
+    validation,
+    reset
+  );
 
   const contextData = {
     data,
     setData,
     errors,
-    setErrors
+    setErrors,
+    setValidation,
   };
 
   const submitForm = e => {

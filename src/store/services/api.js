@@ -4,9 +4,11 @@ import { API_URL } from "@config/constants";
 
 import topicsServices from "./topicsServices";
 import testsServices from "./testsServices";
+import questionsServices from "./questionsServices";
 import groupsServices from "./groupsServices";
 import studentsServices from "./studentsServices";
 import profileServices from "./profileServices";
+import assetsServices from "./assetsServices";
 
 export const api = createApi({
   reducerPath: "api",
@@ -40,9 +42,11 @@ export const api = createApi({
     }),
     ...topicsServices(builder),
     ...testsServices(builder),
+    ...questionsServices(builder),
     ...groupsServices(builder),
     ...studentsServices(builder),
     ...profileServices(builder),
+    ...assetsServices(builder),
   }),
 });
 
@@ -60,6 +64,10 @@ export const {
   useEditTestMutation,
   useDeleteTestMutation,
 
+  useAddQuestionMutation,
+  useEditQuestionMutation,
+  useDeleteQuestionMutation,
+
   useGetGroupsQuery,
   useGetGroupQuery,
   useAddGroupMutation,
@@ -72,4 +80,6 @@ export const {
 
   useEditUserDataMutation,
   useEditUserPasswordMutation,
+
+  useUploadImageMutation,
 } = api;

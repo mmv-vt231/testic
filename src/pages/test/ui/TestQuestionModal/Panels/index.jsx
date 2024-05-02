@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Single as SingleIcon,
   Multiple as MultipleIcon,
@@ -6,10 +5,10 @@ import {
   Order as OrderIcon,
 } from "@icons";
 
-import Single from "./Single";
-import Multiple from "./Multiple";
+import Single from "./SingleOrMultiple/Single";
+import Multiple from "./SingleOrMultiple/Multiple";
 import Relation from "./Relation";
-import Order from "./Order";
+import Order from "./Order/Order";
 
 const baseValidation = {
   title: { required: true },
@@ -26,7 +25,7 @@ const inputValidation = {
   type: "objectArray",
   rules: {
     text: {
-      required: true,
+      optional: true,
     },
     image: {
       extensions: ["png", "jpg", "jpeg", "svg"],
@@ -34,28 +33,39 @@ const inputValidation = {
   },
 };
 
-const singleAndMultipleValidation = {
+export const singleAndMultipleValidation = {
   ...baseValidation,
-  answers: inputValidation,
+  data: {
+    type: "object",
+    rules: {
+      answers: inputValidation,
+    },
+  },
   keys: {
     answerRequired: true,
   },
 };
 const relationValidation = {
   ...baseValidation,
-  questions: inputValidation,
-  answers: inputValidation,
-  keys: {
-    type: "objectArray",
+  data: {
+    type: "object",
     rules: {
-      answer: {
-        required: true,
-      },
+      questions: inputValidation,
+      answers: inputValidation,
     },
+  },
+  keys: {
+    relativeKeysRequired: true,
   },
 };
 const orderValidation = {
-  answers: inputValidation,
+  ...baseValidation,
+  data: {
+    type: "object",
+    rules: {
+      answers: inputValidation,
+    },
+  },
 };
 
 const types = [
@@ -65,6 +75,9 @@ const types = [
     Icon: SingleIcon,
     Panel: Single,
     validation: singleAndMultipleValidation,
+    data: {
+      answers: [],
+    },
   },
   {
     title: "Декілька",
@@ -72,13 +85,20 @@ const types = [
     Icon: MultipleIcon,
     Panel: Multiple,
     validation: singleAndMultipleValidation,
+    data: {
+      answers: [],
+    },
   },
   {
     title: "Відповідність",
-    type: "relative",
+    type: "relation",
     Icon: RelationIcon,
     Panel: Relation,
     validation: relationValidation,
+    data: {
+      questions: [],
+      answers: [],
+    },
   },
   {
     title: "Порядок",
@@ -86,6 +106,9 @@ const types = [
     Icon: OrderIcon,
     Panel: Order,
     validation: orderValidation,
+    data: {
+      answers: [],
+    },
   },
 ];
 

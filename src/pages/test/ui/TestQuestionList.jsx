@@ -1,9 +1,15 @@
 import React from "react";
+import TestQuestionItem from "./TestQuestionItem";
+import { Stack } from "@chakra-ui/react";
 
-function TestQuestionList() {
+function TestQuestionList({ data }) {
   return (
-    <div>TestQuestionList</div>
-  )
+    <Stack spacing={2} maxW="768px" m="0 auto">
+      {data.map((el, i) => (
+        <TestQuestionItem key={i} data={el} />
+      ))}
+    </Stack>
+  );
 }
 
-export default TestQuestionList
+export default TestQuestionList;

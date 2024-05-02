@@ -225,3 +225,47 @@ export const tooltipTheme = {
     },
   },
 };
+
+export const badgeTheme = {
+  baseStyle: {
+    rounded: "md",
+  },
+  sizes: {
+    sm: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      w: 6,
+      h: 6,
+      fontSize: "sm",
+    },
+    md: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      w: 8,
+      h: 8,
+      fontSize: "md",
+    },
+  },
+  variants: {
+    solid: ({ colorScheme }) => ({
+      bg: `${colorScheme}.500`,
+      color: "white",
+    }),
+    round: ({ colorScheme }) => ({
+      rounded: "full",
+      bg: `${colorScheme}.100`,
+      color: `${colorScheme}.400`,
+    }),
+    subtle: ({ colorScheme }) => ({
+      bg: `${colorScheme}.100`,
+      color: `${colorScheme}.400`,
+    }),
+  },
+  defaultProps: {
+    variant: "solid",
+    colorScheme: "primary",
+    size: "sm",
+  },
+};

@@ -11,7 +11,7 @@ import {
 
 import { FormContext } from "./Form";
 
-function InputField({ name, label, type, placeholder, Icon, RightElement }) {
+function InputField({ name, label, type, placeholder, Icon, RightElement, LeftElement }) {
   const { data, setData, errors } = useContext(FormContext);
 
   const handleChange = e => {
@@ -22,6 +22,7 @@ function InputField({ name, label, type, placeholder, Icon, RightElement }) {
     <FormControl isInvalid={!!errors[name]}>
       <FormLabel>{label}</FormLabel>
       <InputGroup gap={2} alignItems="center">
+        {LeftElement}
         <Input
           name={name}
           type={type}
