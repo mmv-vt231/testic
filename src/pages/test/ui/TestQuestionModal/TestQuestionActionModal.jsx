@@ -54,11 +54,11 @@ function TestQuestionActionModal({ data, title, type, children }) {
     }
   };
 
-  const uploadImg = async (image, replaceFile = null) => {
+  const uploadImg = async (image, replaceImage = null) => {
     if (image instanceof File) {
       const form = new FormData();
       form.append("image", image);
-      form.append("replaceFile", replaceFile);
+      form.append("replaceImage", replaceImage);
 
       const response = await uploadImage(form)
         .unwrap()
