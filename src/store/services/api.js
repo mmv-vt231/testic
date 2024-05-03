@@ -82,4 +82,5 @@ export const {
   useEditUserPasswordMutation,
 
   useUploadImageMutation,
+  useDeleteImageMutation,
 } = api;

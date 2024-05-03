@@ -6,6 +6,13 @@ const assetsServices = builder => ({
       body,
     }),
   }),
+  deleteImage: builder.mutation({
+    query: body => ({
+      url: `/assets/images`,
+      method: "DELETE",
+      body,
+    }),
+  }),
 });
 
 export default assetsServices;

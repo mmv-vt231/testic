@@ -1,5 +1,6 @@
 import React from "react";
 import { API_HOST } from "@config/constants";
+import { useDeleteQuestionMutation, useDeleteImageMutation } from "@store/services/api";
 
 import { Image, Button, HStack, Text, Badge, Box } from "@chakra-ui/react";
 import AlertDialog from "@components/shared/AlertDialog";
@@ -28,9 +29,25 @@ const types = {
 function TestQuestionItemHeader({ data }) {
   const { image, points, type } = data;
   const { Icon, title } = types[type];
+  const [deleteQuestion] = useDeleteQuestionMutation();
+  const [deleteImage] = useDeleteImageMutation();
 
-  const handleDelete = () => {
-    console.log("Delete Question");
+  const handleDelete = async () => {
+    if(typeof data.image == "string") {
+      await deleteImage(data.image);
+    }
+
+    for (const arr in data.data) {
+      await Promise.all(
+        data.data[arr].map(async ({ image }, i) => {
+          if(typeof data.image == "string") {
+            await deleteImage(image);
+          }
+        })
+      );
+    }
+
+    await deleteQuestion(data.id);
   };
 
   return (
