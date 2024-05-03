@@ -18,9 +18,9 @@ namespace API.Controllers
 		}
 
 		[HttpPost("images")]
-		public IActionResult UploadImage(IFormFile image, string? replaceFile)
+		public IActionResult UploadImage([FromForm] FileUploadRequestDTO dto)
 		{
-			var path = _fileService.UploadFile(image, "images/", replaceFile);
+			var path = _fileService.UploadFile(dto.image, "images/", dto.replaceImage);
 
 			var response = new FileUploadResponseDTO(path);
 

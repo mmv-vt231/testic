@@ -31,16 +31,20 @@ namespace Infrastructure.Files
                 throw FilesErrors.InvalidFileExtension;
             }
 
-            if(!replaceFile.IsNullOrEmpty())
+			if (!replaceFile.IsNullOrEmpty())
             {
-                DeleteFile(replaceFile);
+				DeleteFile(replaceFile);
             }
 
-            var fileName = Guid.NewGuid().ToString() + extension;
-            var filePath = Path.Combine(folder, fileName);
-            var fullFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/", filePath);
+			var fileName = Guid.NewGuid().ToString() + extension;
+			var filePath = Path.Combine(folder, fileName);
+			var fullFilePath = Path.Combine(
+				Directory.GetCurrentDirectory(),
+				"wwwroot/",
+				filePath
+			);
 
-            using (FileStream stream = new(fullFilePath, FileMode.Create))
+			using (FileStream stream = new(fullFilePath, FileMode.Create))
             {
                 file.CopyTo(stream);
             };
@@ -50,7 +54,7 @@ namespace Infrastructure.Files
 
         public void DeleteFile(string path)
         {
-            var fullFilePath = Path.Combine(Directory.GetCurrentDirectory(), path);
+            var fullFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/", path);
 
             if(File.Exists(fullFilePath))
             {

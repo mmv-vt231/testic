@@ -9,6 +9,6 @@ namespace Contracts.Files
 {
 	public record FileUploadRequestDTO(
 		IFormFile image, 
-		string? replaceFile
+		string? replaceImage
 	);
 }
