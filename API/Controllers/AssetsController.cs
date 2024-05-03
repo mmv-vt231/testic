@@ -26,5 +26,13 @@ namespace API.Controllers
 
 			return Ok(response);
 		}
+		[HttpDelete("images")]
+		public IActionResult DeleteImage([FromBody] string imagePath)
+		{
+			_fileService.DeleteFile(imagePath);
+
+			return Ok();
+		}
+
 	}
 }
