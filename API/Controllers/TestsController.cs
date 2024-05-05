@@ -1,15 +1,14 @@
-﻿using Application.Interfaces;
-using Application.Questions.CreateQuestion;
+﻿using Application.Questions.CreateQuestion;
+using Application.Tasks.CreateTask;
 using Application.Tests.DeleteTest;
 using Application.Tests.GetTest;
 using Application.Tests.UpdateTest;
 using Contracts.Questions;
+using Contracts.Tasks;
 using Contracts.Tests;
-using Infrastructure.Files;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Nodes;
 
 namespace API.Controllers
 {
@@ -68,5 +67,25 @@ namespace API.Controllers
 
             return Created();
         }
-    }
+
+		[HttpPost("{id:Guid}/tasks")]
+		public async Task<IActionResult> CreateTask(Guid id, [FromBody] CreateTaskRequestDTO dto)
+		{
+			var command = new CreateTaskCommand(
+				id,
+				dto.TopicId,
+				dto.Groups,
+				dto.Start,
+				dto.End,
+				dto.Duration,
+				dto.OneChance,
+				dto.ShowAnswers,
+				dto.Shuffle
+			);
+
+			await _mediator.Send(command);
+
+			return Created();
+		}
+	}
 }

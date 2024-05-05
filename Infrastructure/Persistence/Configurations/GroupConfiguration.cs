@@ -30,6 +30,6 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasOne(g => g.User)
                 .WithMany(u => u.Groups)
                 .OnDelete(DeleteBehavior.Cascade);
-        }
+		}
     }
 }

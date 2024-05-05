@@ -1,10 +1,7 @@
-﻿using Application.Groups.GetGroups;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using Contracts.Groups;
-using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections;
 using System.Collections.Generic;

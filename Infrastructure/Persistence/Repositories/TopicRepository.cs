@@ -2,15 +2,10 @@
 using Domain.Repositories;
 using Infrastructure.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class TopicRepository : Repository<Topic>, ITopicRepository
+	public class TopicRepository : Repository<Topic>, ITopicRepository
     {
         private new readonly ApplicationDbContext _context;
         public TopicRepository(ApplicationDbContext context) : base(context)
@@ -25,12 +20,15 @@ namespace Infrastructure.Persistence.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(t => t.Id == id);
         }
-        public async Task<IEnumerable<Test>> GetAllTopicTests(Guid id)
-        {
-            return await _context.Tests
-                .Where(t => t.Id == id)
-                .AsNoTracking() 
-                .ToListAsync();
-        }
-    }
+
+		public async Task<IEnumerable<TaskEntity>> GetAllTopicTasks(Guid id)
+		{
+			return await _context.Tasks
+				.AsNoTracking()
+                .Include(t => t.Groups)
+				.Where(t => t.TopicId == id)
+                .OrderByDescending(t => t.CreatedAt)
+				.ToListAsync();
+		}
+	}
 }

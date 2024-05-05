@@ -39,7 +39,8 @@ namespace Infrastructure
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ITopicRepository, TopicRepository>();
             services.AddScoped<ITestRepository, TestRepository>();
-            services.AddScoped<IQuestionRepository, QuestionRepository>();
+			services.AddScoped<ITaskRepository, TaskRepository>();
+			services.AddScoped<IQuestionRepository, QuestionRepository>();
 
             services.AddTransient<IFileService, FileService>();
 

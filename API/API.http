@@ -1,14 +1,39 @@
 @API_HostAddress = https://localhost:7215
 
-GET {{API_HostAddress}}/api/groups
-Accept: application/json
+### Update Task
+PUT {{API_HostAddress}}/api/tasks/2fdeff8d-3b94-473c-8f6e-491f36ef5cb4
+Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI5MmY0NzAxLTcwMDQtNDMyYy05NWYwLTk2MjM2Y2ExZGQxOCIsIm5iZiI6MTcxMjU4ODM5NiwiZXhwIjoxNzE1MTgwMzk2LCJpYXQiOjE3MTI1ODgzOTYsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTUiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MjE1In0.RaYHTtx79aI8QkOKYU7VPLEtwARKlivI5yaQ6gXpYOM
 
-# POST {{API_HostAddress}}/api/Auth/login
-# Content-Type: application/json
-# Accept: application/json
+{
+  "groups": ["300bca9a-5309-44f4-983c-65d58c2db911"],
+  "start": "2024-05-03T22:57:02.962Z",
+  "end": "2024-05-03T22:57:02.962Z",
+  "duration": 30,
+  "oneChance": true,
+  "showAnswers": false,
+  "shuffle": true
+}
 
-# {
-#   "email": "string1",
-#   "password": "string"
-# }
+### Create Task
+POST {{API_HostAddress}}/api/tests/849aea97-c158-4cf4-9ed4-63c8213dcebe/tasks
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI5MmY0NzAxLTcwMDQtNDMyYy05NWYwLTk2MjM2Y2ExZGQxOCIsIm5iZiI6MTcxMjU4ODM5NiwiZXhwIjoxNzE1MTgwMzk2LCJpYXQiOjE3MTI1ODgzOTYsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTUiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MjE1In0.RaYHTtx79aI8QkOKYU7VPLEtwARKlivI5yaQ6gXpYOM
+
+{
+  "topicId": "2bed5587-8ee2-466b-b25f-fc0486ddc3f6",
+  "groups": [
+    "35f7c120-eec1-4885-a058-416b6b6855d9"
+  ],
+  "start": "2024-05-03T22:57:02.962Z",
+  "end": "2024-05-03T22:57:02.962Z",
+  "duration": 20,
+  "oneChance": true,
+  "showAnswers": true,
+  "shuffle": true
+}
+
+### Delete Task
+DELETE {{API_HostAddress}}/api/tasks/2fdeff8d-3b94-473c-8f6e-491f36ef5cb4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI5MmY0NzAxLTcwMDQtNDMyYy05NWYwLTk2MjM2Y2ExZGQxOCIsIm5iZiI6MTcxMjU4ODM5NiwiZXhwIjoxNzE1MTgwMzk2LCJpYXQiOjE3MTI1ODgzOTYsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTUiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MjE1In0.RaYHTtx79aI8QkOKYU7VPLEtwARKlivI5yaQ6gXpYOM

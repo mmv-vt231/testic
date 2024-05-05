@@ -13,5 +13,6 @@ namespace Domain.Entities
         public Guid UserId { get; set; }
         public User User { get; set; }
         public IEnumerable<Test>? Tests { get; set; }
+        public IEnumerable<TaskEntity>? Tasks { get; set; }
     }
 }

@@ -1,8 +1,7 @@
-﻿using Application.Tests.CreateTest;
-using Application.Topics.CreateTopic;
+﻿using Application.Tasks.GetTasks;
+using Application.Tests.CreateTest;
 using Application.Topics.DeleteTopic;
 using Application.Topics.GetTopic;
-using Application.Topics.GetTopicTests;
 using Application.Topics.UpdateTopic;
 using Contracts.Tests;
 using Contracts.Topics;
@@ -49,14 +48,6 @@ namespace API.Controllers
             return Ok();
         }
 
-        [HttpGet("{id:Guid}/tests")]
-        public async Task<IActionResult> GetAllTopicTests(Guid id)
-        {
-            var tests = await _mediator.Send(new GetTopicTestsQuery(id));
-
-            return Ok(tests);
-        }
-
         [HttpPost("{id:Guid}/tests")]
         public async Task<IActionResult> CreateTest(Guid id, [FromBody] CreateTestRequestDTO dto)
         {
@@ -67,5 +58,12 @@ namespace API.Controllers
             return Created();
         }
 
-    }
+		[HttpGet("{id:Guid}/tasks")]
+		public async Task<IActionResult> GetTasks(Guid id)
+		{
+			var tasks = await _mediator.Send(new GetTasksQuery(id));
+
+			return Ok(tasks);
+		}
+	}
 }
