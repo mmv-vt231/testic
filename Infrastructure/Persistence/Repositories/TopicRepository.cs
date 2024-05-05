@@ -16,11 +16,17 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<Topic?> GetTopicDetails(Guid id)
         {
             return await _context.Topics
-                .Include(t => t.Tests)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(t => t.Id == id);
+                .SingleOrDefaultAsync(t => t.Id == id);
         }
-
+		public async Task<IEnumerable<Test>> GetAllTopicTests(Guid id)
+		{
+			return await _context.Tests
+				.AsNoTracking()
+				.Where(t => t.TopicId == id)
+				.OrderByDescending(t => t.CreatedAt)
+				.ToListAsync();
+		}
 		public async Task<IEnumerable<TaskEntity>> GetAllTopicTasks(Guid id)
 		{
 			return await _context.Tasks

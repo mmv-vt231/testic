@@ -1,5 +1,4 @@
-﻿using Contracts.Tests;
-using Contracts.Topics;
+﻿using Contracts.Topics;
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;
@@ -22,26 +21,16 @@ namespace Application.Topics.GetTopic
 
         public async Task<GetTopicResponseDTO> Handle(GetTopicQuery request, CancellationToken cancellationToken)
         {
-            var topic = await _topicRepository.GetTopicDetails(request.Id);
+            var topic = await _topicRepository.GetByIdAsync(request.Id);
 
             if (topic is null)
             {
                 throw TopicsErrors.TopicNotFound;
             }
 
-            var tests = topic?.Tests?
-                .Select(t => new TestDTO(
-                    t.Id,
-                    t.Title,
-                    t.CreatedAt
-                ))
-                .OrderByDescending(t => t.CreatedAt)
-                .ToList();
-
             return new GetTopicResponseDTO(
                 topic.Id,
-                topic.Title,
-                tests
+                topic.Title
             );
         }
     }

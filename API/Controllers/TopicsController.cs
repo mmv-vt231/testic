@@ -1,5 +1,6 @@
 ﻿using Application.Tasks.GetTasks;
 using Application.Tests.CreateTest;
+using Application.Tests.GetTests;
 using Application.Topics.DeleteTopic;
 using Application.Topics.GetTopic;
 using Application.Topics.UpdateTopic;
@@ -48,7 +49,15 @@ namespace API.Controllers
             return Ok();
         }
 
-        [HttpPost("{id:Guid}/tests")]
+		[HttpGet("{id:Guid}/tests")]
+		public async Task<IActionResult> GetTests(Guid id)
+		{
+			var tests = await _mediator.Send(new GetTestsQuery(id));
+
+			return Ok(tests);
+		}
+
+		[HttpPost("{id:Guid}/tests")]
         public async Task<IActionResult> CreateTest(Guid id, [FromBody] CreateTestRequestDTO dto)
         {
             var command = new CreateTestCommand(id, dto.Title);

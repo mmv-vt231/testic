@@ -10,6 +10,7 @@ namespace Domain.Repositories
     public interface ITopicRepository : IRepository<Topic>
     {
         Task<Topic?> GetTopicDetails(Guid id);
-        Task<IEnumerable<TaskEntity>> GetAllTopicTasks(Guid id);
+		Task<IEnumerable<Test>> GetAllTopicTests(Guid id);
+		Task<IEnumerable<TaskEntity>> GetAllTopicTasks(Guid id);
     }
 }
