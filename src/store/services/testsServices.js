@@ -1,4 +1,8 @@
 const testsServices = builder => ({
+  getTests: builder.query({
+    query: id => `/topics/${id}/tests`,
+    providesTags: ["Tests"],
+  }),
   getTest: builder.query({
     query: id => `/tests/${id}`,
     providesTags: ["Test"],

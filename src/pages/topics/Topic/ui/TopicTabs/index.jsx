@@ -6,7 +6,7 @@ function TopicTabs({ id }) {
   return (
     <ButtonGroup spacing={0} mb={5}>
       <TopicTabsButton path={`/panel/topics/${id}`}>Усі</TopicTabsButton>
-      <TopicTabsButton path={`/panel/topics/${id}/planned`}>Заплановані</TopicTabsButton>
+      <TopicTabsButton path={`/panel/topics/${id}/tasks`}>Тестування</TopicTabsButton>
     </ButtonGroup>
   );
 }

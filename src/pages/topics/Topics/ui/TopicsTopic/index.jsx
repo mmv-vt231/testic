@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { SimpleGrid, Button } from "@chakra-ui/react";
 import Accordion from "@components/shared/Accordion";
-import TopicTestCard from "@pages/topics/Topic/ui/TopicTestCard";
+import TopicTestCard from "@pages/topics/TopicTests/ui/TopicTestCard";
 import TopicsCreateTestBtn from "./TopicsCreateTestBtn";
 
 function TopicsTopic({ data }) {

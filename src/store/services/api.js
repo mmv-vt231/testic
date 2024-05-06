@@ -9,6 +9,7 @@ import groupsServices from "./groupsServices";
 import studentsServices from "./studentsServices";
 import profileServices from "./profileServices";
 import assetsServices from "./assetsServices";
+import tasksServices from "./tasksServices";
 
 export const api = createApi({
   reducerPath: "api",
@@ -42,6 +43,7 @@ export const api = createApi({
     }),
     ...topicsServices(builder),
     ...testsServices(builder),
+    ...tasksServices(builder),
     ...questionsServices(builder),
     ...groupsServices(builder),
     ...studentsServices(builder),
@@ -59,10 +61,17 @@ export const {
   useEditTopicMutation,
   useDeleteTopicMutation,
 
+  useGetTestsQuery,
   useGetTestQuery,
   useAddTestMutation,
   useEditTestMutation,
   useDeleteTestMutation,
+
+  useGetTasksQuery,
+  useGetTaskQuery,
+  useAddTaskMutation,
+  useEditTaskMutation,
+  useDeleteTaskMutation,
 
   useAddQuestionMutation,
   useEditQuestionMutation,

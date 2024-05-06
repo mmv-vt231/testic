@@ -15,7 +15,9 @@ import Group from "@pages/groups/Group";
 import Profile from "@pages/profile/Profile";
 import Topics from "@pages/topics/Topics";
 import Topic from "@pages/topics/Topic";
-import Test from "./pages/test/Test";
+import TopicTests from "@pages/topics/TopicTests";
+import TopicTasks from "@pages/topics/TopicTasks";
+import Test from "@pages/test/Test";
 
 function App() {
   return (
@@ -31,7 +33,12 @@ function App() {
             <Route path="tests/:id" element={<Test />} />
             <Route path="topics">
               <Route index element={<Topics />} />
-              <Route path=":id" element={<Topic />} />
+              <Route path=":id" element={<Topic />}>
+                <Route index element={<TopicTests />} />
+                <Route path="tasks" element={<TopicTasks/>}/>
+              </Route>
+            </Route>
+            <Route path="tasks">
             </Route>
             <Route path="groups">
               <Route index element={<Groups />} />

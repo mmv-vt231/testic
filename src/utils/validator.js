@@ -66,6 +66,11 @@ const validator = (rules, value, data = []) => {
           return "Необхідно обрати відповідь!";
         }
         break;
+      case "groupRequired":
+        if (!value.length) {
+          return "Необхідно обрати групу!";
+        }
+        break;
     }
   }
 };

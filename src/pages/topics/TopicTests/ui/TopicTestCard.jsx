@@ -14,6 +14,7 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import TopicTaskModalCreate from "./TopicTaskModalCreate";
 
 function TopicTestCard({ data }) {
   const { id, title, questions = 0, createdAt } = data;
@@ -39,9 +40,9 @@ function TopicTestCard({ data }) {
               <Badge>{questions}</Badge>
             </HStack>
           </Box>
-          <Button p={4} mt="auto" ml="auto">
-            Запланувати
-          </Button>
+          <TopicTaskModalCreate testId={id}>
+            <Button p={4} mt="auto" ml="auto">Тестування</Button>
+          </TopicTaskModalCreate>
         </Flex>
       </CardBody>
     </Card>
