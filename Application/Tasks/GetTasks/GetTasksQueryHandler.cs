@@ -26,6 +26,7 @@ namespace Application.Tasks.GetTasks
 				.OrderByDescending(t => t.CreatedAt)
 				.Select(t => new GetTasksReponseDTO(
 					t.Id,
+					t.Test.Title,
 					t.Start,
 					t.End,
 					t.Groups?.OrderByDescending(g => g.CreatedAt)

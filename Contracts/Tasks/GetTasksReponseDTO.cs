@@ -8,6 +8,7 @@ namespace Contracts.Tasks
 {
 	public record GetTasksReponseDTO(
 		Guid Id,
+		string Title,
 		DateTime Start,
 		DateTime End,
 		IEnumerable<GetTasksGroupDTO>? Groups

@@ -33,7 +33,9 @@ namespace Application.Tests.GetTests
 				t.Id,
 				t.Title,
 				t.CreatedAt
-			)).ToList();
+			))
+			.OrderByDescending(t => t.CreatedAt)
+			.ToList();
 
 			return response;
 		}

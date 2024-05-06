@@ -31,6 +31,7 @@ namespace Infrastructure.Persistence.Repositories
 		{
 			return await _context.Tasks
 				.AsNoTracking()
+				.Include(t => t.Test)
                 .Include(t => t.Groups)
 				.Where(t => t.TopicId == id)
                 .OrderByDescending(t => t.CreatedAt)
