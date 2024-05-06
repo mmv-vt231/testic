@@ -45,11 +45,13 @@ function TopicTaskCard({ data }) {
           </HStack>
           <HStack spacing={1} flexWrap="wrap">
             <Text fontWeight="bold">Групи:</Text>
-            {groups.map(({id, name}, i) => (
-              <Button key={id} as={Link} to={`/panel/groups/${id}`} variant="link" fontSize="sm">
-                {`${name}${i != groups.length-1 ? "," : ""}`}
-              </Button>
-            ))}
+            <HStack spacing={0}>
+              {groups.map(({id, name}, i) => (
+                <Button key={id} as={Link} to={`/panel/groups/${id}`} variant="link" fontSize="sm" fontWeight="normal">
+                  {`${name}${i != groups.length-1 ? "," : ""}`}
+                </Button>
+              ))}
+            </HStack>
           </HStack>
         </Stack>
       </CardBody>

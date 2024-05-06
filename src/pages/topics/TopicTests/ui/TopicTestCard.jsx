@@ -13,11 +13,11 @@ import {
   Badge,
   HStack,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import TopicTaskModalCreate from "./TopicTaskModalCreate";
+import { Link, useParams } from "react-router-dom";
+import TopicTaskModalAction from "./TopicTaskModalAction";
 
 function TopicTestCard({ data }) {
-  const { id, title, questions = 0, createdAt } = data;
+  const { id, title, questionsCount, createdAt } = data;
   const formattedDate = dateFormatConverter(createdAt);
 
   return (
@@ -37,12 +37,12 @@ function TopicTestCard({ data }) {
             </HStack>
             <HStack>
               <Text fontWeight="bold">Питань:</Text>
-              <Badge>{questions}</Badge>
+              <Badge>{questionsCount}</Badge>
             </HStack>
           </Box>
-          <TopicTaskModalCreate testId={id}>
+          <TopicTaskModalAction title="Нове тестування" testId={id} type="create">
             <Button p={4} mt="auto" ml="auto">Тестування</Button>
-          </TopicTaskModalCreate>
+          </TopicTaskModalAction>
         </Flex>
       </CardBody>
     </Card>

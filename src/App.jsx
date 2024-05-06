@@ -18,6 +18,7 @@ import Topic from "@pages/topics/Topic";
 import TopicTests from "@pages/topics/TopicTests";
 import TopicTasks from "@pages/topics/TopicTasks";
 import Test from "@pages/test/Test";
+import Task from "@pages/task/Task";
 
 function App() {
   return (
@@ -38,8 +39,7 @@ function App() {
                 <Route path="tasks" element={<TopicTasks/>}/>
               </Route>
             </Route>
-            <Route path="tasks">
-            </Route>
+            <Route path="tasks/:id" element={<Task/>}/>
             <Route path="groups">
               <Route index element={<Groups />} />
               <Route path=":id" element={<Group />} />

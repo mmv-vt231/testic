@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useAddTaskMutation } from "@store/services/api";
+import { useAddTaskMutation, useEditTaskMutation } from "@store/services/api";
 
 import ModalForm from "@components/shared/Modal/ModalForm";
 import InputField from "@components/shared/form/InputField";
@@ -9,11 +9,12 @@ import { Stack, Flex } from "@chakra-ui/react";
 import CheckboxList from "./CheckboxList";
 import SelectField from "./SelectField";
 
-function TopicTaskModalCreate({ testId, children }) {
-  const { id: topicId } = useParams();
+function TopicTaskModalAction({ title, testId, data, children, type }) {
+  const { id } = useParams();
   const [addTask] = useAddTaskMutation();
+  const [editTask] = useEditTaskMutation();
 
-  const initialData = {
+  const initialData = data || {
     start: "",
     end: "",
     groups: [],
@@ -38,22 +39,30 @@ function TopicTaskModalCreate({ testId, children }) {
 
   const handleSubmit = async formData => {
     formData.groups = formData.groups.map(el => el.id);
-    formData.topicId = topicId;
     
-    await addTask({
-      id: testId,
-      body: formData,
-    });
+    if(type == "edit") {
+      await editTask({
+        id,
+        body: formData
+      });
+    } else {
+      formData.topicId = id;
+      
+      await addTask({
+        id: testId,
+        body: formData,
+      });
+    }
   };
 
   return (
     <ModalForm
-      title="Нове тестування"
+      title={title}
       initialData={initialData}
       validation={validation}
       handleSubmit={handleSubmit}
       triggerButton={children}
-      type="create"
+      type={type}
       size="lg"
     >
       <Flex gap={8} flexWrap="wrap">
@@ -69,4 +78,4 @@ function TopicTaskModalCreate({ testId, children }) {
   );
 }
 
-export default TopicTaskModalCreate;
+export default TopicTaskModalAction;

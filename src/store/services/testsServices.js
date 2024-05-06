@@ -13,7 +13,7 @@ const testsServices = builder => ({
       method: "POST",
       body,
     }),
-    invalidatesTags: ["Topics", "Topic"],
+    invalidatesTags: ["Topics", "Tests"],
   }),
   editTest: builder.mutation({
     query: ({ id, body }) => ({
@@ -21,14 +21,14 @@ const testsServices = builder => ({
       method: "PUT",
       body,
     }),
-    invalidatesTags: ["Topics", "Topic", "Test"],
+    invalidatesTags: ["Topics", "Tests", "Test"],
   }),
   deleteTest: builder.mutation({
     query: id => ({
       url: `/tests/${id}`,
       method: "DELETE",
     }),
-    invalidatesTags: ["Topics", "Topic"],
+    invalidatesTags: ["Topics", "Tests"],
   }),
 });
 
