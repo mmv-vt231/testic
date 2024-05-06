@@ -29,6 +29,12 @@ namespace Application.Tasks.GetTask
 
 			var response = new GetTaskResponseDTO(
 				task.Test.Title,
+				task.Groups?
+					.Select(g => new GetTaskGroupDTO(
+						g.Id,
+						g.Name
+					))
+					.ToList(),
 				task.Test.Questions?.Count() ?? 0,
 				task.Start,
 				task.End,

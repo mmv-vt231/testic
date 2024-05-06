@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Contracts.Tasks
 {
 	public record GetTaskResponseDTO(
-		string Name,
+		string Title,
+		IEnumerable<GetTaskGroupDTO>? Groups,
 		int QuestionsCount,
 		DateTime Start,
 		DateTime End,
@@ -15,5 +16,10 @@ namespace Contracts.Tasks
 		bool OneChance,
 		bool ShowAnswers,
 		bool Shuffle
+	);
+
+	public record GetTaskGroupDTO(
+		Guid Id,
+		string Name
 	);
 }

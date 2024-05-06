@@ -10,6 +10,12 @@ namespace Contracts.Topics
     public record GetTopicsResponseDTO(
         Guid Id,
         string Title,
-        IEnumerable<TestDTO>? Tests
+        IEnumerable<GetTopicsTestDTO>? Tests
     );
+	public record GetTopicsTestDTO(
+		Guid Id,
+		string Title,
+		int QuestionsCount,
+		DateTime CreatedAt
+	);
 }

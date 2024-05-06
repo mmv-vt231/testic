@@ -23,8 +23,8 @@ namespace Infrastructure.Persistence.Repositories
 		{
 			return await _context.Tests
 				.AsNoTracking()
+				.Include(t => t.Questions)
 				.Where(t => t.TopicId == id)
-				.OrderByDescending(t => t.CreatedAt)
 				.ToListAsync();
 		}
 		public async Task<IEnumerable<TaskEntity>> GetAllTopicTasks(Guid id)

@@ -10,5 +10,5 @@ namespace Application.Tests.GetTests
 {	
 	public record GetTestsQuery(
 		Guid Id
-	) : IRequest<IEnumerable<TestDTO>>;
+	) : IRequest<IEnumerable<GetTestsResponseDTO>>;
 }

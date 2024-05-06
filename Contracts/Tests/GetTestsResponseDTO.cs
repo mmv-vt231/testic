@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Contracts.Tests
 {
-    public record TestDTO(
-        Guid Id,
-        string Title,
-        DateTime CreatedAt
-    );
+	public record GetTestsResponseDTO(
+		Guid Id,
+		string Title,
+		int QuestionsCount,
+		DateTime CreatedAt
+	);
 }

@@ -22,6 +22,7 @@ namespace Infrastructure.Persistence.Repositories
 		public async Task<TaskEntity?> GetTaskDetails(Guid id)
 		{
 			return await _context.Tasks
+				.Include(t => t.Groups)
 				.Include(t => t.Test)
 					.ThenInclude(t => t.Questions)
 				.Include(t => t.Groups)

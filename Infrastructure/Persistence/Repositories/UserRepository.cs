@@ -27,6 +27,7 @@ namespace Infrastructure.Persistence.Repositories
             return await _context.Topics
                 .AsNoTracking()
                 .Include(t => t.Tests)
+                    .ThenInclude(t => t.Questions)
                 .Where(t => t.UserId == id)
                 .ToListAsync();
         }
