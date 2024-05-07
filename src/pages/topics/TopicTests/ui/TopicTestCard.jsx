@@ -13,7 +13,7 @@ import {
   Badge,
   HStack,
 } from "@chakra-ui/react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TopicTaskModalAction from "./TopicTaskModalAction";
 
 function TopicTestCard({ data }) {
@@ -37,11 +37,13 @@ function TopicTestCard({ data }) {
             </HStack>
             <HStack>
               <Text fontWeight="bold">Питань:</Text>
-              <Badge>{questionsCount}</Badge>
+              <Badge size="sm">{questionsCount}</Badge>
             </HStack>
           </Box>
           <TopicTaskModalAction title="Нове тестування" testId={id} type="create">
-            <Button p={4} mt="auto" ml="auto">Тестування</Button>
+            <Button p={4} mt="auto" ml="auto">
+              Тестування
+            </Button>
           </TopicTaskModalAction>
         </Flex>
       </CardBody>

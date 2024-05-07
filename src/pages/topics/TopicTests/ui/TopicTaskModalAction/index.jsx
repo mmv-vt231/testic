@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAddTaskMutation, useEditTaskMutation } from "@store/services/api";
 
 import ModalForm from "@components/shared/Modal/ModalForm";
@@ -11,6 +11,7 @@ import SelectField from "./SelectField";
 
 function TopicTaskModalAction({ title, testId, data, children, type }) {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [addTask] = useAddTaskMutation();
   const [editTask] = useEditTaskMutation();
 
@@ -28,9 +29,9 @@ function TopicTaskModalAction({ title, testId, data, children, type }) {
     start: { required: true },
     end: { required: true },
     groups: {
-      groupRequired: true
+      groupRequired: true,
     },
-    duration: { 
+    duration: {
       required: true,
       min: 1,
       max: 300,
@@ -39,19 +40,21 @@ function TopicTaskModalAction({ title, testId, data, children, type }) {
 
   const handleSubmit = async formData => {
     formData.groups = formData.groups.map(el => el.id);
-    
-    if(type == "edit") {
+
+    if (type == "edit") {
       await editTask({
         id,
-        body: formData
+        body: formData,
       });
     } else {
       formData.topicId = id;
-      
+
       await addTask({
         id: testId,
         body: formData,
       });
+
+      navigate("tasks");
     }
   };
 
@@ -65,14 +68,14 @@ function TopicTaskModalAction({ title, testId, data, children, type }) {
       type={type}
       size="lg"
     >
-      <Flex gap={8} flexWrap="wrap">
-        <Stack flex="1 1 200px">
+      <Flex gap={8} direction="column" w="full">
+        <Stack flex={1}>
           <InputField name="start" label="Дата початку" type="datetime-local" />
-          <InputField name="end" label="Дата кінця" type="datetime-local"  />
+          <InputField name="end" label="Дата кінця" type="datetime-local" />
           <SelectField />
-          <NumberField name="duration" label="Тривалість (хв)"/>
+          <NumberField name="duration" label="Тривалість (хв)" />
         </Stack>
-        <CheckboxList/>
+        <CheckboxList />
       </Flex>
     </ModalForm>
   );

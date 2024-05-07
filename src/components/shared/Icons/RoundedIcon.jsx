@@ -1,22 +1,18 @@
 import React from "react";
 import { Center } from "@chakra-ui/react";
 
-function RoundedIcon({ Icon, box, icon }) {
+function RoundedIcon({ Icon, box, icon, color }) {
   return (
     <Center
       pos="relative"
-      _after={{
-        content: `""`,
-        position: "absolute",
-        w: 12,
-        h: 12,
-        backgroundColor: "primary.10",
-        borderRadius: "full",
-        pointerEvents: "none",
-      }}
+      w={12}
+      h={12}
+      borderRadius="full"
+      backgroundColor={color ? `${color}.100` : `primary.10`}
+      pointerEvents="none"
       {...box}
     >
-      <Icon fill="primary.500" zIndex="1" {...icon} />
+      <Icon fill={color ? `${color}.400` : `primary.500`} zIndex="1" {...icon} />
     </Center>
   );
 }

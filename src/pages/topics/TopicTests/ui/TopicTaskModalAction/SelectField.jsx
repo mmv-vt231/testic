@@ -19,20 +19,22 @@ import {
 function SelectField() {
   const { data, setData, errors } = useContext(FormContext);
   const selectedGroups = data.groups;
-  const placeholder = selectedGroups.length ? selectedGroups.map(el => el.name).join(", ") : "Виберіть групу";
+  const placeholder = selectedGroups.length
+    ? selectedGroups.map(el => el.name).join(", ")
+    : "Виберіть групу";
   const error = errors.groups;
 
   const { isOpen, onToggle, onClose } = useDisclosure();
-  const {data: groups = [], isLoading} = useGetGroupsQuery();
+  const { data: groups = [], isLoading } = useGetGroupsQuery();
 
   const handleChange = (id, name) => {
     const exist = !!selectedGroups.find(el => el.id == id);
 
     setData(prevData => ({
       ...prevData,
-      groups: exist 
-        ? prevData.groups.filter(el => el.id != id) 
-        : [...prevData.groups, {id, name}]
+      groups: exist
+        ? prevData.groups.filter(el => el.id != id)
+        : [...prevData.groups, { id, name }],
     }));
   };
 
@@ -50,25 +52,27 @@ function SelectField() {
               readOnly
             />
           </PopoverTrigger>
-          <PopoverContent maxW={250} maxH={32} overflowY="auto" sx={{ scrollbarWidth: "thin" }}>
+          <PopoverContent w="md" maxH={32} overflowY="auto" sx={{ scrollbarWidth: "thin" }}>
             {isLoading ? (
               <Spinner />
-            ) : groups.map(({ id, name }) => (
-              <Button
-                key={id}
-                variant="ghost"
-                p={2}
-                minH={10}
-                isActive={!!selectedGroups.find(el => el.id == id)}
-                onClick={() => handleChange(id, name)}
-                _active={{
-                  bg: "blue.50",
-                  color: "primary.500"
-                }}
-              >
-                {name}
-              </Button>
-            ))}
+            ) : (
+              groups.map(({ id, name }) => (
+                <Button
+                  key={id}
+                  variant="ghost"
+                  p={2}
+                  minH={10}
+                  isActive={!!selectedGroups.find(el => el.id == id)}
+                  onClick={() => handleChange(id, name)}
+                  _active={{
+                    bg: "blue.50",
+                    color: "primary.500",
+                  }}
+                >
+                  {name}
+                </Button>
+              ))
+            )}
           </PopoverContent>
         </Popover>
       </InputGroup>

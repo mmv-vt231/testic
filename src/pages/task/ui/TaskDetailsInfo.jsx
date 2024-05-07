@@ -1,24 +1,13 @@
 import React from "react";
 import dateFormatConverter from "@utils/dateFormatConverter";
 
-import {
-  Button,
-  Card,
-  CardBody,
-  Flex,
-  Text,
-  Divider,
-  Stack,
-  Box,
-  HStack,
-  Badge,
-} from "@chakra-ui/react";
+import { Button, Text, Stack, Box, HStack, Heading, Flex, Badge } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "@icons";
-import Copy from "@components/shared/Button/Copy";
+import { Clock, QuestionMark } from "@components/shared/Icons";
 
-function TopicTaskCard({ data }) {
-  const { id, title, status, start, end, groups } = data;
+function TaskDetailsInfo({ data }) {
+  const { title, start, end, status, duration, questionsCount, groups } = data;
 
   const startDate = dateFormatConverter(start, "full");
   const endDate = dateFormatConverter(end, "full");
@@ -73,29 +62,23 @@ function TopicTaskCard({ data }) {
   };
 
   return (
-    <Card minH={180}>
-      <CardBody as={Stack} spacing={0}>
-        <HStack justify="space-between">
-          <Button as={Link} to={`/panel/tasks/${id}`} variant="link" fontSize="2xl">
-            {title}
-          </Button>
-          <Copy text={`${location.origin}/test/${id}`} />
+    <Flex align="start" justify="space-between">
+      <Stack>
+        <HStack>
+          <Heading fontSize="3xl">{title}</Heading>
+          <Status />
         </HStack>
-        <Divider borderBottomWidth={2} my={4} borderColor="gray.100" />
         <Stack>
-          <Flex justify="space-between">
-            <HStack spacing={1} flexWrap="wrap">
-              <Date title="Початок" date={startDate} />
-              <ArrowRight
-                display={{ base: "none", md: "block" }}
-                fill="gray.700"
-                boxSize={5}
-                mt={5}
-              />
-              <Date title="Кінець" date={endDate} />
-            </HStack>
-            <Status />
-          </Flex>
+          <HStack spacing={1} flexWrap="wrap">
+            <Date title="Початок" date={startDate} />
+            <ArrowRight
+              display={{ base: "none", md: "block" }}
+              fill="gray.700"
+              boxSize={5}
+              mt={5}
+            />
+            <Date title="Кінець" date={endDate} />
+          </HStack>
           <HStack spacing={1} flexWrap="wrap">
             <Text fontWeight="bold" color="gray.400">
               Групи:
@@ -103,9 +86,19 @@ function TopicTaskCard({ data }) {
             <Groups />
           </HStack>
         </Stack>
-      </CardBody>
-    </Card>
+      </Stack>
+      <HStack>
+        <Badge variant="outline" colorScheme="gray" h="auto" px={3} py={2}>
+          <Clock />
+          {duration} хв
+        </Badge>
+        <Badge variant="outline" colorScheme="gray" h="auto" px={3} py={2}>
+          <QuestionMark />
+          {questionsCount}
+        </Badge>
+      </HStack>
+    </Flex>
   );
 }
 
-export default TopicTaskCard;
+export default TaskDetailsInfo;

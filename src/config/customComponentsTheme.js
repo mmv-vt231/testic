@@ -228,21 +228,21 @@ export const tooltipTheme = {
 
 export const badgeTheme = {
   baseStyle: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 2,
     rounded: "md",
+    textTransform: "normal",
+    fontSize: "sm",
+    h: 6,
   },
   sizes: {
     sm: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
       w: 6,
-      h: 6,
       fontSize: "sm",
     },
     md: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
       w: 8,
       h: 8,
       fontSize: "md",
@@ -251,21 +251,28 @@ export const badgeTheme = {
   variants: {
     solid: ({ colorScheme }) => ({
       bg: `${colorScheme}.500`,
+      fill: "white",
       color: "white",
     }),
     round: ({ colorScheme }) => ({
       rounded: "full",
       bg: `${colorScheme}.100`,
+      fill: `${colorScheme}.400`,
       color: `${colorScheme}.400`,
     }),
     subtle: ({ colorScheme }) => ({
       bg: `${colorScheme}.100`,
+      fill: `${colorScheme}.400`,
       color: `${colorScheme}.400`,
+    }),
+    outline: ({ colorScheme }) => ({
+      borderColor: `${colorScheme}.600`,
+      fill: `${colorScheme}.500`,
+      color: `${colorScheme}.600`,
     }),
   },
   defaultProps: {
     variant: "solid",
     colorScheme: "primary",
-    size: "sm",
   },
 };

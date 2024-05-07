@@ -33,14 +33,14 @@ function TestQuestionItemHeader({ data }) {
   const [deleteImage] = useDeleteImageMutation();
 
   const handleDelete = async () => {
-    if(typeof data.image == "string") {
+    if (typeof data.image == "string") {
       await deleteImage(data.image);
     }
 
     for (const arr in data.data) {
       await Promise.all(
         data.data[arr].map(async ({ image }, i) => {
-          if(typeof data.image == "string") {
+          if (typeof data.image == "string") {
             await deleteImage(image);
           }
         })
@@ -78,7 +78,7 @@ function TestQuestionItemHeader({ data }) {
         {image && <Image maxH={100} maxW={100} objectFit="contain" src={`${API_HOST}/${image}`} />}
         <HStack>
           <Text fontWeight="bold">Бали:</Text>
-          <Badge>{points}</Badge>
+          <Badge size="sm">{points}</Badge>
         </HStack>
       </HStack>
     </Box>
