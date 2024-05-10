@@ -1,6 +1,7 @@
 ﻿using Application.Results.CreateResult;
 using Application.Tasks.DeleteTask;
 using Application.Tasks.GetTask;
+using Application.Tasks.GetTaskStartInfo;
 using Application.Tasks.UpdateTask;
 using Contracts.Results;
 using Contracts.Tasks;
@@ -62,6 +63,14 @@ namespace API.Controllers
 			var resultId = await _mediator.Send(new CreateResultCommand(id, dto.Email));
 
 			return Ok(resultId);
+		}
+
+		[HttpGet("{id:Guid}/info")]
+		public async Task<IActionResult> GetTaskStartInfo(Guid id)
+		{
+			var task = await _mediator.Send(new GetTaskStartInfoQuery(id));
+
+			return Ok(task);
 		}
 	}
 }
