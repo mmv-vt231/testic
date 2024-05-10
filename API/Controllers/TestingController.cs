@@ -1,4 +1,5 @@
 ﻿using Application.Results.AddAnswerResult;
+using Application.Results.DeleteResult;
 using Application.Results.FinishTesting;
 using Application.Results.GetQuestion;
 using Application.Results.GetResult;
@@ -50,6 +51,15 @@ namespace API.Controllers
 			var result = await _mediator.Send(new GetResultQuery(id));
 
 			return Ok(result);
+		}
+
+		[HttpDelete("{id:Guid}")]
+		[Authorize]
+		public async Task<IActionResult> DeleteResult(Guid id)
+		{
+			await _mediator.Send(new DeleteResultCommand(id));
+
+			return Ok();
 		}
 	}
 }
