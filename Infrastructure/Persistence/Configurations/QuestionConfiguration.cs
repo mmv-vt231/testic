@@ -26,24 +26,13 @@ namespace Infrastructure.Persistence.Configurations
                 .HasDefaultValueSql("NEWID()");
 
             builder.Property(q => q.Title)
-                .HasMaxLength(25555)
-                .IsRequired();
+                .HasMaxLength(25555);
 
             builder.Property(q => q.Image)
                 .HasMaxLength(255);
 
-            builder.Property(q => q.Points)
-                .IsRequired();
-
             builder.Property(q => q.Type)
-                .HasMaxLength(255)
-                .IsRequired();
-
-            builder.Property(q => q.Data)
-                .IsRequired();
-
-            builder.Property(q => q.Keys)
-                .IsRequired();
+                .HasMaxLength(255);
 
             builder.Property(q => q.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");

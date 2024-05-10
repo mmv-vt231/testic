@@ -22,10 +22,15 @@ namespace Infrastructure.Persistence.Database
         public DbSet<Test> Tests { get; set; }
         public DbSet<Question> Questions { get; set; }
 		public DbSet<TaskEntity> Tasks { get; set; }
+		public DbSet<Result> Results { get; set; }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
-    }
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			optionsBuilder.EnableSensitiveDataLogging();
+		}
+	}
 }

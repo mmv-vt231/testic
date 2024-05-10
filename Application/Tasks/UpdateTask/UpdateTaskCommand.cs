@@ -12,9 +12,9 @@ namespace Application.Tasks.UpdateTask
 		ICollection<Guid> Groups,
 		DateTime Start,
 		DateTime End,
-		int? Duration,
+		int Duration,
 		bool OneChance,
 		bool ShowAnswers,
-		bool Shuffle
+		bool ShuffleQuestions
 	) : IRequest;
 }

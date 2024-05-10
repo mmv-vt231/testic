@@ -2,7 +2,6 @@
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +14,16 @@ namespace Application.Questions.UpdateQuestion
     public class UpdateQuestionCommandHandler : IRequestHandler<UpdateQuestionCommand>
     {
         private readonly IQuestionRepository _questionRepository;
-        private readonly IFileService _fileService;
+		private readonly ITestRepository _testRepository;
+		private readonly IFileService _fileService;
 
-        public UpdateQuestionCommandHandler(IQuestionRepository questionRepository, IFileService fileService)
+        public UpdateQuestionCommandHandler(
+            IQuestionRepository questionRepository,
+			ITestRepository testRepository,
+			IFileService fileService)
         {
             _questionRepository = questionRepository;
+            _testRepository = testRepository;
             _fileService = fileService;
         }
 
@@ -32,6 +36,10 @@ namespace Application.Questions.UpdateQuestion
                 throw QuestionsErrors.QuestionNotFound;
             }
 
+            var test = await _testRepository.GetByIdAsync(request.Id);
+
+            test.TotalScore = (test.TotalScore - question.Points) + request.Points;
+
 			string data = JsonSerializer.Serialize(request.Data);
 			string keys = JsonSerializer.Serialize(request.Keys);
 
@@ -43,6 +51,7 @@ namespace Application.Questions.UpdateQuestion
             question.Keys = keys;
 
             await _questionRepository.UpdateAsync(question);
+            await _testRepository.UpdateAsync(test);
         }
     }
 }

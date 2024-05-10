@@ -13,9 +13,9 @@ namespace Application.Tasks.CreateTask
 		List<Guid> Groups,
 		DateTime Start,
 		DateTime End,
-		int? Duration,
+		int Duration,
 		bool OneChance,
 		bool ShowAnswers,
-		bool Shuffle
+		bool ShuffleQuestions
 	) : IRequest;
 }

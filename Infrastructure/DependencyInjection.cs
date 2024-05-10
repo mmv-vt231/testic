@@ -11,15 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Net;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Infrastructure
 {
@@ -41,6 +33,7 @@ namespace Infrastructure
             services.AddScoped<ITestRepository, TestRepository>();
 			services.AddScoped<ITaskRepository, TaskRepository>();
 			services.AddScoped<IQuestionRepository, QuestionRepository>();
+			services.AddScoped<IResultRepository, ResultRepository>();
 
             services.AddTransient<IFileService, FileService>();
 

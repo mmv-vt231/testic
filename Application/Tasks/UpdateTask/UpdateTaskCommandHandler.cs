@@ -39,7 +39,7 @@ namespace Application.Tasks.UpdateTask
 			task.Duration = request.Duration;
 			task.OneChance = request.OneChance;
 			task.ShowAnswers = request.ShowAnswers;
-			task.Shuffle = request.Shuffle;
+			task.ShuffleQuestions = request.ShuffleQuestions;
 
 			await _taskRepository.UpdateAsync(task);
 

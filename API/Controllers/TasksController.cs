@@ -1,14 +1,18 @@
-﻿using Application.Tasks.DeleteTask;
+﻿using Application.Results.CreateResult;
+using Application.Tasks.DeleteTask;
 using Application.Tasks.GetTask;
 using Application.Tasks.UpdateTask;
+using Contracts.Results;
 using Contracts.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
 	[Route("api/tasks")]
 	[ApiController]
+	[Authorize]
 	public class TasksController : ControllerBase
 	{
 		private readonly ISender _mediator;
@@ -36,7 +40,7 @@ namespace API.Controllers
 				dto.Duration,
 				dto.OneChance,
 				dto.ShowAnswers,
-				dto.Shuffle
+				dto.ShuffleQuestions
 			);
 
 			await _mediator.Send(command);
@@ -50,6 +54,14 @@ namespace API.Controllers
 			await _mediator.Send(new DeleteTaskCommand(id));
 
 			return Ok();
+		}
+
+		[HttpPost("{id:Guid}/start")]
+		public async Task<IActionResult> StartTask(Guid id, CreateResultRequestDTO dto)
+		{
+			var resultId = await _mediator.Send(new CreateResultCommand(id, dto.Email));
+
+			return Ok(resultId);
 		}
 	}
 }

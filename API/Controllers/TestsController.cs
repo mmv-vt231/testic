@@ -80,7 +80,7 @@ namespace API.Controllers
 				dto.Duration,
 				dto.OneChance,
 				dto.ShowAnswers,
-				dto.Shuffle
+				dto.ShuffleQuestions
 			);
 
 			await _mediator.Send(command);

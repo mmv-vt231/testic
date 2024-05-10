@@ -20,21 +20,6 @@ namespace Infrastructure.Persistence.Configurations
 			builder.Property(t => t.Id)
 				.HasDefaultValueSql("NEWID()");
 
-			builder.Property(t => t.Start)
-				.IsRequired();
-
-			builder.Property(t => t.End)
-				.IsRequired();
-
-			builder.Property(t => t.OneChance)
-				.IsRequired();
-
-			builder.Property(t => t.ShowAnswers)
-				.IsRequired();
-
-			builder.Property(t => t.Shuffle)
-				.IsRequired();
-
 			builder.Property(t => t.CreatedAt)
 				.HasDefaultValueSql("GETDATE()");
 

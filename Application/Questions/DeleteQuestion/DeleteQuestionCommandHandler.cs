@@ -14,11 +14,16 @@ namespace Application.Questions.DeleteQuestion
     public class DeleteQuestionCommandHandler : IRequestHandler<DeleteQuestionCommand>
     {
         private readonly IQuestionRepository _questionRepository;
-        private readonly IFileService _fileService;
+		private readonly ITestRepository _testRepository;
+		private readonly IFileService _fileService;
 
-        public DeleteQuestionCommandHandler(IQuestionRepository questionRepository, IFileService fileService)
+        public DeleteQuestionCommandHandler(
+            IQuestionRepository questionRepository,
+			ITestRepository testRepository,
+			IFileService fileService)
         {
             _questionRepository = questionRepository;
+            _testRepository = testRepository;
             _fileService = fileService;
         }
 
@@ -31,12 +36,17 @@ namespace Application.Questions.DeleteQuestion
                 throw QuestionsErrors.QuestionNotFound;
             }
 
-            if (!question.Image.IsNullOrEmpty())
+            var test = await _testRepository.GetByIdAsync(question.TestId);
+
+			if (!question.Image.IsNullOrEmpty())
             {
                 _fileService.DeleteFile(question.Image);
-            }
+			}
 
-            await _questionRepository.DeleteAsync(question);
+			test.TotalScore -= question.Points;
+
+			await _questionRepository.DeleteAsync(question);
+            await _testRepository.UpdateAsync(test);
         }
     }
 }

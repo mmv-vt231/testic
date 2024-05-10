@@ -22,32 +22,41 @@ namespace Infrastructure.Persistence.Repositories
 		public async Task<TaskEntity?> GetTaskDetails(Guid id)
 		{
 			return await _context.Tasks
+				.AsNoTracking()
 				.Include(t => t.Groups)
 				.Include(t => t.Test)
 					.ThenInclude(t => t.Questions)
-				.Include(t => t.Groups)
-				.SingleOrDefaultAsync(t => t.Id == id);
+				.FirstOrDefaultAsync(t => t.Id == id);
 		}
 
 		public async Task<ICollection<Group>?> GetTaskGroups(ICollection<Guid> groups)
 		{
 			return await _context.Groups
+				.AsNoTracking()
 				.Where(g => groups.Contains(g.Id))
 				.ToListAsync();
 		}
 
 		public async Task UpdateTaskGroups(Guid id, ICollection<Guid> groupIds)
 		{
+			var groups = await GetTaskGroups(groupIds);
+
 			var task = await _context.Tasks
 				.Include(t => t.Groups)
 				.SingleAsync(t => t.Id == id);
 
-			var groups = await GetTaskGroups(groupIds);
+			List<Group> trackedGroups = task.Groups.ToList();
 
 			task.Groups.Clear();
 
-			foreach (var group in groups)
-				task.Groups.Add(group);
+			await _context.SaveChangesAsync();
+
+			foreach (var group in trackedGroups)
+			{
+				_context.Entry(group).State = EntityState.Detached;
+			}
+
+			task.Groups = groups;
 
 			await _context.SaveChangesAsync();
 		}

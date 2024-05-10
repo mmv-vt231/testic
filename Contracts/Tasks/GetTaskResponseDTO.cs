@@ -12,10 +12,11 @@ namespace Contracts.Tasks
 		int QuestionsCount,
 		DateTime Start,
 		DateTime End,
+		string Status,
 		int? Duration,
 		bool OneChance,
 		bool ShowAnswers,
-		bool Shuffle
+		bool ShuffleQuestions
 	);
 
 	public record GetTaskGroupDTO(

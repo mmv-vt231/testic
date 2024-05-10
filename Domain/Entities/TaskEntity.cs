@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-	public class TaskEntity : BaseEntity
+    public class TaskEntity : BaseEntity
 	{
 		public DateTime Start { get; set; }
 		public DateTime End { get; set; }
-		public int? Duration { get; set; }
+		public int Duration { get; set; }
 		public bool OneChance { get; set; }
 		public bool ShowAnswers { get; set; }
-		public bool Shuffle { get; set; }
+		public bool ShuffleQuestions { get; set; }
 
 		public Guid? TestId { get; set; }
 		public Test Test { get; set; }
@@ -22,5 +22,7 @@ namespace Domain.Entities
 		public Topic Topic { get; set; }
 
 		public ICollection<Group>? Groups { get; set; } = [];
+
+		public IEnumerable<Result>? Results { get; set; }
 	}
 }

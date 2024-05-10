@@ -9,6 +9,7 @@ namespace Domain.Repositories
 {
     public interface IStudentRepository : IRepository<Student>
     {
-        
+        Task<Student?> GetStudentByEmail(string email);
+        Task<Result?> GetStudentTaskResults(Guid studentId, Guid taskId);
     }
 }

@@ -11,6 +11,7 @@ namespace Contracts.Tasks
 		string Title,
 		DateTime Start,
 		DateTime End,
+		string Status,
 		IEnumerable<GetTasksGroupDTO>? Groups
 	);
 

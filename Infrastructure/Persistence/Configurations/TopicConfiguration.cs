@@ -21,7 +21,6 @@ namespace Infrastructure.Persistence.Configurations
                 .HasDefaultValueSql("NEWID()");
 
             builder.Property(t => t.Title)
-                .IsRequired()
                 .HasMaxLength(255);
 
             builder.Property(t => t.CreatedAt)

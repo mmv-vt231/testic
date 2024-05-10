@@ -101,6 +101,69 @@ namespace Infrastructure.Persistence.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Domain.Entities.Result", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<string>("Answers")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Completed")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Correct")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime?>("End")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Half")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QuestionsOrder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Score")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("Start")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TaskId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Wrong")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("Results", null, t =>
+                        {
+                            t.HasCheckConstraint("answers_type_json", "ISJSON(Answers)=1");
+
+                            t.HasCheckConstraint("questionsOrder_type_json", "ISJSON(QuestionsOrder)=1");
+                        });
+                });
+
             modelBuilder.Entity("Domain.Entities.Student", b =>
                 {
                     b.Property<Guid>("Id")
@@ -145,7 +208,7 @@ namespace Infrastructure.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<int?>("Duration")
+                    b.Property<int>("Duration")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("End")
@@ -157,7 +220,7 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<bool>("ShowAnswers")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("Shuffle")
+                    b.Property<bool>("ShuffleQuestions")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("Start")
@@ -197,6 +260,9 @@ namespace Infrastructure.Persistence.Migrations
 
                     b.Property<Guid>("TopicId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("TotalScore")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -306,6 +372,25 @@ namespace Infrastructure.Persistence.Migrations
                     b.Navigation("Test");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Result", b =>
+                {
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany("Results")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.TaskEntity", "Task")
+                        .WithMany("Results")
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Task");
+                });
+
             modelBuilder.Entity("Domain.Entities.Student", b =>
                 {
                     b.HasOne("Domain.Entities.Group", "Group")
@@ -372,6 +457,16 @@ namespace Infrastructure.Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Group", b =>
                 {
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Student", b =>
+                {
+                    b.Navigation("Results");
+                });
+
+            modelBuilder.Entity("Domain.Entities.TaskEntity", b =>
+                {
+                    b.Navigation("Results");
                 });
 
             modelBuilder.Entity("Domain.Entities.Test", b =>

@@ -14,6 +14,6 @@ namespace Contracts.Questions
 		float Points,
 		string Type,
 		dynamic Data,
-		dynamic Keys
+		dynamic? Keys
 	);
 }

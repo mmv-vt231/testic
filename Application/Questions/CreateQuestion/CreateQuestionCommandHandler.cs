@@ -3,15 +3,7 @@ using Domain.Entities;
 using Domain.Errors;
 using Domain.Repositories;
 using MediatR;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
 
 namespace Application.Questions.CreateQuestion
 {
@@ -54,7 +46,10 @@ namespace Application.Questions.CreateQuestion
                 TestId = request.TestId,
             };
 
-            await _questionRepository.CreateAsync(question);
-        }
+            test.TotalScore += request.Points;
+
+			await _questionRepository.CreateAsync(question);
+			await _testRepository.UpdateAsync(test);
+		}
     }
 }

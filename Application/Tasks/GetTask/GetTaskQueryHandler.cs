@@ -27,6 +27,17 @@ namespace Application.Tasks.GetTask
 				throw TasksErrors.TaskNotFound;
 			}
 
+			var status = "";
+			var start = DateTime.Compare(task.Start, DateTime.Now);
+			var end = DateTime.Compare(task.End, DateTime.Now);
+
+			if (start > 0)
+				status = "planned";
+			else if (start <= 0 && end >= 0)
+				status = "active";
+			else
+				status = "finished";
+
 			var response = new GetTaskResponseDTO(
 				task.Test.Title,
 				task.Groups?
@@ -38,10 +49,11 @@ namespace Application.Tasks.GetTask
 				task.Test.Questions?.Count() ?? 0,
 				task.Start,
 				task.End,
+				status,
 				task.Duration,
 				task.OneChance,
 				task.ShowAnswers,
-				task.Shuffle
+				task.ShuffleQuestions
 			);
 
 			return response;

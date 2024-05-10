@@ -24,18 +24,33 @@ namespace Application.Tasks.GetTasks
 
 			var response = tasks?
 				.OrderByDescending(t => t.CreatedAt)
-				.Select(t => new GetTasksReponseDTO(
-					t.Id,
-					t.Test.Title,
-					t.Start,
-					t.End,
-					t.Groups?.OrderByDescending(g => g.CreatedAt)
-					.Select(g => new GetTasksGroupDTO(
-						g.Id,
-						g.Name
-					))
-					.ToList()
-			))
+				.Select(t =>
+				{
+					var status = "";
+					var start = DateTime.Compare(t.Start, DateTime.Now);
+					var end = DateTime.Compare(t.End, DateTime.Now);
+
+					if (start > 0)
+						status = "planned";
+					else if (start <= 0 && end >= 0)
+						status = "active";
+					else
+						status = "finished";
+
+					return new GetTasksReponseDTO(
+						t.Id,
+						t.Test.Title,
+						t.Start,
+						t.End,
+						status,
+						t.Groups?.OrderByDescending(g => g.CreatedAt)
+						.Select(g => new GetTasksGroupDTO(
+							g.Id,
+							g.Name
+						))
+						.ToList()
+					);
+				})
 			.ToList();
 
 			return response;

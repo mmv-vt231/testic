@@ -14,18 +14,15 @@ namespace Application.Tasks.CreateTask
 	{
 		private readonly ITestRepository _testRepository;
 		private readonly ITopicRepository _topicRepository;
-		private readonly IGroupRepository _groupRepository;
 		private readonly ITaskRepository _taskRepository;
 
 		public CreateTaskCommandHandler(
 			ITestRepository testRepository,
 			ITopicRepository topicRepository,
-			IGroupRepository groupRepository,
 			ITaskRepository taskRepository)
 		{
 			_testRepository = testRepository;
 			_topicRepository = topicRepository;
-			_groupRepository = groupRepository;
 			_taskRepository = taskRepository;
 		}
 
@@ -57,7 +54,7 @@ namespace Application.Tasks.CreateTask
 				Duration = request.Duration,
 				OneChance = request.OneChance,
 				ShowAnswers = request.ShowAnswers,
-				Shuffle = request.Shuffle,
+				ShuffleQuestions = request.ShuffleQuestions,
 			};
 
 			await _taskRepository.CreateAsync(task);

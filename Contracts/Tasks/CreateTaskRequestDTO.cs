@@ -21,7 +21,7 @@ namespace Contracts.Tasks
 		DateTime End,
 
 		[Required, Range(1, 300)]
-		int? Duration,
+		int Duration,
 
 		[Required]
 		bool OneChance,
@@ -30,6 +30,6 @@ namespace Contracts.Tasks
 		bool ShowAnswers,
 
 		[Required]
-		bool Shuffle
+		bool ShuffleQuestions
 	);
 }

@@ -1,9 +1,10 @@
 @API_HostAddress = https://localhost:7215
+@API_Token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI5MmY0NzAxLTcwMDQtNDMyYy05NWYwLTk2MjM2Y2ExZGQxOCIsIm5iZiI6MTcxNTA2NzM1MiwiZXhwIjoxNzE3NjU5MzUyLCJpYXQiOjE3MTUwNjczNTIsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTUiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MjE1In0.3LydDgRXLSlU-Ox3gEN-RmYGlvnNxz9FYRg7gCYtTRM
 
 ### Update Task
-PUT {{API_HostAddress}}/api/tasks/2fdeff8d-3b94-473c-8f6e-491f36ef5cb4
+PUT {{API_HostAddress}}/api/tasks/b8cf8961-d1fb-414a-a19a-b5681002383b
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI5MmY0NzAxLTcwMDQtNDMyYy05NWYwLTk2MjM2Y2ExZGQxOCIsIm5iZiI6MTcxMjU4ODM5NiwiZXhwIjoxNzE1MTgwMzk2LCJpYXQiOjE3MTI1ODgzOTYsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTUiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MjE1In0.RaYHTtx79aI8QkOKYU7VPLEtwARKlivI5yaQ6gXpYOM
+Authorization: Bearer {{API_Token}}
 
 {
   "groups": ["300bca9a-5309-44f4-983c-65d58c2db911"],
@@ -11,14 +12,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI5MmY0NzAxL
   "end": "2024-05-03T22:57:02.962Z",
   "duration": 30,
   "oneChance": true,
-  "showAnswers": false,
-  "shuffle": true
+  "showAnswers": true,
+  "shuffleQuestions": true,
 }
 
 ### Create Task
 POST {{API_HostAddress}}/api/tests/849aea97-c158-4cf4-9ed4-63c8213dcebe/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI5MmY0NzAxLTcwMDQtNDMyYy05NWYwLTk2MjM2Y2ExZGQxOCIsIm5iZiI6MTcxMjU4ODM5NiwiZXhwIjoxNzE1MTgwMzk2LCJpYXQiOjE3MTI1ODgzOTYsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTUiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MjE1In0.RaYHTtx79aI8QkOKYU7VPLEtwARKlivI5yaQ6gXpYOM
+Authorization: Bearer {{API_Token}}
 
 {
   "topicId": "2bed5587-8ee2-466b-b25f-fc0486ddc3f6",
@@ -30,10 +31,81 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI5MmY0NzAxL
   "duration": 20,
   "oneChance": true,
   "showAnswers": true,
-  "shuffle": true
+  "shuffleQuestions": true
 }
 
 ### Delete Task
 DELETE {{API_HostAddress}}/api/tasks/2fdeff8d-3b94-473c-8f6e-491f36ef5cb4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI5MmY0NzAxLTcwMDQtNDMyYy05NWYwLTk2MjM2Y2ExZGQxOCIsIm5iZiI6MTcxMjU4ODM5NiwiZXhwIjoxNzE1MTgwMzk2LCJpYXQiOjE3MTI1ODgzOTYsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcyMTUiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MjE1In0.RaYHTtx79aI8QkOKYU7VPLEtwARKlivI5yaQ6gXpYOM
+Authorization: Bearer {{API_Token}}
+
+### Create Result
+POST {{API_HostAddress}}/api/tasks/b8cf8961-d1fb-414a-a19a-b5681002383b/start
+Content-Type: application/json
+Authorization: Bearer {{API_Token}}
+
+{
+  "email": "sanechka@gmail.com"
+}
+
+### Get Question 
+GET {{API_HostAddress}}/api/testing/86b87e83-371f-460a-9a42-dacdc7f1dd15/question
+Content-Type: application/json
+Authorization: Bearer {{API_Token}}
+
+### Add Answer 
+POST {{API_HostAddress}}/api/testing/86b87e83-371f-460a-9a42-dacdc7f1dd15/answer
+Content-Type: application/json
+Authorization: Bearer {{API_Token}}
+
+{
+  "questionId": "8f7d06eb-194e-4351-b7e1-5c2d731f4ff1",
+  "answer": [
+    {
+      "question": "3628abcb-8587-49db-8447-7b9f0dbcb42b",
+      "answer": "e1a9c0a1-a2b5-4128-9d63-68adaa120526"
+    },
+    {
+      "question": "2476ee34-3156-42ac-8bbf-98f42a07fd75",
+      "answer": "8ad286cf-5740-4502-a15b-059b94630d82"
+    }
+  ]
+}
+
+# {
+#   "questionId": "f146d05f-e357-45f7-a5e5-7548dfd74f2d",
+#   "answer": [
+#     "7e149a31-2541-454a-8664-8cbae5ae77e5",
+#     "7af2d299-3ba0-47ba-a39d-2e25f1f2cc9a",
+#     "f1ce55ea-1a3d-4679-b7ba-179b64de87c2"
+#   ]
+# }
+
+# {
+#   "questionId": "f709a3b1-d0b6-4b0e-94e0-d07b75d633e9",
+#   "answer": ["22ee7717-203b-4158-adac-ab2105b0a966"]
+# }
+
+# {
+#   "questionId": "8f7d06eb-194e-4351-b7e1-5c2d731f4ff1",
+#   "answer": [
+#     {
+#       "question": "3628abcb-8587-49db-8447-7b9f0dbcb42b",
+#       "answer": "e1a9c0a1-a2b5-4128-9d63-68adaa120526"
+#     },
+#     {
+#       "question": "2476ee34-3156-42ac-8bbf-98f42a07fd75",
+#       "answer": "8ad286cf-5740-4502-a15b-059b94630d82"
+#     }
+#   ]
+# }
+
+### Get Result 
+GET {{API_HostAddress}}/api/testing/86b87e83-371f-460a-9a42-dacdc7f1dd15/result
+Content-Type: application/json
+Authorization: Bearer {{API_Token}}
+
+### Finish Testing 
+POST {{API_HostAddress}}/api/testing/86b87e83-371f-460a-9a42-dacdc7f1dd15/finish
+Content-Type: application/json
+Authorization: Bearer {{API_Token}}
