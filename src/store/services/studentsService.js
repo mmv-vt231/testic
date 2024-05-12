@@ -1,4 +1,4 @@
-const studentsServices = builder => ({
+const studentsService = builder => ({
   addStudent: builder.mutation({
     query: ({ id, body }) => ({
       url: `/groups/${id}/students`,
@@ -24,4 +24,4 @@ const studentsServices = builder => ({
   }),
 });
 
-export default studentsServices;
+export default studentsService;

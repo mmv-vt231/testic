@@ -1,4 +1,4 @@
-const testsServices = builder => ({
+const testsService = builder => ({
   getTests: builder.query({
     query: id => `/topics/${id}/tests`,
     providesTags: ["Tests"],
@@ -32,4 +32,4 @@ const testsServices = builder => ({
   }),
 });
 
-export default testsServices;
+export default testsService;

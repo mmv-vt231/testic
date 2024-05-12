@@ -39,7 +39,7 @@ const validator = (rules, value, data = []) => {
         }
         break;
       case "isEmail":
-        if (!value?.toLowerCase().match("^[\\w-.]+@([\\w-]+.)+[\\w-]{2,4}$")) {
+        if (!value?.toLowerCase().match("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
           return "Некоректна пошта!";
         }
         break;

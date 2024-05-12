@@ -33,7 +33,13 @@ function Login() {
       </Heading>
       <Form initialData={initialData} validation={validation} onSubmit={onSubmit} mt={4}>
         <VStack spacing={2}>
-          <InputField name="email" label="Пошта" placeholder="Введіть пошту" Icon={Email} />
+          <InputField
+            name="email"
+            label="Пошта"
+            placeholder="Введіть пошту"
+            Icon={Email}
+            autoComplete
+          />
           <InputField
             name="password"
             label="Пароль"

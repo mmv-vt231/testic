@@ -1,0 +1,25 @@
+.progress {
+  stroke-dasharray: 534;
+  stroke-linecap: round;
+  stroke-dashoffset: 534;
+  filter: drop-shadow(0 0 10px var(--chakra-colors-primary-500));
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  animation: 2s ease 0s 1 normal forwards running offsettozero;
+  fill: transparent;
+}
+
+.text {
+  font-size: 2em;
+  transition: fill 0.2s;
+  fill: var(--chakra-colors-primary-400);
+}
+
+@keyframes offsettozero {
+  0% {
+    stroke-dashoffset: 534;
+  }
+  100% {
+    stroke-dashoffset: var(--offset);
+  }
+}

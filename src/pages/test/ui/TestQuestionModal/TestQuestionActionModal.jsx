@@ -36,7 +36,7 @@ function TestQuestionActionModal({ data, title, type, children }) {
     for (const arr in newformData.data) {
       await Promise.all(
         formData.data[arr].map(async ({ image }, i) => {
-          newformData.data[arr][i].image = await uploadImg(image, data?.data?.[arr]?.[i].image);
+          newformData.data[arr][i].image = await uploadImg(image, data?.data?.[arr]?.[i]?.image);
         })
       );
     }
@@ -69,7 +69,7 @@ function TestQuestionActionModal({ data, title, type, children }) {
       return response;
     }
 
-    return null;
+    return image;
   };
 
   return (

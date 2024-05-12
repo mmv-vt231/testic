@@ -12,6 +12,14 @@ const dateFormatConverter = (date, format = null) => {
         minute: "2-digit",
       };
       break;
+    case "time":
+      options = {
+        hour: date > 3599999 ? "2-digit" : undefined,
+        minute: "2-digit",
+        second: "2-digit",
+        timeZone: "UTC",
+      };
+      break;
 
     default:
       options = {

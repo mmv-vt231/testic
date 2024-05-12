@@ -2,14 +2,15 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logout } from "@store/features/auth/authSlice";
 import { API_URL } from "@config/constants";
 
-import topicsServices from "./topicsServices";
-import testsServices from "./testsServices";
-import questionsServices from "./questionsServices";
-import groupsServices from "./groupsServices";
-import studentsServices from "./studentsServices";
-import profileServices from "./profileServices";
-import assetsServices from "./assetsServices";
-import tasksServices from "./tasksServices";
+import topicsService from "./topicsService";
+import testsService from "./testsService";
+import questionsService from "./questionsService";
+import testingService from "./testingService";
+import groupsService from "./groupsService";
+import studentsService from "./studentsService";
+import profileService from "./profileService";
+import assetsService from "./assetsService";
+import tasksService from "./tasksService";
 
 export const api = createApi({
   reducerPath: "api",
@@ -41,14 +42,15 @@ export const api = createApi({
       },
       providesTags: ["User"],
     }),
-    ...topicsServices(builder),
-    ...testsServices(builder),
-    ...tasksServices(builder),
-    ...questionsServices(builder),
-    ...groupsServices(builder),
-    ...studentsServices(builder),
-    ...profileServices(builder),
-    ...assetsServices(builder),
+    ...topicsService(builder),
+    ...testsService(builder),
+    ...tasksService(builder),
+    ...questionsService(builder),
+    ...testingService(builder),
+    ...groupsService(builder),
+    ...studentsService(builder),
+    ...profileService(builder),
+    ...assetsService(builder),
   }),
 });
 
@@ -69,6 +71,7 @@ export const {
 
   useGetTasksQuery,
   useGetTaskQuery,
+  useGetTaskStartInfoQuery,
   useAddTaskMutation,
   useEditTaskMutation,
   useDeleteTaskMutation,
@@ -76,6 +79,14 @@ export const {
   useAddQuestionMutation,
   useEditQuestionMutation,
   useDeleteQuestionMutation,
+
+  useGetResultQuery,
+  useStartTestingMutation,
+  useGetQuestionQuery,
+  useAddAnswerMutation,
+  useFinishTestingMutation,
+  useGetTimeQuery,
+  useDeleteResultMutation,
 
   useGetGroupsQuery,
   useGetGroupQuery,

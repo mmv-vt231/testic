@@ -1,4 +1,4 @@
-const assetsServices = builder => ({
+const assetsService = builder => ({
   uploadImage: builder.mutation({
     query: body => ({
       url: `/assets/images`,
@@ -15,4 +15,4 @@ const assetsServices = builder => ({
   }),
 });
 
-export default assetsServices;
+export default assetsService;

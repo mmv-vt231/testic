@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useGetTaskQuery } from "@store/services/api";
 
 import { Box, Spinner } from "@chakra-ui/react";
-import UnknownError from "@components/shared/errors/UnknownError";
+import NotFound from "@components/shared/errors/NotFound";
 import TaskHeader from "./ui/TaskHeader";
 import TaskDetails from "./ui/TaskDetails";
 
@@ -12,9 +12,7 @@ function Task() {
   const { data, isLoading, isError } = useGetTaskQuery(id);
 
   if (isLoading) return <Spinner />;
-  if (isError) return <UnknownError />;
-
-  console.log(data);
+  if (isError) return <NotFound />;
 
   return (
     <Box>

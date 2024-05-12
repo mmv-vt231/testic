@@ -266,7 +266,7 @@ export const badgeTheme = {
       color: `${colorScheme}.400`,
     }),
     outline: ({ colorScheme }) => ({
-      borderColor: `${colorScheme}.600`,
+      borderColor: `${colorScheme}.400`,
       fill: `${colorScheme}.500`,
       color: `${colorScheme}.600`,
     }),

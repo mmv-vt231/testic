@@ -14,8 +14,6 @@ function Test() {
   if (isLoading) return <Spinner />;
   if (isError) return <NotFound />;
 
-  console.log(data);
-
   const { title, questions } = data;
 
   return (

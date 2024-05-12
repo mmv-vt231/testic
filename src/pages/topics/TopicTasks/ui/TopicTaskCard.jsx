@@ -79,7 +79,7 @@ function TopicTaskCard({ data }) {
           <Button as={Link} to={`/panel/tasks/${id}`} variant="link" fontSize="2xl">
             {title}
           </Button>
-          <Copy text={`${location.origin}/test/${id}`} />
+          <Copy text={`${location.origin}/test/start/${id}`} />
         </HStack>
         <Divider borderBottomWidth={2} my={4} borderColor="gray.100" />
         <Stack>

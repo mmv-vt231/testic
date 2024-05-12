@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import recursiveValidation from "@utils/recursiveValidation";
 import isEmpty from "@utils/isEmpty";
 
-function useValidation(defaultValidation) {
+function useValidation(defaultValidation = {}) {
   const [errors, setErrors] = useState({});
   const [validation, setValidation] = useState(defaultValidation);
 

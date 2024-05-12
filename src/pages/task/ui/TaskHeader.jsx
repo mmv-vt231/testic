@@ -32,7 +32,7 @@ function TaskHeader({ data, id }) {
     <Box>
       <HStack>
         <Heading>Тестування</Heading>
-        <Copy text={`${location.origin}/test/${id}`} />
+        <Copy text={`${location.origin}/test/start/${id}`} />
       </HStack>
     </Box>
   );

@@ -1,4 +1,4 @@
-const groupsServices = builder => ({
+const groupsService = builder => ({
   getGroups: builder.query({
     query: () => "/user/groups",
     providesTags: ["Groups"],
@@ -32,4 +32,4 @@ const groupsServices = builder => ({
   }),
 });
 
-export default groupsServices;
+export default groupsService;

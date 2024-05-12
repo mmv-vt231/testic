@@ -1,4 +1,4 @@
-const profileServices = builder => ({
+const profileService = builder => ({
   editUserPassword: builder.mutation({
     query: body => ({
       url: `/user/changePassword`,
@@ -16,4 +16,4 @@ const profileServices = builder => ({
   }),
 });
 
-export default profileServices;
+export default profileService;

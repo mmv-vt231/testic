@@ -74,7 +74,7 @@ function KeyField({ index, question, answer }) {
           <PopoverTrigger>
             <Input
               autoComplete="off"
-              w={50}
+              w={24}
               textAlign="center"
               onClick={onToggle}
               cursor="pointer"
@@ -82,7 +82,7 @@ function KeyField({ index, question, answer }) {
               readOnly
             />
           </PopoverTrigger>
-          <PopoverContent w={16} maxH={32} overflowY="auto" sx={{ scrollbarWidth: "thin" }}>
+          <PopoverContent w={24} maxH={32} overflowY="auto" sx={{ scrollbarWidth: "thin" }}>
             {answers.map(({ id }, i) => {
               const letter = letterFromIndex(i);
 

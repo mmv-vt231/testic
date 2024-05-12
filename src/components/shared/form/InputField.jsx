@@ -11,7 +11,16 @@ import {
 
 import { FormContext } from "./Form";
 
-function InputField({ name, label, type, placeholder, Icon, RightElement, LeftElement }) {
+function InputField({
+  name,
+  label,
+  type,
+  placeholder,
+  Icon,
+  RightElement,
+  LeftElement,
+  autoComplete,
+}) {
   const { data, setData, errors } = useContext(FormContext);
 
   const handleChange = e => {
@@ -27,7 +36,7 @@ function InputField({ name, label, type, placeholder, Icon, RightElement, LeftEl
           name={name}
           type={type}
           placeholder={placeholder}
-          autoComplete="off"
+          autoComplete={autoComplete ? "on" : "off"}
           value={data[name]}
           onChange={handleChange}
         />

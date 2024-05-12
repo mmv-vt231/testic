@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Text, Box, HStack, SimpleGrid } from "@chakra-ui/react";
-import { Person, CheckRound, CancelRound, Average } from "@components/shared/Icons";
+import { Person, CheckRound, CancelRound, Average } from "@icons";
 import RoundedIcon from "@components/shared/Icons/RoundedIcon";
 
 const cardsData = [

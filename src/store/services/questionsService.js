@@ -1,4 +1,4 @@
-const questionsServices = builder => ({
+const questionsService = builder => ({
   addQuestion: builder.mutation({
     query: ({ id, body }) => ({
       url: `/tests/${id}/questions`,
@@ -24,4 +24,4 @@ const questionsServices = builder => ({
   }),
 });
 
-export default questionsServices;
+export default questionsService;
