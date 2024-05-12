@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Results.GetQuestion
+namespace Application.Results.GetTime
 {
-	public record GetQuestionQuery(
-		Guid ResultId
-	) : IRequest<GetQuestionResponseDTO?>;
+	public record GetTimeQuery(
+		Guid Id
+	) : IRequest<GetTimeResponseDTO>;
 }

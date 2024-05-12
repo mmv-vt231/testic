@@ -47,6 +47,14 @@ namespace Application.Results.CreateResult
 				throw StudentsErrors.StudentNotFound;
 			}
 
+			var start = DateTime.Compare(task.Start, DateTime.Now);
+			var end = DateTime.Compare(task.End, DateTime.Now);
+
+			if (start > 0 || end < 0)
+			{
+				throw TasksErrors.TaskInactive;
+			}
+
 			if(task.OneChance)
 			{
 				var studentResult = await _studentRepository.GetStudentTaskResults(task.Id, student.Id);

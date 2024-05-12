@@ -10,5 +10,6 @@ namespace Domain.Repositories
     public interface IResultRepository : IRepository<Result>
 	{
 		Task<Result?> GetResultDetails(Guid id);
+		Task<TaskEntity?> GetResultTask(Guid id);
 	}
 }

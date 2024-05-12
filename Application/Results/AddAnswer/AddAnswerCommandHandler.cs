@@ -61,7 +61,7 @@ namespace Application.Results.AddAnswer
 				JsonObject answer = [];
 				answer.Add("answerId", answerData[0].DeepClone());
 
-				if (keys.Contains(answerData))
+				if ((Guid)keys[0] == (Guid)answerData[0])
 				{
 					points += question.Points;
 					result.Correct++;
@@ -79,7 +79,9 @@ namespace Application.Results.AddAnswer
 						var correct = 0;
 
 						for (int i = 0; i < keys.Count; i++) {
-							if (answerData.Contains(keys[i]))
+							var answer = answerData.FirstOrDefault(a => (Guid)a == (Guid)keys[i]);
+
+							if (answer is not null)
 							{
 								points += answerCost;
 								correct++;
@@ -89,8 +91,10 @@ namespace Application.Results.AddAnswer
 						for (int i = 0; i < answerData.Count; i++)
 						{
 							JsonObject answer = [];
+							var key = keys.FirstOrDefault(k => (Guid)k == (Guid)answerData[i]);
+
 							answer.Add("answerId", answerData[i].DeepClone());
-							answer.Add("correct", keys.Contains(answerData[i]));
+							answer.Add("correct", key is not null);
 							answerData[i] = answer;
 						}
 

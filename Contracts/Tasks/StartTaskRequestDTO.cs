@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Results
+namespace Contracts.Tasks
 {
-	public record CreateResultRequestDTO(
-		string Email	
+	public record StartTaskRequestDTO(
+		string Email
 	);
 }

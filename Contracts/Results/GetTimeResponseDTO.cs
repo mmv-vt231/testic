@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.Results
 {
-	public record GetQuestionResponseDTO(
-		Guid Id,
-		string Title,
-		string? Image,
-		string Type,
-		int QuestionOrder,
-		int TotalQuestions,
-		dynamic Data
+	public record GetTimeResponseDTO(
+		int Seconds
 	);
 }

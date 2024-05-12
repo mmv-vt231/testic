@@ -37,7 +37,7 @@ namespace Application.Results.GetResult
 				? (DateTime)result.End - result.Start 
 				: new TimeSpan(0, 0, 0);
 
-			var duration = TimeOnly.FromTimeSpan(diff);
+			var duration = diff.ToString("hh\\:mm\\:ss");
 			var questionsCount = questions?.Count() ?? 0;
 			var percentages = (int)Math.Round(result.Score / test.TotalScore * 100);
 
@@ -50,9 +50,9 @@ namespace Application.Results.GetResult
 				questionsData = test.Questions?
 					.OrderBy(q =>
 					{
-						int? index = questionsOrder?
-							.SingleOrDefault(o => (Guid)o["questionId"] == q.Id)
-							.GetElementIndex();
+						int? index = questionsOrder
+							?.SingleOrDefault(o => (Guid)o["questionId"] == q.Id)
+							?.GetElementIndex();
 						if(index is null) return int.MaxValue;
 						return index;
 					})

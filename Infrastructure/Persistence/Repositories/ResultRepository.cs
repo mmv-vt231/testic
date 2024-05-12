@@ -30,5 +30,15 @@ namespace Infrastructure.Persistence.Repositories
 					.ThenInclude(t => t.Questions)
 				.SingleOrDefaultAsync(r => r.Id == id);
 		}
+
+		public async Task<TaskEntity?> GetResultTask(Guid id)
+		{
+			var result = await _context.Results
+				.AsNoTracking()
+				.Include(t => t.Task)
+				.SingleOrDefaultAsync(r => r.Id == id);
+
+			return result?.Task;
+		}
 	}
 }

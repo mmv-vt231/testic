@@ -36,7 +36,7 @@ namespace Application.Questions.UpdateQuestion
                 throw QuestionsErrors.QuestionNotFound;
             }
 
-            var test = await _testRepository.GetByIdAsync(request.Id);
+            var test = await _testRepository.GetByIdAsync(question.TestId);
 
             test.TotalScore = (test.TotalScore - question.Points) + request.Points;
 

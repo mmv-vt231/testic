@@ -21,8 +21,8 @@ namespace Contracts.Results
 		int Wrong,
 		float Score,
 		float TotalScore,
-		TimeOnly Duration,
+		string Duration,
 		int QuestionsCount,
-		int Percentages
+		int Percent
 	);
 }

@@ -58,7 +58,8 @@ namespace API.Controllers
 		}
 
 		[HttpPost("{id:Guid}/start")]
-		public async Task<IActionResult> StartTask(Guid id, CreateResultRequestDTO dto)
+		[AllowAnonymous]
+		public async Task<IActionResult> StartTask(Guid id, StartTaskRequestDTO dto)
 		{
 			var resultId = await _mediator.Send(new CreateResultCommand(id, dto.Email));
 
@@ -66,6 +67,7 @@ namespace API.Controllers
 		}
 
 		[HttpGet("{id:Guid}/info")]
+		[AllowAnonymous]
 		public async Task<IActionResult> GetTaskStartInfo(Guid id)
 		{
 			var task = await _mediator.Send(new GetTaskStartInfoQuery(id));

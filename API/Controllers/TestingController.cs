@@ -3,6 +3,7 @@ using Application.Results.DeleteResult;
 using Application.Results.FinishTesting;
 using Application.Results.GetQuestion;
 using Application.Results.GetResult;
+using Application.Results.GetTime;
 using Contracts.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -25,6 +26,11 @@ namespace API.Controllers
 		public async Task<IActionResult> GetQuestion(Guid id)
 		{
 			var question = await _mediator.Send(new GetQuestionQuery(id));
+
+			if (question is null)
+			{
+				await _mediator.Send(new FinishTestingCommand(id));
+			}
 
 			return Ok(question);
 		}
@@ -51,6 +57,14 @@ namespace API.Controllers
 			var result = await _mediator.Send(new GetResultQuery(id));
 
 			return Ok(result);
+		}
+
+		[HttpGet("{id:Guid}/time")]
+		public async Task<IActionResult> GetTime(Guid id)
+		{
+			var time = await _mediator.Send(new GetTimeQuery(id));
+
+			return Ok(time);
 		}
 
 		[HttpDelete("{id:Guid}")]
