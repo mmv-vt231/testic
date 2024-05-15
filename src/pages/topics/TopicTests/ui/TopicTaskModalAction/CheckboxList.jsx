@@ -4,7 +4,7 @@ import { FormContext } from "@components/shared/form/Form";
 import { Checkbox, HStack, Stack, Text } from "@chakra-ui/react";
 
 function CheckboxList() {
-  const { data, setData, errors } = useContext(FormContext);
+  const { data, setData } = useContext(FormContext);
 
   const handleChangeCheckbox = ({ target }) => {
     setData(prevData => ({
@@ -35,12 +35,12 @@ function CheckboxList() {
       </HStack>
       <HStack>
         <Checkbox
-          value="shuffle"
+          value="shuffleQuestions"
           size="lg"
-          isChecked={data.shuffle}
+          isChecked={data.shuffleQuestions}
           onChange={handleChangeCheckbox}
         />
-        <Text>Перемішати відповіді</Text>
+        <Text>Перемішати питання</Text>
       </HStack>
     </Stack>
   );

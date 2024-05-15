@@ -22,6 +22,7 @@ import Task from "@pages/task/Task";
 import Start from "@pages/testing/Start";
 import Passing from "@pages/testing/Passing";
 import Result from "@pages/testing/Result";
+import Gradebook from "./pages/groups/Gradebook";
 
 function App() {
   return (
@@ -50,7 +51,10 @@ function App() {
             <Route path="tasks/:id" element={<Task />} />
             <Route path="groups">
               <Route index element={<Groups />} />
-              <Route path=":id" element={<Group />} />
+              <Route path=":id">
+                <Route index element={<Group />} />
+                <Route path="gradebook" element={<Gradebook />} />
+              </Route>
             </Route>
             <Route path="profile" element={<Profile />} />
           </Route>

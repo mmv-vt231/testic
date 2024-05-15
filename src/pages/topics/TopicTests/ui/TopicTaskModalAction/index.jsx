@@ -22,7 +22,7 @@ function TopicTaskModalAction({ title, testId, data, children, type }) {
     duration: 20,
     oneChance: true,
     showAnswers: false,
-    shuffle: false,
+    shuffleQuestions: false,
   };
 
   const validation = {
@@ -52,9 +52,11 @@ function TopicTaskModalAction({ title, testId, data, children, type }) {
       await addTask({
         id: testId,
         body: formData,
-      });
-
-      navigate("tasks");
+      })
+        .unwrap()
+        .then(() => {
+          navigate("tasks");
+        });
     }
   };
 

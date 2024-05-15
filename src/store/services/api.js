@@ -25,7 +25,19 @@ export const api = createApi({
       }
     },
   }),
-  tagTypes: ["Topics", "Topic", "Groups", "Group", "Test", "User"],
+  tagTypes: [
+    "Topics",
+    "Topic",
+    "Groups",
+    "Group",
+    "Test",
+    "Tasks",
+    "Task",
+    "User",
+    "Gradebook",
+    "Result",
+    "ResultQuestion",
+  ],
   endpoints: builder => ({
     authorize: builder.query({
       query: () => "/auth/authorize",
@@ -93,6 +105,7 @@ export const {
   useAddGroupMutation,
   useEditGroupMutation,
   useDeleteGroupMutation,
+  useGetGroupResultsQuery,
 
   useAddStudentMutation,
   useEditStudentMutation,

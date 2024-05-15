@@ -1,9 +1,9 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDeleteGroupMutation } from "@store/services/api";
 
 import { Flex, Box, Heading, Text, Button } from "@chakra-ui/react";
-import { Edit } from "@icons";
+import { Edit, Result } from "@icons";
 import Header from "@components/layout/Header";
 import AlertDialog from "@components/shared/AlertDialog";
 import GroupStudentActionModal from "./GroupStudentActionModal";
@@ -39,6 +39,10 @@ function GroupHeader({ name, studentsCount }) {
 
   return (
     <Header Title={Title}>
+      <Button as={Link} to="gradebook" alignItems="center" gap={2} lineHeight={8}>
+        <Result boxSize={5} />
+        Журнал
+      </Button>
       <GroupStudentActionModal title="Новий учень" type="create">
         <Button>+ Додати учня</Button>
       </GroupStudentActionModal>

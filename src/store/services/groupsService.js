@@ -30,6 +30,10 @@ const groupsService = builder => ({
     }),
     invalidatesTags: ["Groups"],
   }),
+  getGroupResults: builder.query({
+    query: id => `/groups/${id}/results`,
+    providesTags: ["Group", "Gradebook"],
+  }),
 });
 
 export default groupsService;

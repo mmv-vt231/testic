@@ -14,8 +14,6 @@ function TopicTasks() {
   if (isLoading) return <Spinner />;
   if (isError) return <NotFound />;
 
-  console.log(data);
-
   return (
     <SimpleGrid columns={{ base: 1, xl: 2 }} gap={4}>
       {!!data.length ? (

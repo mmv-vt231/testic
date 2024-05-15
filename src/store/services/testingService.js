@@ -9,7 +9,7 @@ const testingService = builder => ({
       method: "POST",
       body,
     }),
-    invalidatesTags: ["Result"],
+    invalidatesTags: ["Result", "Task"],
   }),
   getQuestion: builder.query({
     query: id => `/testing/${id}/question`,
@@ -21,14 +21,14 @@ const testingService = builder => ({
       method: "POST",
       body,
     }),
-    invalidatesTags: ["ResultQuestion"],
+    invalidatesTags: ["ResultQuestion", "Task", "Gradebook"],
   }),
   finishTesting: builder.mutation({
     query: id => ({
       url: `/testing/${id}/finish`,
       method: "POST",
     }),
-    invalidatesTags: ["Result"],
+    invalidatesTags: ["Result", "Task"],
   }),
   getTime: builder.query({
     query: id => `/testing/${id}/time`,
@@ -38,7 +38,7 @@ const testingService = builder => ({
       url: `/testing/${id}`,
       method: "DELETE",
     }),
-    invalidatesTags: ["Result"],
+    invalidatesTags: ["Result", "Test", "Task"],
   }),
 });
 

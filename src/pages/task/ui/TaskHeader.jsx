@@ -19,7 +19,7 @@ function TaskHeader({ data, id }) {
     groups: data.groups,
     duration: data.duration,
     oneChance: data.oneChance,
-    shuffle: data.shuffle,
+    shuffleQuestions: data.shuffleQuestions,
     showAnswers: data.showAnswers,
   };
 

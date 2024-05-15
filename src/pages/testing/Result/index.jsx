@@ -23,7 +23,7 @@ function Result() {
           Результати
         </Heading>
         <ResultDetails data={data} />
-        <Answers questions={questions} answers={answers} />
+        {answers && <Answers questions={questions} answers={answers} />}
       </Stack>
     </Box>
   );
