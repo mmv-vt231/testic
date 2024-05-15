@@ -14,6 +14,6 @@ namespace Domain.Entities
         public Guid GroupId { get; set; }
         public Group Group { get; set; }
 
-		public IEnumerable<Result>? Results { get; set; }
+		public IEnumerable<Result> Results { get; set; }
 	}
 }

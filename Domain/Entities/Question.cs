@@ -15,7 +15,7 @@ namespace Domain.Entities
         public string Data { get; set; } = string.Empty;
         public string Keys { get; set; } = string.Empty;
 
-        public Guid TestId { get; set; }
+        public Guid? TestId { get; set; }
         public Test Test { get; set; }
     }
 }

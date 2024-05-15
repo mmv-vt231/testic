@@ -1,4 +1,5 @@
-﻿using Contracts.Questions;
+﻿using Application.Interfaces;
+using Contracts.Questions;
 using Contracts.Results;
 using Domain.Errors;
 using Domain.Repositories;
@@ -11,11 +12,13 @@ namespace Application.Results.GetResult
 	public class GetResultQueryHandler : IRequestHandler<GetResultQuery, GetResultResponseDTO>
 	{
 		private readonly IResultRepository _resultRepository;
-
+		private readonly IUserService _userService;
 		public GetResultQueryHandler(
-			IResultRepository resultRepository)
+			IResultRepository resultRepository,
+			IUserService userService)
 		{
 			_resultRepository = resultRepository;
+			_userService = userService;
 		}
 
 		public async Task<GetResultResponseDTO> Handle(GetResultQuery request, CancellationToken cancellationToken)
@@ -39,12 +42,20 @@ namespace Application.Results.GetResult
 
 			var duration = diff.ToString("hh\\:mm\\:ss");
 			var questionsCount = questions?.Count() ?? 0;
-			var percentages = (int)Math.Round(result.Score / test.TotalScore * 100);
+
+			var percent = 0;
+
+			if(test.TotalScore > 0)
+			{
+				percent = (int)Math.Round(result.Score / test.TotalScore * 100);
+			}
 
 			JsonArray? answersData = null;
 			List<QuestionDTO>? questionsData = null;
 
-			if (task.ShowAnswers)
+			var userId = _userService.Id;
+
+			if (task.ShowAnswers || userId != Guid.Empty)
 			{
 				answersData = JsonSerializer.Deserialize<JsonArray>(result.Answers);
 				questionsData = test.Questions?
@@ -69,9 +80,7 @@ namespace Application.Results.GetResult
 							null
 						);
 					}).ToList();
-
 			}
-
 
 			var details = new GetResultDetailsDTO(
 				result.Correct,
@@ -81,7 +90,7 @@ namespace Application.Results.GetResult
 				test.TotalScore,
 				duration,
 				questionsCount,
-				percentages
+				percent
 			);
 
 			return new GetResultResponseDTO(

@@ -26,7 +26,8 @@ namespace Application.Tests.DeleteTest
                 throw TestsErrors.TestNotFound;
             }
 
-            await _testRepository.DeleteAsync(test);
+			await _testRepository.DeleteTestTasks(request.Id);
+			await _testRepository.DeleteAsync(test);
         }
     }
 }

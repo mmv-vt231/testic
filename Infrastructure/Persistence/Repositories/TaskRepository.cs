@@ -23,13 +23,16 @@ namespace Infrastructure.Persistence.Repositories
 		{
 			return await _context.Tasks
 				.AsNoTracking()
+				.Include(t => t.Results)
+					.ThenInclude(r => r.Student)
 				.Include(t => t.Groups)
+					.ThenInclude(g => g.Students)
 				.Include(t => t.Test)
 					.ThenInclude(t => t.Questions)
 				.FirstOrDefaultAsync(t => t.Id == id);
 		}
 
-		public async Task<ICollection<Group>?> GetTaskGroups(ICollection<Guid> groups)
+		public async Task<ICollection<Group>> GetTaskGroups(ICollection<Guid> groups)
 		{
 			return await _context.Groups
 				.AsNoTracking()

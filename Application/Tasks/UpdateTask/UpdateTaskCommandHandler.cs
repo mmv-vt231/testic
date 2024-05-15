@@ -42,7 +42,6 @@ namespace Application.Tasks.UpdateTask
 			task.ShuffleQuestions = request.ShuffleQuestions;
 
 			await _taskRepository.UpdateAsync(task);
-
 			await _taskRepository.UpdateTaskGroups(request.Id, request.Groups);
 		}
 	}

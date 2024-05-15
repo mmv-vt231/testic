@@ -13,7 +13,6 @@ namespace Infrastructure.Persistence.Repositories
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         protected readonly ApplicationDbContext _context;
-
         public Repository(ApplicationDbContext context)
         {
             _context = context;

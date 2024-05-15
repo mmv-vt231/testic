@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Contracts.Groups;
 using Contracts.Students;
 using Application.Students.CreateStudent;
+using Application.Groups.GetGroupResults;
 
 namespace API.Controllers
 {
@@ -59,5 +60,13 @@ namespace API.Controllers
 
             return Created();
         }
-    }
+
+		[HttpGet("{id:Guid}/results")]
+		public async Task<IActionResult> GetGroupResults(Guid id)
+		{
+			var results = await _mediator.Send(new GetGroupResultsQuery(id));
+
+			return Ok(results);
+		}
+	}
 }

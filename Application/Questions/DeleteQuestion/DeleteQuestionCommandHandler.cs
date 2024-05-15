@@ -36,7 +36,13 @@ namespace Application.Questions.DeleteQuestion
                 throw QuestionsErrors.QuestionNotFound;
             }
 
-            var test = await _testRepository.GetByIdAsync(question.TestId);
+            if (question?.TestId is null)
+            {
+                throw TestsErrors.TestNotFound;
+            }
+
+            var test = await _testRepository.GetByIdAsync((Guid)question.TestId); 
+
 
 			if (!question.Image.IsNullOrEmpty())
             {

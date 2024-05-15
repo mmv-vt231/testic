@@ -39,7 +39,7 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.HasOne(q => q.Test)
                 .WithMany(t => t.Questions)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

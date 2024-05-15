@@ -86,3 +86,13 @@ Authorization: Bearer {{API_Token}}
 DELETE {{API_HostAddress}}/api/testing/86b87e83-371f-460a-9a42-dacdc7f1dd15
 Content-Type: application/json
 Authorization: Bearer {{API_Token}}
+
+### Get Task
+Get {{API_HostAddress}}/api/tasks/5983b1a4-fbe6-4614-859d-93f08467b71b
+Content-Type: application/json
+Authorization: Bearer {{API_Token}}
+
+### Get Group Results
+Get {{API_HostAddress}}/api/groups/35f7c120-eec1-4885-a058-416b6b6855d9/results
+Content-Type: application/json
+Authorization: Bearer {{API_Token}}

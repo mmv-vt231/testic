@@ -25,5 +25,20 @@ namespace Infrastructure.Persistence.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(t => t.Id == id);
 		}
+
+		public async Task DeleteTestTasks(Guid id)
+		{
+			var tasks = await _context.Tasks
+			   .AsNoTracking()
+			   .Where(t => t.TestId == id)
+			   .ToListAsync();
+
+			if(tasks is not null)
+			{
+				_context.RemoveRange(tasks);
+			}
+
+			await _context.SaveChangesAsync();
+		}
 	}
 }

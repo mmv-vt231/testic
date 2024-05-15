@@ -21,8 +21,8 @@ namespace Domain.Entities
 		public Guid? TopicId { get; set; }
 		public Topic Topic { get; set; }
 
-		public ICollection<Group>? Groups { get; set; } = [];
+		public ICollection<Group> Groups { get; set; } = [];
 
-		public IEnumerable<Result>? Results { get; set; }
+		public IEnumerable<Result> Results { get; set; }
 	}
 }

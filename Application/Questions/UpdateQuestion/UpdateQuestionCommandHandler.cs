@@ -36,7 +36,12 @@ namespace Application.Questions.UpdateQuestion
                 throw QuestionsErrors.QuestionNotFound;
             }
 
-            var test = await _testRepository.GetByIdAsync(question.TestId);
+			if (question?.TestId is null)
+			{
+				throw TestsErrors.TestNotFound;
+			}
+
+			var test = await _testRepository.GetByIdAsync((Guid)question.TestId);
 
             test.TotalScore = (test.TotalScore - question.Points) + request.Points;
 

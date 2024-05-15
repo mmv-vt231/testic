@@ -8,6 +8,6 @@ namespace Application.Interfaces
 {
     public interface IUserService
     {
-        public Guid Id { get; }
+        public Guid Id { get; } 
     }
 }

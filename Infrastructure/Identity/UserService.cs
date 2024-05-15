@@ -12,12 +12,18 @@ namespace API.Infrastructure.Identity
     public class UserService : IUserService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+        public Guid Id { get; }
 
-        public UserService(IHttpContextAccessor httpContextAccessor)
+		public UserService(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-        }
 
-        public Guid Id => new(_httpContextAccessor.HttpContext?.User?.FindFirstValue("id"));
+            var id = _httpContextAccessor.HttpContext?.User?.FindFirstValue("id");
+
+			if (Guid.TryParse(id, out Guid userId))
+            {
+                Id = userId;
+            }
+        }
     }
 }

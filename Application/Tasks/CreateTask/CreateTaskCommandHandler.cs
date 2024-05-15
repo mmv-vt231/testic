@@ -42,13 +42,10 @@ namespace Application.Tasks.CreateTask
 				throw TestsErrors.TestNotFound;
 			}
 
-			var groups = await _taskRepository.GetTaskGroups(request.Groups);
-
 			var task = new TaskEntity
 			{
 				TestId = request.TestId,
 				TopicId = request.TopicId,
-				Groups = groups,
 				Start = request.Start,
 				End = request.End,
 				Duration = request.Duration,
@@ -58,6 +55,7 @@ namespace Application.Tasks.CreateTask
 			};
 
 			await _taskRepository.CreateAsync(task);
+			await _taskRepository.UpdateTaskGroups(task.Id, request.Groups);
 		}
 	}
 }
